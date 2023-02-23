@@ -24,13 +24,24 @@
     "url": "https://github.com/W317/blog_ss2/issues"
   },
   "homepage": "https://github.com/W317/blog_ss2#readme",
+  "lint-staged" : {
+    "src/**/*.{js,json,scss}" : "prettier --single-quote --trailing-comma all --tab-width 4 --write"
+  },
+  "husky" : {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
     "express": "^4.18.2",
     "express-handlebars": "^6.0.7"
   },
   "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.2",
     "morgan": "^1.10.0",
     "node-sass": "^8.0.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.4"
   }
 }
