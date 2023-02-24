@@ -1,14 +1,19 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
+import dotenv from "dotenv"
+dotenv.config()
 
+const connect = async () => {
+    try{
+        const conn = await mongoose.connect('mongodb+srv://MinhHieu:cuunhatnhat2811@cluster0.751vqph.mongodb.net/test', {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
 
-export default function connect() {
-    try {
-        mongoose.set("strictQuery", false);
-        mongoose.connect('mongodb://127.0.0.1/blog_ss2',
-            { useNewUrlParser: true });
-        console.log("connect dbs successfully")
-    } catch (error) {
-        console.log('xonnect dbs fail')
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
+    }catch(err) {
+        console.log(`Error: ${err.message}`);
+        process.exit(1);
     }
 }
 
+export default connect;
