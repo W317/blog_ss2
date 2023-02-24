@@ -2,6 +2,7 @@ import morgan from 'morgan';
 import express from 'express';
 import { engine } from 'express-handlebars';
 import route from './routes/index.js';
+import dbconnect from './config/db/connectdb.js';
 
 const app = express();
 const port = 3000;
@@ -19,7 +20,11 @@ app.engine(
     }),
 );
 app.set('view engine', 'hbs');
-app.set('views', './src/resources/views');
+app.set('views', './src/resources/views'); 
+
+
+// connect db
+dbconnect();
 
 route(app);
 
