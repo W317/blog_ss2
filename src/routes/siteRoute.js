@@ -1,8 +1,8 @@
 import express from 'express';
-import siteController from '../app/controllers/SiteController.js';
+import {getAllBlogs} from '../app/controllers/SiteController.js';
 const router = express.Router();
 
-router.use('/search', siteController.search);
-router.use('/', siteController.home);
+// router.use('/search', siteController.search);
+router.use('/', getAllBlogs);
 
 export default router;

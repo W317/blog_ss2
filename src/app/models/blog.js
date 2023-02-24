@@ -3,13 +3,27 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
-const BlogPost = new Schema({
-  author: ObjectId,
-  title: String,
-  body: String,
-  image: String,
-  date: Date
-});
+const BlogPost = new mongoose.Schema({
+  author: {
+      type: ObjectId,
+      required: true
+  },
+  title: {
+      type: String,
+      require: true
+  },
+  body: {
+      type: String,
+      required: true,
+      unique: true
+  },
+  images: [{
+      type: String,
+      required: true
+  }],
+}, {
+  timestamps: true
+})
 
 const BlogSchema = mongoose.model('BlogPost', BlogPost);
 export default BlogSchema;
