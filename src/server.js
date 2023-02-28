@@ -21,10 +21,10 @@ app.use(function (req, res, next) {
 
 app.use(morgan("combined"));
 
-// static files
-app.use(express.static('./src/public/img'));
-
 const __dirname = path.resolve();
+
+// static files
+app.use(express.static(path.join(__dirname + '/public/')));
 const hbs = create({ defaultLayout: "./views/layout", partialsDir: {dir: path.join(__dirname + "/src/views/partials")}, extname: ".handlebars" });
 
 app.engine(".handlebars", hbs.engine);
@@ -42,7 +42,7 @@ app.use("/", (req, res) => {
 });
 
 app.use("/js", express.static(__dirname + "/src/public/js"));
-app.use("/css", express.static(__dirname + "/src/public/css"));
+app.use("/css", express.static(path.join(__dirname + "/src/public/css/index.css")));
 
 app.listen(process.env.PORT, () => {
   console.log(`Example app listening on port ${process.env.PORT}`);

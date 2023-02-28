@@ -3,7 +3,7 @@ import asyncHandler from 'express-async-handler'
 
 const getAllBlogs = asyncHandler(async (req, res) => {
   try {
-    const blogs = await BlogModel.find({ });
+    const blogs = await BlogModel.find({});
     if (blogs) {
       res.status(200).json({
         data: blogs,
