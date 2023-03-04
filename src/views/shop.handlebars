@@ -1,0 +1,39 @@
+
+    <section class="shop-page padding-large">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="page-title">Shop</h1>
+            <div class="breadcrumbs">
+              <span class="item">
+                <a href="index.html">Home /</a>
+              </span>
+              <span class="item">Category</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- All product -->
+    <section class="shoppify-items padding-large no-padding-top">
+      <div class="container">
+        <div class="row">
+          <div class="product-content large-box flex-wrap">
+            {{#each products}}
+            <div class="col-md-3">
+              <div class="content-box text-center">
+                <figure class="bg-grey">
+                  <img src={{image}} alt={{category}}>
+                </figure>
+                <div class="category align-center">
+                  <a href="/product/{{id}}">{{title}}</a>
+                </div>
+                <span class="price-tag text-center">{{price}}</span>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </section>

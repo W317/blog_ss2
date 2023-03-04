@@ -1,0 +1,109 @@
+
+    <div class="site-banner" style="background-image: url(images/hero-image1.jpg);">
+      <div class="banner-content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="breadcrumb-area padding-large">
+                <h1 class="page-title">Checkout</h1>
+                <div class="breadcum-items">
+                  <span class="item">
+                    <a href="index.html">Home /</a>
+                  </span>
+                  <span class="item">Checkout</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-75">
+        <div class="container">
+
+
+          <form action="" method="POST">
+    
+            <div class="row">
+              <div class="col-50">
+                <h3>Billing Address</h3>
+                <label for="fname"><i class="fa icon-user"></i> Full Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Nguyen Van A">
+                <label for="email"><i class="fa icon-envelope"></i> Email</label>
+                <input type="text" id="email" name="email" placeholder="nguyenvana@example.com">
+                <label for="adr"><i class="fa icon-location"></i> Address</label>
+                <input type="text" id="adr" name="address" placeholder="142 Nguyen Trai, Ha Dong District">
+                <label for="city"><i class="fa icon-location"></i> City</label>
+                <input type="text" id="city" name="city" placeholder="Hanoi">
+    
+                <div class="row">
+                  <div class="col-50">
+                    <label for="state">Country</label>
+                    <input type="text" id="state" name="state" placeholder="VN">
+                  </div>
+                  <div class="col-50">
+                    <label for="zip">Zip</label>
+                    <input type="text" id="zip" name="zip" placeholder="10001">
+                  </div>
+                </div>
+              </div>
+    
+              <div class="col-50">
+                <h3>Payment</h3>
+                <label for="cname">Name on Card</label>
+                <input type="text" id="cname" name="cardname" placeholder="Nguyen Van A">
+                <label for="ccnum">Credit card number</label>
+                <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                <label for="expmonth">Exp Month</label>
+                <input type="text" id="expmonth" name="expmonth" placeholder="September">
+    
+                <div class="row">
+                  <div class="col-50">
+                    <label for="expyear">Exp Year</label>
+                    <input type="text" id="expyear" name="expyear" placeholder="2023">
+                  </div>
+                  <div class="col-50">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="352">
+                  </div>
+                </div>
+              </div>
+    
+            </div>
+            <label>
+              <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+            </label>
+            <input type="submit" value="Continue to checkout" class="btn">
+          </form>
+        </div>
+      </div>
+
+      {{!-- CART --}}
+      <div class="col-25">
+        <div class="container">
+          <h4>Cart
+            <span class="price" style="color:black">
+              <i class="fa icon-shopping-cart"></i>
+              <b>4</b>
+            </span>
+          </h4>
+          {{#each cartitems}}
+          <p><a href="/product/{{id}}">{{title}}</a> <span class="price">{{price}}</span></p>
+          {{/each}}
+          <hr>
+          <p>Total <span class="price" style="color:black"><b>{{../total}}</b></span></p>
+        </div>
+      </div>
+    </div>
+    {{!-- Mẫu {
+      "cartitems": [
+        {
+          "id": "1",
+          "title": "Product",
+          "price": 100,
+        },...
+      ],
+      "total": 1000
+    } --}}
