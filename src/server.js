@@ -1,10 +1,10 @@
-import morgan from "morgan";
 import express from "express";
 import connect from "./config/db/connectdb.js";
 import * as dotenv from "dotenv";
 import { create } from "express-handlebars";
 import path from "path";
 import logger from "morgan";
+import route from "./routes/index.js";
 
 dotenv.config();
 const app = express();
@@ -18,8 +18,6 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   next();
 });
-
-app.use(morgan("combined"));
 
 const __dirname = path.resolve();
 
@@ -36,18 +34,21 @@ app.use(logger("dev"));
 connect();
 
 // blog
-app.use("/pages/blog", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/blog.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
-  });
-});
+// app.use("/pages/blog", (req, res) => {
+//   res.render(path.join(__dirname + "/src/views/blog.handlebars"), {
+//     layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+//   });
+// });
 
 // home page
-app.use("/", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/home.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
-  });
-});
+// app.use("/", (req, res) => {
+//   res.render(path.join(__dirname + "/src/views/home.handlebars"), {
+//     layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+//   });
+// });
+route(app)
+
+
 
 app.use("/js", express.static(__dirname + "/src/public/js"));
 app.use("/css", express.static(path.join(__dirname + "/src/public/css/index.css")));

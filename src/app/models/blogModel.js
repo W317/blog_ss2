@@ -5,7 +5,8 @@ const ObjectId = Schema.ObjectId;
 
 const BlogPost = new mongoose.Schema({
   author: {
-      type: ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
       required: true
   },
   title: {
@@ -21,6 +22,10 @@ const BlogPost = new mongoose.Schema({
       type: String,
       required: true
   }],
+  href: {
+    type: String,
+    required: true
+  }
 }, {
   timestamps: true
 })
