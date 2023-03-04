@@ -1,11 +1,11 @@
-import docRouter from './doc.js';
-import siteRouter from './siteRoute.js';
+import blogRouter from './siteRoute.js';
 import userRouter from './userRoute.js';
+import cartRoute from './cartRoute.js';
 
 export default function route(app) {
-    app.use('/doc', docRouter);
+    app.use('/', blogRouter);
 
-    app.use('/', siteRouter);
+    app.use('/cart', cartRoute);
 
     app.use('/user', userRouter);
 }
