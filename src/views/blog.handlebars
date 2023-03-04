@@ -8,20 +8,20 @@
 					<!-- post grid -->
 					<div class="post-grid">
 						<div class="row">
-							{{#each blogarrays.blog}}
+							{{#each blogs}}
 							<div class="col-md-4 post-item">
 	            <figure>
-	              <img src={{image}} alt="jewellery" class="post-image">
+	              <img src={{this.image}} alt="jewellery" class="post-image">
 	            </figure>
 	            <div class="post-content">
 	              <div class="meta-tags">
 	                <span class="meta-date">Posted in {{date}}</span>
-	                <span class="meta-date">by {{author}}</span>
+	                <span class="meta-date">by {{this.author}}</span>
 	              </div>
 	              <h3 class="post-title">
-	                <a href="#">{{title}}</a>
+	                <a href="#">{{this.title}}</a>
 	              </h3>
-	              <p>First we need to check all the luxury colors of the jewels whic</p>
+	              <p>{{this.body}}</p>
 	            </div>
 	          </div>
             {{/each}}

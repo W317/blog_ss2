@@ -4,9 +4,13 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
 const BlogPost = new mongoose.Schema({
-  author: {
+  _id: {
       type: ObjectId,
       required: true
+  },
+  author: {
+    type: String,
+    require: true
   },
   title: {
       type: String,
