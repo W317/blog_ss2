@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
-import { Cart } from "../app/models/cartModel";
-import Product from "../app/models/productModel";
+import { Cart } from "../app/models/cartModel.js";
+import Product from "../app/models/productModel.js";
 
 router.get("/add-to-cart/:id", (req, res, next) => {
   // we want to have a cart object in the session!
@@ -49,4 +49,4 @@ router.get("/shopping-cart", (req, res, next) => {
   });
 });
 
-export default cartRoute
+export default router

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
 const BlogPost = new mongoose.Schema({
-  _id: {
+  author: {
       type: ObjectId,
       required: true
   },
@@ -25,6 +25,10 @@ const BlogPost = new mongoose.Schema({
       type: String,
       required: true
   }],
+  href: {
+    type: String,
+    required: true
+  }
 }, {
   timestamps: true
 })
