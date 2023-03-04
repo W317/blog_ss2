@@ -1,9 +1,9 @@
-import blogRouter from './siteRoute.js';
+import blogRouter from './blogRoute.js';
 import userRouter from './userRoute.js';
 import cartRoute from './cartRoute.js';
 
 export default function route(app) {
-    app.use('/', blogRouter);
+    app.use('/blog', blogRouter);
 
     app.use('/cart', cartRoute);
 
