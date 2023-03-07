@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
+// const ObjectId = Schema.ObjectId;
 
 const BlogPost = new mongoose.Schema({
   author: {
-      type: ObjectId,
-      required: true
+    type: String,
+    require: true
   },
   title: {
       type: String,
@@ -21,6 +21,10 @@ const BlogPost = new mongoose.Schema({
       type: String,
       required: true
   }],
+  href: {
+    type: String,
+    required: true
+  }
 }, {
   timestamps: true
 })
