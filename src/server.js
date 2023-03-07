@@ -39,26 +39,61 @@ app.use(logger("dev"));
 
 connect();
 
-// blog
-// app.use("/pages/blog", (req, res) => {
-//   res.render(path.join(__dirname + "/src/views/blog.handlebars"), {
-//     layout: path.join(__dirname + "/src/views/layout/main.handlebars")
-//   });
-// });
+// test UI
 
 //contact
 app.use("/pages/contact", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/contact..handlebars"), {
+  res.render(path.join(__dirname + "/src/views/contact.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars")
   });
 });
 
+// form
+app.use("/form", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/form.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+  });
+});
+
+// checkout
+app.use("/checkout", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/checkout.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+  });
+});
+
+// index
+app.use("/index", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/index.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+  });
+});
+
+// shop
+app.use("/shop", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/shop.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+  });
+});
+
+// thankyou
+app.use("/thank-you", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/thank-you.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+  });
+});
+
+
 // home page
-// app.use("/", (req, res) => {
-//   res.render(path.join(__dirname + "/src/views/home.handlebars"), {
-//     layout: path.join(__dirname + "/src/views/layout/main.handlebars")
-//   });
-// });
+app.use("/", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/home.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+  });
+});
+
+
+
+
 route(app)
 
 
