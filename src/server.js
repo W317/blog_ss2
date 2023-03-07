@@ -47,7 +47,6 @@ app.use("/pages/contact", (req, res) => {
   });
 });
 
-
 // home page
 // app.use("/", (req, res) => {
 //   res.render(path.join(__dirname + "/src/views/home.handlebars"), {

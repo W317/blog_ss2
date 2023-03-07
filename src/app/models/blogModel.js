@@ -1,13 +1,9 @@
 import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
+// const ObjectId = Schema.ObjectId;
 
 const BlogPost = new mongoose.Schema({
-  author: {
-      type: ObjectId,
-      required: true
-  },
   author: {
     type: String,
     require: true
