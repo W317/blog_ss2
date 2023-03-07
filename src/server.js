@@ -42,7 +42,7 @@ connect();
 
 //contact
 app.use("/pages/contact", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/contact..handlebars"), {
+  res.render(path.join(__dirname + "/src/views/contact.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars")
   });
 });
