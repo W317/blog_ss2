@@ -48,9 +48,16 @@ app.use("/pages/contact", (req, res) => {
   });
 });
 
-// form
-app.use("/form", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/form.handlebars"), {
+// form-product
+app.use("/form/product", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/form-product.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+  });
+});
+
+// form-blog
+app.use("/form/blog", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/form-blog.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars")
   });
 });
