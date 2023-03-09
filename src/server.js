@@ -69,30 +69,12 @@ app.use("/index", (req, res) => {
   });
 });
 
-// shop
-app.use("/shop", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/shop.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
-  });
-});
-
 // thankyou
 app.use("/thank-you", (req, res) => {
   res.render(path.join(__dirname + "/src/views/thank-you.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars")
   });
 });
-
-
-// home page
-app.use("/", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/home.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
-  });
-});
-
-
-
 
 route(app)
 
