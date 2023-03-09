@@ -75,7 +75,12 @@ app.use("/pages/cart", (req,res) => {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars")
   });
 });
-
+//wishlist
+app.use("/pages/wishlist",(req,res) => {
+  res.render(path.join(__dirname + "/src/views/wishlist.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+  });
+});
 // shop
 app.use("/shop", (req, res) => {
   res.render(path.join(__dirname + "/src/views/shop.handlebars"), {
