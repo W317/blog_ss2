@@ -1,23 +1,34 @@
 import mongoose from "mongoose";
-const userSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    age: {
-        type: Number,
-        require: true
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-})
+import bcrypt from 'bcrypt-nodejs'
 
-const userModel = mongoose.model('userSchema', userSchema);
+const userSchema = mongoose.Schema({
+  // name: {
+  //     type: String,
+  //     required: true
+  // },
+  // age: {
+  //     type: Number,
+  //     require: true
+  // },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+});
+
+userSchema.methods.encryptPassword = function(password) {
+  // use 5 rounds of salt creation here
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(5));
+};
+
+userSchema.methods.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.password);
+};
+
+const userModel = mongoose.model("userSchema", userSchema);
 export default userModel;

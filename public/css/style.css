@@ -36,7 +36,7 @@ CSS STRUCTURE:
     - Button Shapes
     - Button Color Scheme
     - Button Aligns
-  2.11 Images
+  2.11 img
     - Image Hover Effects
   2.12 Section
     - Hero Section
@@ -1673,7 +1673,7 @@ h1.banner-title {
 --------------------------------------------------------------*/
 .small-box .content-box figure{
     width: 100%;
-    height: 200px;
+    /* height: 200px; */
     padding: 40px;
     text-align: center;
 }
@@ -1749,7 +1749,7 @@ h1.banner-title {
 /* 7.9 Special Offer Section
 --------------------------------------------------------------*/
 .special-offer{
-    background: url(images/gucci_sale.jpg) center/cover no-repeat;
+    background: url(/img/gucci_sale.jpg) center/cover no-repeat;
 }
 
 /* 7.10 Latest Blogs Section

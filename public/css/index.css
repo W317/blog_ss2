@@ -847,7 +847,7 @@
     margin-left: -16px;
     margin-top: -16px;
     z-index: 11;
-    background: url(../images/chocolat/loader.gif);
+    background: url(../img/chocolat/loader.gif);
     opacity: 0;
 }
 
@@ -876,7 +876,7 @@
     width: 50px;
     height: 100px;
     cursor: pointer;
-    background: url(../images/chocolat/left.png) 50% 50% no-repeat;
+    background: url(../img/chocolat/left.png) 50% 50% no-repeat;
     z-index: 17;
     visibility: hidden;
 }
@@ -914,7 +914,7 @@
     width: 50px;
     height: 100px;
     cursor: pointer;
-    background: url(../images/chocolat/right.png) 50% 50% no-repeat;
+    background: url(../img/chocolat/right.png) 50% 50% no-repeat;
     z-index: 17;
     visibility: hidden;
 }
@@ -941,7 +941,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    background: url(../images/chocolat/close.png) 50% 50% no-repeat;
+    background: url(../img/chocolat/close.png) 50% 50% no-repeat;
 }
 
 .chocolat-wrapper .chocolat-bottom {
@@ -965,7 +965,6 @@
 }
 
 .chocolat-wrapper .chocolat-pagination {
-    float: right;
     display: inline-block;
     padding-left: 15px;
     padding-right: 15px;
@@ -975,7 +974,7 @@
 .chocolat-wrapper .chocolat-fullscreen {
     width: 16px;
     height: 40px;
-    background: url(../images/chocolat/fullscreen.png) 50% 50% no-repeat;
+    background: url(../img/chocolat/fullscreen.png) 50% 50% no-repeat;
     display: block;
     cursor: pointer;
     float: right;
@@ -1091,7 +1090,6 @@ body.chocolat-open>.chocolat-image-wrapper {
     display: block;
     margin: 0;
     padding: 0;
-    vertical-align: middle;
 }
 
 .stellarnav li a {
@@ -1970,7 +1968,6 @@ button.swiper-pagination-bullet {
 .swiper-scrollbar {
     border-radius: 10px;
     position: relative;
-    -ms-touch-action: none;
     background: rgba(0, 0, 0, .1)
 }
 
