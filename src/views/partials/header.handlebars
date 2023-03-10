@@ -34,7 +34,7 @@
                 </ul>
               </li>
               <li class="menu-item">
-                <a href="wishlist">
+                <a href="/pages/wishlist">
                   <i class="icon icon-heart"></i>WISH LIST </a>
               </li>
               <li class="menu-item">
@@ -42,7 +42,7 @@
                   <i class="icon icon-user"></i>MY ACCOUNT </a>
               </li>
               <li class="menu-item">
-                <a href="cart">
+                <a href="/pages/cart">
                   <i class="icon icon-shopping-cart"></i>My Cart {{ session.cart.totalQty }}</a>
               </li>
             </ul>
@@ -56,8 +56,8 @@
         <div class="row d-flex align-items-center">
           <div class="col-md-2 col-sm-6">
             <div class="main-logo">
-              <a href="/views/home">
-                <img src="img/main-logo.png" alt="logo">
+              <a href="/home">
+                <img src="/img/logo.png" alt="logo">
               </a>
             </div>
           </div>
@@ -66,15 +66,12 @@
               <div class="main-menu stellarnav desktop light">
                 <ul class="menu-list list-unstyled">
                   <li class="menu-item">
-                    <a href="/views/home" class="text-uppercase item-anchor">Home</a>
+                    <a href="/home" class="text-uppercase item-anchor">Home</a>
                   </li>
                   <li class="menu-item">
-                    <a href="about.html" class="text-uppercase item-anchor">About</a>
+                    <a href="/shop" class="text-uppercase item-anchor">Category</a>
                   </li>
-                  <li class="menu-item">
-                    <a href="/pages/category" class="text-uppercase item-anchor">Category</a>
-                  </li>
-                  <li class="menu-item has-sub">
+                  {{!-- <li class="menu-item has-sub">
                     <a href="#" class="text-uppercase item-anchor" data-effect="Pages">Pages</a>
                     <ul class="submenu">
                       <li>
@@ -87,7 +84,7 @@
                         <a href="/pages/contact" class="text-uppercase">Contact</a>
                       </li>
                     </ul>
-                  </li>
+                  </li> --}}
                   <li class="menu-item">
                     <a href="/pages/blog" class="text-uppercase item-anchor">Blog</a>
                   </li>
