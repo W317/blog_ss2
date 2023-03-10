@@ -42,21 +42,21 @@ connect();
 // test UI
 
 //contact
-app.use("/pages/contact", (req, res) => {
+app.use("/contact", (req, res) => {
   res.render(path.join(__dirname + "/src/views/contact.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars")
   });
 });
 
-// form-product
-app.use("/form/product", (req, res) => {
+// add new product
+app.use("/admin/product", (req, res) => {
   res.render(path.join(__dirname + "/src/views/form-product.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars")
   });
 });
 
-// form-blog
-app.use("/form/blog", (req, res) => {
+// add new blog
+app.use("/admin/blog", (req, res) => {
   res.render(path.join(__dirname + "/src/views/form-blog.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars")
   });
