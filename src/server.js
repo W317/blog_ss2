@@ -9,20 +9,20 @@ import passport from "passport";
 import MongoStore from "connect-mongo";
 import session from "express-session";
 import bodyParser from "body-parser";
-import flash from 'connect-flash'
-import validator from 'express-validator'
+import flash from "connect-flash";
+import validator from "express-validator";
 
-import './config/passport.js'
+import "./config/passport.js";
 
 dotenv.config();
 const app = express();
 
-if(process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
 }
 
-app.use(flash())
-app.use(validator())
+app.use(flash());
+app.use(validator());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -40,8 +40,12 @@ app.use(function (req, res, next) {
 const __dirname = path.resolve();
 
 // static files
-app.use(express.static(path.join(__dirname + '/public/')));
-const hbs = create({ defaultLayout: "./views/layout", partialsDir: {dir: path.join(__dirname + "/src/views/partials")}, extname: ".handlebars" });
+app.use(express.static(path.join(__dirname + "/public/")));
+const hbs = create({
+  defaultLayout: "./views/layout",
+  partialsDir: { dir: path.join(__dirname + "/src/views/partials") },
+  extname: ".handlebars",
+});
 
 app.engine(".handlebars", hbs.engine);
 app.set("view engine", "handlebars");
@@ -51,13 +55,15 @@ app.use(logger("dev"));
 
 connect();
 
-app.use(session({
-  secret: 'mysupersecret', 
-  resave: false, 
-  saveUninitialized: false,
-  store: MongoStore.create({mongoUrl: process.env.MONGO_URL}),
-  cookie: { maxAge: 180 * 60 * 1000 }
-})); 
+app.use(
+  session({
+    secret: "mysupersecret",
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
+    cookie: { maxAge: 180 * 60 * 1000 },
+  })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -73,71 +79,73 @@ app.use((req, res, next) => {
 //contact
 app.use("/pages/contact", (req, res) => {
   res.render(path.join(__dirname + "/src/views/contact.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
 
 // form
 app.use("/form", (req, res) => {
   res.render(path.join(__dirname + "/src/views/form.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
 
 // checkout
 app.use("/checkout", (req, res) => {
   res.render(path.join(__dirname + "/src/views/checkout.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
 
 // index
 app.use("/index", (req, res) => {
   res.render(path.join(__dirname + "/src/views/index.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
 
 // cart
-app.use("/pages/cart", (req,res) => {
+app.use("/pages/cart", (req, res) => {
   res.render(path.join(__dirname + "/src/views/cart.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
 //wishlist
-app.use("/pages/wishlist",(req,res) => {
+app.use("/pages/wishlist", (req, res) => {
   res.render(path.join(__dirname + "/src/views/wishlist.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
 // shop
 app.use("/shop", (req, res) => {
   res.render(path.join(__dirname + "/src/views/shop.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
 
 // thankyou
 app.use("/thank-you", (req, res) => {
   res.render(path.join(__dirname + "/src/views/thank-you.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
 
-
 // // home page
-// app.use("/", (req, res) => {
-//   res.render(path.join(__dirname + "/src/views/home.handlebars"), {
-//     layout: path.join(__dirname + "/src/views/layout/main.handlebars")
-//   });
-// });
+app.use("/", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/index.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+  });
+});
 
-route(app)
+route(app);
 app.use("/js", express.static(__dirname + "/src/public/js"));
-app.use("/css", express.static(path.join(__dirname + "/src/public/css/index.css")));
+app.use(
+  "/css",
+  express.static(path.join(__dirname + "/src/public/css/index.css"))
+);
 
 // app.listen(process.env.PORT, () => {
 //   console.log(`Example app listening on port ${process.env.PORT}`);
 // });
 
-export default app
+export default app;
