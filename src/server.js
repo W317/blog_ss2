@@ -69,6 +69,13 @@ app.use("/index", (req, res) => {
   });
 });
 
+//account
+app.use("/pages/account", (req,res) => {
+  res.render(path.join(__dirname + "/src/views/account.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+  });
+});
+
 // cart
 app.use("/pages/cart", (req,res) => {
   res.render(path.join(__dirname + "/src/views/cart.handlebars"), {
