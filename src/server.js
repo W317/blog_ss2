@@ -5,6 +5,14 @@ import { create } from "express-handlebars";
 import path from "path";
 import logger from "morgan";
 import route from "./routes/index.js";
+import passport from "passport";
+import MongoStore from "connect-mongo";
+import session from "express-session";
+import bodyParser from "body-parser";
+import flash from 'connect-flash'
+import validator from 'express-validator'
+
+import './config/passport.js'
 
 dotenv.config();
 const app = express();
@@ -13,7 +21,11 @@ if(process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
+app.use(flash())
+app.use(validator())
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -38,6 +50,23 @@ app.set("views", "./views");
 app.use(logger("dev"));
 
 connect();
+
+app.use(session({
+  secret: 'mysupersecret', 
+  resave: false, 
+  saveUninitialized: false,
+  store: MongoStore.create({mongoUrl: process.env.MONGO_URL}),
+  cookie: { maxAge: 180 * 60 * 1000 }
+})); 
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use((req, res, next) => {
+  res.locals.login = req.isAuthenticated();
+  res.locals.session = req.session;
+  next();
+});
 
 // test UI
 
@@ -96,24 +125,19 @@ app.use("/thank-you", (req, res) => {
 });
 
 
-// home page
-app.use("/", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/home.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
-  });
-});
-
-
-
+// // home page
+// app.use("/", (req, res) => {
+//   res.render(path.join(__dirname + "/src/views/home.handlebars"), {
+//     layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+//   });
+// });
 
 route(app)
-
-
-
 app.use("/js", express.static(__dirname + "/src/public/js"));
 app.use("/css", express.static(path.join(__dirname + "/src/public/css/index.css")));
 
-app.listen(process.env.PORT, () => {
-  console.log(`Example app listening on port ${process.env.PORT}`);
-});
+// app.listen(process.env.PORT, () => {
+//   console.log(`Example app listening on port ${process.env.PORT}`);
+// });
 
+export default app
