@@ -20,9 +20,9 @@ const app = express();
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
-
+// app.use(validator());
 app.use(flash());
-app.use(validator());
+
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -130,20 +130,7 @@ app.use("/thank-you", (req, res) => {
   });
 });
 
-
-// home page
-app.use("/", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/home.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
-  });
-});
-
-
-
-
 route(app)
-
-
 
 app.use("/js", express.static(__dirname + "/src/public/js"));
 app.use(

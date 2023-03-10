@@ -8,7 +8,7 @@ import path from "path";
 
 const __dirname = path.resolve()
 export default function route(app) {
-  app.use("/blog", blogRouter);
+  app.use("/pages/blog", blogRouter);
 
   app.use("/cart", cartRoute);
 
