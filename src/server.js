@@ -101,7 +101,7 @@ app.use("/admin/blog", (req, res) => {
 });
 
 // checkout
-app.use("/checkout", (req, res) => {
+app.use("/pages/checkout", (req, res) => {
   res.render(path.join(__dirname + "/src/views/checkout.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
@@ -134,13 +134,18 @@ app.use("/thank-you", (req, res) => {
   });
 });
 
+app.use("/pages/signin", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/signin.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+  });
+});
+
 // home page
 app.use("/", (req, res) => {
   res.render(path.join(__dirname + "/src/views/home.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
-
 
 
 app.use("/js", express.static(__dirname + "/src/public/js"));
