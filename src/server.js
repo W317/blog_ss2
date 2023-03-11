@@ -101,7 +101,7 @@ app.use("/admin/blog", (req, res) => {
 });
 
 // checkout
-app.use("/checkout", (req, res) => {
+app.use("/pages/checkout", (req, res) => {
   res.render(path.join(__dirname + "/src/views/checkout.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
@@ -111,6 +111,13 @@ app.use("/checkout", (req, res) => {
 app.use("/home", (req, res) => {
   res.render(path.join(__dirname + "/src/views/home.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+  });
+});
+
+//account
+app.use("/pages/account", (req,res) => {
+  res.render(path.join(__dirname + "/src/views/account.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
   });
 });
 
@@ -127,9 +134,22 @@ app.use("/pages/wishlist",(req,res) => {
   });
 });
 
+// about
+app.use("/about", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/about.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+  });
+});
+
 // thankyou
 app.use("/thank-you", (req, res) => {
   res.render(path.join(__dirname + "/src/views/thank-you.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+  });
+});
+
+app.use("/pages/signin", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/signin.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
@@ -140,7 +160,6 @@ app.use("/", (req, res) => {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
-
 
 
 app.use("/js", express.static(__dirname + "/src/public/js"));
