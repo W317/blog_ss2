@@ -114,6 +114,13 @@ app.use("/home", (req, res) => {
   });
 });
 
+//account
+app.use("/pages/account", (req,res) => {
+  res.render(path.join(__dirname + "/src/views/account.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+  });
+});
+
 // cart
 app.use("/pages/cart", (req,res) => {
   res.render(path.join(__dirname + "/src/views/cart.handlebars"), {
@@ -124,6 +131,13 @@ app.use("/pages/cart", (req,res) => {
 app.use("/pages/wishlist",(req,res) => {
   res.render(path.join(__dirname + "/src/views/wishlist.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+  });
+});
+
+// about
+app.use("/about", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/about.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
 

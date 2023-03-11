@@ -18,11 +18,6 @@ export default function route(app) {
     asyncHandler(async (req, res) => {
       const blogs = await BlogSchema.find({});
       const __dirname = path.resolve()
-
-      res.render(path.join(__dirname + "/src/views/index.handlebars"), {
-        layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-        blogs: blogs,
-      });
     })
   );
 
