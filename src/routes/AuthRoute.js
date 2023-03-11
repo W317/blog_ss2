@@ -22,7 +22,6 @@ router.get("/signup", (req, res, next) => {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
-
 router.post(
   "/signup",
   passport.authenticate("local.signup", {
