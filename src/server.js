@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 app.use(flash());
-app.use(validator());
+// app.use(validator());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -74,10 +74,13 @@ app.use((req, res, next) => {
   next();
 });
 
+
+route(app)
+
 // test UI
 
 //contact
-app.use("/contact", (req, res) => {
+app.use("/pages/contact", (req, res) => {
   res.render(path.join(__dirname + "/src/views/contact.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
@@ -105,8 +108,8 @@ app.use("/checkout", (req, res) => {
 });
 
 // index
-app.use("/index", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/index.handlebars"), {
+app.use("/home", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/home.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
@@ -119,21 +122,15 @@ app.use("/pages/account", (req,res) => {
 });
 
 // cart
-app.use("/pages/cart", (req, res) => {
+app.use("/pages/cart", (req,res) => {
   res.render(path.join(__dirname + "/src/views/cart.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
   });
 });
 //wishlist
-app.use("/pages/wishlist", (req, res) => {
+app.use("/pages/wishlist",(req,res) => {
   res.render(path.join(__dirname + "/src/views/wishlist.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-  });
-});
-// shop
-app.use("/shop", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/shop.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
   });
 });
 
@@ -151,14 +148,15 @@ app.use("/thank-you", (req, res) => {
   });
 });
 
-// // home page
+// home page
 app.use("/", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/index.handlebars"), {
+  res.render(path.join(__dirname + "/src/views/home.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
 
-route(app);
+
+
 app.use("/js", express.static(__dirname + "/src/public/js"));
 app.use(
   "/css",

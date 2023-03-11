@@ -4,11 +4,12 @@ import cartRoute from "./cartRoute.js";
 import asyncHandler from "express-async-handler";
 import BlogSchema from "../app/models/blogModel.js";
 import authRoute from './AuthRoute.js'
+import productRoute from "./ProductRoute.js"
 import path from "path";
 
 const __dirname = path.resolve()
 export default function route(app) {
-  app.use("/blog", blogRouter);
+  app.use("/pages/blog", blogRouter);
 
   app.use("/cart", cartRoute);
 
@@ -26,4 +27,6 @@ export default function route(app) {
   );
 
   app.use("/user", authRoute)
+
+  app.use("/shop", productRoute)
 }

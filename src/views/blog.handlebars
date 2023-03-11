@@ -1,34 +1,74 @@
 {{!-- BLOG --}}
+<section class="shop-page padding-large">
+    <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="page-title">Blog</h1>
+            <div class="breadcrumbs">
+              <span class="item">
+                <a href="#">Home /</a>
+              </span>
+              <span class="item">Blog</span>
+            </div>
+          </div>
+		</div>
+	</div>
+</section>
 <section id="latest-blog" class="scrollspy-section padding-large">
 	<div class="container">
-		{{# each blogarrays}}
+		{{#each blogs}}
 		<div class="row">
 			<div class="col-md-12">
-				<!-- post grid -->
+				
 				<div class="post-grid">
 					<div class="row">
-						{{# each this}}
-						<div class="col-md-4 post-item">
-							<figure>
-								<img src={{this.image}} alt="jewellery" class="post-image">
-							</figure>
-							<div class="post-content">
-								<div class="meta-tags">
-									{{!-- <span class="meta-date">Posted in {{date}}</span> --}}
-									<span class="meta-date">by {{this.author}}</span>
-								</div>
-								<h3 class="post-title">
-									<a href={{this.href}}>{{this.title}}</a>
-								</h3>
-								<p>{{this.body}}</p>
-							</div>
-						</div>
-						{{/each}}
-					</div>
-				</div>
-			</div>
+							
+					<div class="col-md-4 post-item">
+	            <figure>
+	              <img src="/img/blog1.jpg" alt="jewellery" class="post-image">
+	            </figure>
+	            <div class="post-content">
+	              <div class="meta-tags">
+	                <span class="meta-date">Posted in September 15, 2022</span>
+	                <span class="meta-date">by Simon</span>
+	              </div>
+	              <h3 class="post-title">
+	                <a href="#">Lipstick : my beauty secret</a>
+	              </h3>
+	              <p>A lot of women have that “final accessory” they put on to pull an entire look together. For some, it's a statement ring, or a scarf. For me? It's lipstick.</p>
+	            </div>
+	          </div>
+	          <div class="col-md-4 post-item">
+	            <figure>
+	              <img src="/img/blog2.jpg" alt="jewellery" class="post-image">
+	            </figure>
+	            <div class="post-content">
+	              <div class="meta-tags">
+	                <span class="meta-date">Posted in September 25, 2022</span>
+	                <span class="meta-date">by Anne</span>
+	              </div>
+	              <h3 class="post-title">
+	                <a href="#">magical lipstick</a>
+	              </h3>
+	              <p>I'm a skeptic at heart. My natural inclination is to always assume products won't work like they say they will-and then I'll be pleasantly surprised if they actually do work well!</p>
+	            </div>
+	          </div>
+	          <div class="col-md-4 post-item">
+	            <figure>
+	              <img src="/img/blog3.jpg" alt="jewellery" class="post-image">
+	            </figure>
+	            <div class="post-content">
+	              <div class="meta-tags">
+	                <span class="meta-date">Posted in September 28, 2022</span>
+	                <span class="meta-date">by Lucie</span>
+	              </div>
+	              <h3 class="post-title">
+	                <a href="#">Neutral (but not nude) Lips</a>
+	              </h3>
+	              <p>I've heard from so many of your that you are trying to find (or have found) your “your lips but better” shade for the perfect neutral lip color. I've discovered a few of my favorites, varying from a mauve tone to a pink tone.</p>
+	            </div>
+			  </div>
 
-		</div>
 		{{/each}}
 	</div>
 </section>
