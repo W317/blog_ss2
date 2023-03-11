@@ -137,6 +137,13 @@ app.use("/shop", (req, res) => {
   });
 });
 
+// about
+app.use("/about", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/about.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+  });
+});
+
 // thankyou
 app.use("/thank-you", (req, res) => {
   res.render(path.join(__dirname + "/src/views/thank-you.handlebars"), {
