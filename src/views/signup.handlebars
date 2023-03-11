@@ -3,14 +3,25 @@
     <div class="col-md-4 col-md-offset-4">
 
         <h1>Sign Up</h1>
-        {{#if hasErrors}}
+        {{!--{{#if hasErrors}}
         <div class="alert alert-danger">
             {{# each messages}}
             <p>{{this}}</p>
             {{/each}}
         </div>
-        {{/if}}
+        {{/if}}--}}
         <form action="/user/signup" method="post">
+
+            <div class="form-group">
+                <label for="text">First name</label>
+                <input type="text" id="fname" name="fname" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="text">Last name</label>
+                <input type="text" id="lname" name="lname" class="form-control">
+            </div>
+
             <div class="form-group">
                 <label for="email">E-Mail</label>
                 <input type="text" id="email" name="email" class="form-control">
@@ -20,6 +31,8 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" class="form-control">
             </div>
+            
+            <p>Already a member? <a href="/pages/signin">Sign in</a></p>
 
             <input type="hidden" name="_csrf" value="{{ csrfToken }}">
 
