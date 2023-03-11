@@ -148,8 +148,16 @@ app.use("/thank-you", (req, res) => {
   });
 });
 
+// sign in
 app.use("/pages/signin", (req, res) => {
   res.render(path.join(__dirname + "/src/views/signin.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+  });
+});
+
+// sign up
+app.use("/pages/signup", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/signup.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
