@@ -104,6 +104,13 @@ app.use("/checkout", (req, res) => {
   });
 });
 
+// index
+app.use("/index", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/index.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+  });
+});
+
 // cart
 app.use("/pages/cart", (req,res) => {
   res.render(path.join(__dirname + "/src/views/cart.handlebars"), {
