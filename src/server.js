@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 app.use(flash());
-// app.use(validator());
+app.use(validator());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
