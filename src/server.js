@@ -108,8 +108,8 @@ app.use("/checkout", (req, res) => {
 });
 
 // index
-app.use("/index", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/index.handlebars"), {
+app.use("/home", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/home.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
