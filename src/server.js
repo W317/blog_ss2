@@ -74,10 +74,13 @@ app.use((req, res, next) => {
   next();
 });
 
+
+route(app)
+
 // test UI
 
 //contact
-app.use("/contact", (req, res) => {
+app.use("/pages/contact", (req, res) => {
   res.render(path.join(__dirname + "/src/views/contact.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
@@ -131,15 +134,14 @@ app.use("/thank-you", (req, res) => {
   });
 });
 
-// // home page
-// app.use("/", (req, res) => {
-//   res.render(path.join(__dirname + "/src/views/home.handlebars"), {
-//     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-//   });
-// });
+// home page
+app.use("/", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/home.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+  });
+});
 
 
-route(app)
 
 app.use("/js", express.static(__dirname + "/src/public/js"));
 app.use(
