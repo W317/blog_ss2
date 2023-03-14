@@ -23,12 +23,14 @@ passport.use(
       passReqToCallback: true,
     },
     async (req, email, password, done) => {
-      console.log("run here");
       req.checkBody("email", "Invalid email").notEmpty().isEmail();
-      req.checkBody("password", "Invalid password")
+      req
+        .checkBody("password", "Invalid password")
         .notEmpty()
         .isLength({ min: 4 });
       let errors = req.validationErrors();
+
+      const { name } = req.body
 
       if (errors) {
         let messages = [];
@@ -42,6 +44,7 @@ passport.use(
         return done(null, false, { message: "Email already in use." });
       }
       let newUser = new userModel();
+      newUser.name = name;
       newUser.email = email;
       newUser.password = newUser.encryptPassword(password);
       newUser.save((err, result) => {
@@ -49,6 +52,44 @@ passport.use(
           return done(err);
         }
         return done(null, newUser);
+      });
+    }
+  )
+);
+
+passport.use(
+  "local.signin",
+  new LocalStrategy(
+    {
+      usernameField: "email",
+      passwordField: "password",
+      passReqToCallback: true,
+    },
+    (req, email, password, done) => {
+      req.checkBody("email", "Invalid email").notEmpty().isEmail();
+      req.checkBody("password", "Invalid password").notEmpty();
+      let errors = req.validationErrors();
+
+      if (errors) {
+        let messages = [];
+        errors.forEach((err) => {
+          messages.push(err.msg);
+        });
+        return done(null, false, req.flash("error", messages));
+      }
+
+      userModel.findOne({ email: email }, (err, user) => {
+        if (err) {
+          return done(err);
+        }
+        if (!user) {
+          return done(null, false, { message: "No user found." });
+        }
+        if (!user.validPassword(password)) {
+          return done(null, false, { message: "Wrong password." });
+        }
+
+        return done(null, user);
       });
     }
   )

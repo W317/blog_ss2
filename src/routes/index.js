@@ -13,13 +13,13 @@ export default function route(app) {
 
   app.use("/cart", cartRoute);
 
-  app.get(
-    "/",
-    asyncHandler(async (req, res) => {
-      const blogs = await BlogSchema.find({});
-      const __dirname = path.resolve()
-    })
-  );
+  // app.get(
+  //   "/",
+  //   asyncHandler(async (req, res) => {
+  //     const blogs = await BlogSchema.find({});
+  //     const __dirname = path.resolve()
+  //   })
+  // );
 
   app.use("/user", authRoute)
 
