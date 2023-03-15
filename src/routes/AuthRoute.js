@@ -1,5 +1,5 @@
 import express from "express";
-import userModel from "../app/models/userModel.js";
+// import userModel from "../app/models/userModel.js";
 import passport from "passport";
 import csurf from "csurf";
 import path from "path";
@@ -7,11 +7,10 @@ import path from "path";
 const __dirname = path.resolve();
 
 const csrfProtection = csurf();
+
 const router = express.Router();
 
 router.use(csrfProtection);
-
-const HOST_IP = `http://localhost:${process.env.PORT}`;
 
 router.get("/signup", (req, res, next) => {
   let messages = req.flash("error");
@@ -22,9 +21,37 @@ router.get("/signup", (req, res, next) => {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
+
 router.post(
-  "/signup",
-  passport.authenticate("local.signup", {
+  '/signup',
+  passport.authenticate('local.signup', {
+    failureRedirect: "/user/signup",
+    failureFlash: true,
+  }),
+  (req, res, next) => {
+    if (req.session.oldUrl) {
+      let oldUrl = req.session.oldUrl;
+      req.session.oldUrl = null;
+      res.redirect(oldUrl);
+    } else {
+      res.redirect("/index");
+    }
+  }
+);
+
+router.get("/signin", (req, res, next) => {
+  let messages = req.flash("error");
+  res.render(path.join(__dirname + "/src/views/signin.handlebars"), {
+    csrfToken: req.csrfToken(),
+    messages: messages,
+    hasErrors: messages.length > 0,
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+  });
+});
+
+router.post(
+  "/signin",
+  passport.authenticate("local.signin", {
     failureRedirect: "/user/signup",
     failureFlash: true,
   }),

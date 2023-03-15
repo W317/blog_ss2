@@ -7,6 +7,7 @@ const __dirname = path.resolve()
 const getAllBlogs = asyncHandler(async (req, res) => {
   try {
     const blogs = await BlogModel.find({});
+    console.log(blogs)
     if (blogs) {
       res.render(path.join(__dirname + "/src/views/blog.handlebars"), {
         layout: path.join(__dirname + "/src/views/layout/main.handlebars"),

@@ -3,28 +3,23 @@
     <div class="col-md-4 col-md-offset-4">
 
         <h1>Sign Up</h1>
-        {{!--{{#if hasErrors}}
+        {{#if hasErrors}}
         <div class="alert alert-danger">
             {{# each messages}}
             <p>{{this}}</p>
             {{/each}}
         </div>
-        {{/if}}--}}
+        {{/if}}
         <form action="/user/signup" method="post">
 
             <div class="form-group">
-                <label for="text">First name</label>
-                <input type="text" id="fname" name="fname" placeholder=" first name" title="enter your firstname" class="form-control">
+                <label for="text">Username</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" title="enter your lastname" class="form-control">
             </div>
 
             <div class="form-group">
-                <label for="text">Last name</label>
-                <input type="text" id="lname" name="lname" placeholder=" last name" title="enter your lastname" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="email">E-Mail or Phone</label>
-                <input type="text" id="email" name="email or phone" placeholder=" email or phone" title="enter your email or phone" class="form-control">
+                <label for="email">E-Mail</label>
+                <input type="text" id="email" name="email" placeholder="email" title="enter your email" class="form-control">
             </div>
 
             <div class="form-group">
@@ -32,7 +27,7 @@
                 <input type="password" id="password" name="password" placeholder=" password" title="enter your password" class="form-control">
             </div>
             
-            <p>Already a member? <a href="/pages/signin">Sign in</a></p>
+            <p>Already a member? <a href="/user/signin">Sign in</a></p>
 
             <input type="hidden" name="_csrf" value="{{ csrfToken }}">
 

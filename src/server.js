@@ -11,6 +11,8 @@ import session from "express-session";
 import bodyParser from "body-parser";
 import flash from "connect-flash";
 import validator from "express-validator";
+import cookieParser from "cookie-parser";
+import csurf from "csurf";
 
 import "./config/passport.js";
 
@@ -26,6 +28,7 @@ app.use(validator());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser())
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -144,20 +147,6 @@ app.use("/about", (req, res) => {
 // thankyou
 app.use("/thank-you", (req, res) => {
   res.render(path.join(__dirname + "/src/views/thank-you.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-  });
-});
-
-// sign in
-app.use("/pages/signin", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/signin.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-  });
-});
-
-// sign up
-app.use("/pages/signup", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/signup.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
