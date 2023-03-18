@@ -96,6 +96,13 @@ app.use("/admin/product", (req, res) => {
   });
 });
 
+// stat for admin
+app.use("/admin/stat", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/chart.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+  });
+});
+
 // add new blog
 app.use("/admin/blog", (req, res) => {
   res.render(path.join(__dirname + "/src/views/form-blog.handlebars"), {
