@@ -110,6 +110,13 @@ app.use("/admin/blog", (req, res) => {
   });
 });
 
+// add dashboard
+app.use("/admin/dashboard", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/dashboard.handlebars"), {
+    layout: false
+  });
+});
+
 // checkout
 app.use("/pages/checkout", (req, res) => {
   res.render(path.join(__dirname + "/src/views/checkout.handlebars"), {
