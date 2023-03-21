@@ -27,7 +27,7 @@ const createProduct = asyncHandler(async (req, res) => {
       const product = new Product({
         title: title,
         category: category,
-        images: [],
+        image: [],
         description: description,
         price: price,
         
