@@ -14,14 +14,60 @@
 
     <!--Chartjs CDN-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <style>
+    *{
+        box-sizing: border-box;
+    }
+    body {  
+        background: #fff;
+    }
+    .navigation{
+        position: fixed;
+        width: 150px;
+        height: 100%;
+        background: #3c8dbc;
+        transition: 0.5s;
+        overflow: hidden;
+    }
+    .navigation:hover{
+        width: 200px;
+    }
+    .navigation ul{
+        position: absolute;
+        left: 0;
+        width: 100%;
+    }
+    .navigation ul li{
+        position: relative;
+        width: 100%;
+        list-style: none;
+    }
+    .navigation ul li:hover{
+        background: #367fa9;
+    }
+    .navigation ul li a{
+        position: relative;
+        display: flex;
+        width: 100%;
+        text-decoration: none;
+        color: #fff;
+    }
+    .navigation ul li a .title{
+        position: relative;
+        display: block;
+        padding: 0 10px;
+        height: 60px;
+        line-height: 60px;
+        text-align: start;
+        white-space: nowrap;
+    }
+    
+    </style>
   </head>
   <body>
       <section class="shop-page padding-medium">
-      
-          <div class="col-md-12">
-            <h1 class="page-title" style="color: #367fa9">Dashboard</h1>
-          </div>
-        
+        <h1 class="page-title" style="color: #367fa9">Dashboard</h1>
+      </section> 
 
 <div class="navigation">
     <ul>
@@ -69,7 +115,7 @@
         </li>
     </ul>
 </div>
-</section>
+
 <div class="container">
         
             <div class="col-md-8">
@@ -203,55 +249,7 @@
         </div>
     </div>
     <!--End Graphs-->
-<style>
-    *{
-        box-sizing: border-box;
-    }
-    body {  
-        background: #fff;
-    }
-    .navigation{
-        position: fixed;
-        width: 150px;
-        height: 100%;
-        background: #3c8dbc;
-        transition: 0.5s;
-        overflow: hidden;
-    }
-    .navigation:hover{
-        width: 200px;
-    }
-    .navigation ul{
-        position: absolute;
-        left: 0;
-        width: 100%;
-    }
-    .navigation ul li{
-        position: relative;
-        width: 100%;
-        list-style: none;
-    }
-    .navigation ul li:hover{
-        background: #367fa9;
-    }
-    .navigation ul li a{
-        position: relative;
-        display: flex;
-        width: 100%;
-        text-decoration: none;
-        color: #fff;
-    }
-    .navigation ul li a .title{
-        position: relative;
-        display: block;
-        padding: 0 10px;
-        height: 60px;
-        line-height: 60px;
-        text-align: start;
-        white-space: nowrap;
-    }
-    
-</style>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

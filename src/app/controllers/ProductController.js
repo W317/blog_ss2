@@ -18,22 +18,26 @@ const getProducts = asyncHandler(async (req, res) => {
   }
 });
 
+const listImage = [
+  '/img/dior1.jpg',
+  '/img/gucci-cate.jpeg',
+  '/img/dior1.jpg',
+]
+
 const createProduct = asyncHandler(async (req, res) => {
     try {
-      const { title, category, images, description, price } = req.body;
-      // if (!category || !title || !price || !description || !images) {
-      //   throw new Error("Error !!!")
-      // }
+      const { title, category, description, price, quantity } = req.body;
+
       const product = new Product({
+        quantity: quantity,
         title: title,
         category: category,
-        image: [],
+        images: [],
         description: description,
         price: price,
-        
       });
-      const createProduct = await product.save();
-      res.status(201).json(createProduct);
+      await product.save();
+      res.status(201).redirect('/shop');
     } catch (err) {
       console.log(err);
     }
