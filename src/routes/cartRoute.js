@@ -8,11 +8,13 @@ router.get("/add-to-cart/:id", (req, res, next) => {
   let productId = req.params.id;
   // var cart = new Cart(req.session.cart ? req.session.cart : {items: {}});
   let cart = new Cart(req.session.cart ? req.session.cart : {});
+  console.log('cart', cart);
 
   Product.findById(productId, (err, product) => {
     if (err) {
       return res.redirect("/"); // we probably need a better redirect in a real app
     }
+    console.log('product', product);
     cart.add(product, product.id);
     req.session.cart = cart;
     console.log(req.session.cart);
