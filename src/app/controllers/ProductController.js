@@ -35,7 +35,7 @@ const createProduct = asyncHandler(async (req, res) => {
         quantity: quantity,
         title: title,
         category: category,
-        images: [],
+        image: listImage[1],
         description: description,
         price: price,
       });
