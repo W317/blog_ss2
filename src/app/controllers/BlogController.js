@@ -7,14 +7,14 @@ const __dirname = path.resolve()
 const getAllBlogs = asyncHandler(async (req, res) => {
   try {
       const blogs = await BlogModel.find().lean(); // Add .lean() method here
-      let blogChunk = [];
-      let chunkSize = 3;
-      for (let index = 0; index < blogs.length; index+=chunkSize) {
-        blogChunk.push(blogs.slice(index, index+chunkSize));
+      let blogArray = [];
+      let arraySize = 3;
+      for (let index = 0; index < blogs.length; index+=arraySize) {
+        blogArray.push(blogs.slice(index, index+arraySize));
       }
       res.render(path.join(__dirname + "/src/views/blog.handlebars"), {
         layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-        blogs: blogChunk
+        blogs: blogArray
       })
     } catch (error) {
       console.log(error);

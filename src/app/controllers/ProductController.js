@@ -6,13 +6,16 @@ const __dirname = path.resolve()
 
 const getProducts = asyncHandler(async (req, res) => {
   try {
-    const products = await Product.find({});
-    if (products) {
-      res.render(path.join(__dirname + "/src/views/shop.handlebars"), {
-        layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-        products: products
-      })
+    const products = await Product.find().lean(); // Add .lean() method here
+    let productArray = [];
+    let arraySize = 3;
+    for (let index = 0; index < products.length; index+=arraySize) {
+      productArray.push(products.slice(index, index+arraySize));
     }
+    res.render(path.join(__dirname + "/src/views/shop.handlebars"), {
+      layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+      products: productArray
+    })
   } catch (error) {
     console.log(error);
   }
