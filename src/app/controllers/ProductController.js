@@ -35,7 +35,7 @@ const createProduct = asyncHandler(async (req, res) => {
         quantity: quantity,
         title: title,
         category: category,
-        image: listImage[1],
+        image: listImage[0],
         description: description,
         price: price,
       });
@@ -45,6 +45,48 @@ const createProduct = asyncHandler(async (req, res) => {
       console.log(err);
     }
   });
+
+  const getOneProduct = asyncHandler(async(req, res) => {
+    try {
+      const product = await Product.findById(req.params.id);
+      if (!product) {
+        return res.status(404).json({ message: "Product not found" });
+      }
+      res.status(200).json(product);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server Error" });
+    }
+  })
+
+  const updateProduct = asyncHandler(async(req, res) => {
+    try {
+      const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true,
+      });
+      if (!product) {
+        return res.status(404).json({ message: "Product not found" });
+      }
+      res.status(200).json(product);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server Error" });
+    }
+  })
+
+  const deleteProduct = asyncHandler(async(req, res) => {
+    try {
+      const product = await Product.findByIdAndDelete(req.params.id);
+      if (!product) {
+        return res.status(404).json({ message: "Product not found" });
+      }
+      res.status(204).end();
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server Error" });
+    }
+  })
   
-  export { createProduct, getProducts };
+  export { createProduct, getProducts, getOneProduct, updateProduct, deleteProduct };
   
