@@ -113,7 +113,7 @@ app.use("/admin/blog", (req, res) => {
 // add dashboard
 app.use("/admin/dashboard", (req, res) => {
   res.render(path.join(__dirname + "/src/views/dashboard.handlebars"), {
-    layout: false
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
   });
 });
 
