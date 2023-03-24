@@ -1,156 +1,101 @@
+<main class="main-container"></main>
+    <div class="main-cards">
 
-    <!--Graphs-->
-    <div class="content">
-            <div class="row">
-                <div class="col-md-4">
-                    <a class="text-decoration-none text-dark" href="#">
-                        <div class="card my-card shadow text-center p-3">
-                            <h4>Staff <i class="fas fa-users"></i></h4>
-                                <h3>4</h3>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a class="text-decoration-none text-dark" href="#">
-                        <div class="card my-card shadow text-center p-3">
-                            <h4>Products <i class="fas fa-box"></i></h4>
-                                <h3>4</h3>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a class="text-decoration-none text-dark" href="#">
-                        <div class="card my-card shadow text-center p-3">
-                            <h4>Orders <i class="fas fa-shipping-fast"></i></h4>
-                                <h3>4</h3>
-                        </div>
-                    </a>
-                </div>
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">PRODUCTS</p>
+              <span class="material-icons-outlined text-blue">inventory_2</span>
             </div>
-    </div>
-    
-    <div class="charts">
+            <span class="text-primary font-weight-bold">249</span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">PURCHASE ORDERS</p>
+              <span class="material-icons-outlined text-orange">add_shopping_cart</span>
+            </div>
+            <span class="text-primary font-weight-bold">83</span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">SALES ORDERS</p>
+              <span class="material-icons-outlined text-green">shopping_cart</span>
+            </div>
+            <span class="text-primary font-weight-bold">79</span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">INVENTORY ALERTS</p>
+              <span class="material-icons-outlined text-red">notification_important</span>
+            </div>
+            <span class="text-primary font-weight-bold">56</span>
+          </div>
+
+        </div>
+
+        <div class="charts">
 
           <div class="charts-card">
-            <h2 class="chart-title">Top 5 Products</h2>
+            <p class="chart-title">Top 5 Products</p>
             <div id="bar-chart"></div>
           </div>
 
           <div class="charts-card">
-            <h2 class="chart-title">Purchase and Sales Orders</h2>
+            <p class="chart-title">Purchase and Sales Orders</p>
             <div id="area-chart"></div>
           </div>
 
+        </div>
+      </main>
+      <!-- End Main -->
+
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
-
-<script>
-   var barChartOptions = {
-    series: [{
-    data: [10, 8, 6, 4, 2],
-    name: "Products",
+    <!-- Scripts -->
+    <!-- ApexCharts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
+    <script>
+        var barChartOptions = {
+  series: [{
+    data: [10, 8, 6, 4, 2]
   }],
   chart: {
-    type: "bar",
-    background: "transparent",
+    type: 'bar',
     height: 350,
     toolbar: {
-      show: false,
+      show: false
     },
   },
   colors: [
-    "#2962ff",
-    "#d50000",
-    "#2e7d32",
-    "#ff6d00",
-    "#583cb3",
+    "#246dec",
+    "#cc3c43",
+    "#367952",
+    "#f5b74f",
+    "#4f35a1"
   ],
   plotOptions: {
     bar: {
       distributed: true,
       borderRadius: 4,
       horizontal: false,
-      columnWidth: "40%",
+      columnWidth: '40%',
     }
   },
   dataLabels: {
-    enabled: false,
-  },
-  fill: {
-    opacity: 1,
-  },
-  grid: {
-    borderColor: "#55596e",
-    yaxis: {
-      lines: {
-        show: true,
-      },
-    },
-    xaxis: {
-      lines: {
-        show: true,
-      },
-    },
+    enabled: false
   },
   legend: {
-    labels: {
-      colors: "#f5f7ff",
-    },
-    show: true,
-    position: "top",
-  },
-  stroke: {
-    colors: ["transparent"],
-    show: true,
-    width: 2
-  },
-  tooltip: {
-    shared: true,
-    intersect: false,
-    theme: "dark",
+    show: false
   },
   xaxis: {
-    categories: ["Dior", "Gucci", "Mac", "YSl", "3ce"],
-    title: {
-      style: {
-        color: "#f5f7ff",
-      },
-    },
-    axisBorder: {
-      show: true,
-      color: "#55596e",
-    },
-    axisTicks: {
-      show: true,
-      color: "#55596e",
-    },
-    labels: {
-      style: {
-        colors: "#f5f7ff",
-      },
-    },
+    categories: ["Gucci", "Dior", "Mac", "YSL", "3ce"],
   },
   yaxis: {
     title: {
-      text: "Count",
-      style: {
-        color:  "#f5f7ff",
-      },
-    },
-    axisBorder: {
-      color: "#55596e",
-      show: true,
-    },
-    axisTicks: {
-      color: "#55596e",
-      show: true,
-    },
-    labels: {
-      style: {
-        colors: "#f5f7ff",
-      },
-    },
+      text: "Count"
+    }
   }
 };
 
@@ -161,117 +106,50 @@ barChart.render();
 // AREA CHART
 var areaChartOptions = {
   series: [{
-    name: "Purchase Orders",
-    data: [31, 40, 28, 51, 42, 109, 100],
+    name: 'Purchase Orders',
+    data: [31, 40, 28, 51, 42, 109, 100]
   }, {
-    name: "Sales Orders",
-    data: [11, 32, 45, 32, 34, 52, 41],
+    name: 'Sales Orders',
+    data: [11, 32, 45, 32, 34, 52, 41]
   }],
   chart: {
-    type: "area",
-    background: "transparent",
     height: 350,
-    stacked: false,
+    type: 'area',
     toolbar: {
       show: false,
     },
   },
-  colors: ["#00ab57", "#d50000"],
-  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+  colors: ["#4f35a1", "#246dec"],
   dataLabels: {
     enabled: false,
   },
-  fill: {
-    gradient: {
-      opacityFrom: 0.4,
-      opacityTo: 0.1,
-      shadeIntensity: 1,
-      stops: [0, 100],
-      type: "vertical",
-    },
-    type: "gradient",
-  },
-  grid: {
-    borderColor: "#55596e",
-    yaxis: {
-      lines: {
-        show: true,
-      },
-    },
-    xaxis: {
-      lines: {
-        show: true,
-      },
-    },
-  },
-  legend: {
-    labels: {
-      colors: "#f5f7ff",
-    },
-    show: true,
-    position: "top",
-  },
-  markers: {
-    size: 6,
-    strokeColors: "#1b2635",
-    strokeWidth: 3,
-  },
   stroke: {
-    curve: "smooth",
+    curve: 'smooth'
   },
-  xaxis: {
-    axisBorder: {
-      color: "#55596e",
-      show: true,
-    },
-    axisTicks: {
-      color: "#55596e",
-      show: true,
-    },
-    labels: {
-      offsetY: 5,
-      style: {
-        colors: "#f5f7ff",
-      },
-    },
+  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+  markers: {
+    size: 0
   },
-  yaxis: 
-  [
+  yaxis: [
     {
       title: {
-        text: "Purchase Orders",
-        style: {
-          color: "#f5f7ff",
-        },
-      },
-      labels: {
-        style: {
-          colors: ["#f5f7ff"],
-        },
+        text: 'Purchase Orders',
       },
     },
     {
       opposite: true,
       title: {
-        text: "Sales Orders",
-        style: {
-          color:  "#f5f7ff",
-        },
-      },
-      labels: {
-        style: {
-          colors: ["#f5f7ff"],
-        },
+        text: 'Sales Orders',
       },
     },
   ],
   tooltip: {
     shared: true,
     intersect: false,
-    theme: "dark",
   }
 };
 
 var areaChart = new ApexCharts(document.querySelector("#area-chart"), areaChartOptions);
 areaChart.render();
+
     </script>

@@ -117,6 +117,27 @@ app.use("/admin/dashboard", (req, res) => {
   });
 });
 
+//add user admin
+app.use("/admin/user", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/user.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
+  });
+});
+
+//add product admin
+app.use("/admin/product-admin", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/product-dashboard.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
+  });
+});
+
+//add blog admin
+app.use("/admin/blog-admin", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/blog-admin.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
+  });
+});
+
 // checkout
 app.use("/pages/checkout", (req, res) => {
   res.render(path.join(__dirname + "/src/views/checkout.handlebars"), {
