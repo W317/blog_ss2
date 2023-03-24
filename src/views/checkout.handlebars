@@ -15,85 +15,32 @@
           </div>
       </div>
 </div>
-
-    <div class="row">
-      <div class="col-75">
-        <div class="container">
-
-
-          <form action="" method="POST">
-    
-            <div class="row">
-              <div class="col-50">
-                <h3>Billing Address</h3>
-                <label for="fname"><i class="fa icon-user"></i> Full Name</label>
-                <input type="text" id="fname" name="firstname" placeholder="Nguyen Van A">
-                <label for="email"><i class="fa icon-envelope"></i> Email</label>
-                <input type="text" id="email" name="email" placeholder="nguyenvana@example.com">
-                <label for="adr"><i class="fa icon-location"></i> Address</label>
-                <input type="text" id="adr" name="address" placeholder="142 Nguyen Trai, Ha Dong District">
-                <label for="city"><i class="fa icon-location"></i> City</label>
-                <input type="text" id="city" name="city" placeholder="Hanoi">
-    
-                <div class="row">
-                  <div class="col-50">
-                    <label for="state">Country</label>
-                    <input type="text" id="state" name="state" placeholder="VN">
-                  </div>
-                  <div class="col-50">
-                    <label for="zip">Zip</label>
-                    <input type="text" id="zip" name="zip" placeholder="10001">
-                  </div>
-                </div>
-              </div>
-    
-              <div class="col-50">
-                <h3>Payment</h3>
-                <label for="cname">Name on Card</label>
-                <input type="text" id="cname" name="cardname" placeholder="Nguyen Van A">
-                <label for="ccnum">Credit card number</label>
-                <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-                <label for="expmonth">Exp Month</label>
-                <input type="text" id="expmonth" name="expmonth" placeholder="September">
-    
-                <div class="row">
-                  <div class="col-50">
-                    <label for="expyear">Exp Year</label>
-                    <input type="text" id="expyear" name="expyear" placeholder="2023">
-                  </div>
-                  <div class="col-50">
-                    <label for="cvv">CVV</label>
-                    <input type="text" id="cvv" name="cvv" placeholder="352">
-                  </div>
-                </div>
-              </div>
-    
+  <div class="checkout-content">
+    <div class="form-container">
+        <h2 class="form-title">Payment Details</h2>
+        <form action="" class="checkout-form">
+            <div class="input-line">
+                <label for="name">Name on card</label>
+                <input type="text" name="name" id="name" placeholder="Your name and surname">
             </div>
-            <label>
-              <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-            </label>
-            <input type="submit" value="Continue to checkout" class="btn">
-          </form>
-        </div>
-      </div>
-
-      {{!-- CART --}}
-      <div class="col-25">
-        <div class="container">
-          <h4>Cart
-            <span class="price" style="color:black">
-              <i class="fa icon-shopping-cart"></i>
-              <b>1</b>
-            </span>
-          </h4>
-          {{!--{{#each cartitems}}--}}
-          <p><a href="img/dior.jpg{{id}}">{{title}}Dior Rouge Velvet Lipstick Color 999 Magenta Mini</a> <span class="price">{{price}}$34</span></p>
-          {{!--{{/each}}--}}
-          <hr>
-          <p>Total <span class="price" style="color:black"><b>{{../total}}</b>$34</span></p>
-        </div>
-      </div>
+            <div class="input-line">
+                <label for="name">Card number</label>
+                <input type="text" name="name" id="name" placeholder="1111-2222-3333-4444">
+            </div>
+            <div class="input-container">
+                <div class="input-line">
+                    <label for="name">Expiring Date</label>
+                    <input type="text" name="name" id="name" placeholder="09-21">
+                </div>
+                <div class="input-line">
+                    <label for="name">CVC</label>
+                    <input type="text" name="name" id="name" placeholder="***">
+                </div>
+            </div>
+            <input type="button" value="Complete purchase">
+        </form>
     </div>
+  </div>
     {{!-- Mẫu {
       "cartitems": [
         {
@@ -104,83 +51,86 @@
       ],
       "total": 1000
     } --}}
-  <style>
-      .row {
-        margin: 0 16px;
-      }
+<style>
+.checkout-content{
+  height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 20%;
+}
 
-      .col-25 {
-        -ms-flex: 25%; 
-        flex: 25%;
-      }
+.form-title{
+    font-size: 36px;
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+    opacity: 0.8;
+}
 
-      .col-50 {
-        -ms-flex: 50%; 
-        flex: 50%;
-      }
+.checkout-form{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+}
 
-      .col-75 {
-        -ms-flex: 75%; 
-        flex: 75%;
-      }
+.input-line{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    width: 100%;
+}
 
-      .col-25,
-      .col-50,
-      .col-75 {
-        padding: 0 16px;
-      }
+label{
+    font-size: 16px;
+    color: grey;
+    margin-bottom: 0.5rem;
+}
 
-      .container {
-        padding: 5px 20px 15px 20px;
-        border-radius: 3px;
-      }
+input[type="text"]{
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    border: none;
+    font-size: 18px;
+}
 
-      input[type="text"] {
-        width: 100%;
-        margin-bottom: 20px;
-        padding: 12px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-      }
+input[type="text"]::placeholder{
+    font-size: 14px;
+    color: #b9b9b9;
+}
 
-      label {
-        margin-bottom: 10px;
-        display: block;
-      }
+.input-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
 
-      .icon-container {
-        margin-bottom: 20px;
-        padding: 7px 0;
-        font-size: 24px;
-      }
+.input-container .input-line{
+    width: 48%;
+}
 
-      .btn {
-        background-color: #2691d9;
-        color: white;
-        padding: 12px;
-        margin: 10px 0;
-        border: none;
-        width: 100%;
-        border-radius: 3px;
-        cursor: pointer;
-        font-size: 17px;
-      }
+input[type="button"]{
+    background-color: rgb(0, 149, 255);
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+    height: 50px;
+    padding: 0 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-      .btn:hover {
-        background-color: #2691d9;
-      }
-
-      span.price {
-        float: right;
-        color: grey;
-      }
-
-      @media (max-width: 800px) {
-        .row {
-          flex-direction: column-reverse;
-        }
-        .col-25 {
-          margin-bottom: 20px;
-        }
-      }
-  </style>
+input[type="button"]:hover{
+    background-color: rgb(4, 88, 167);
+}
+</style>
