@@ -92,7 +92,7 @@ app.use("/pages/contact", (req, res) => {
 // add new product
 app.use("/admin/product", (req, res) => {
   res.render(path.join(__dirname + "/src/views/form-product.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
   });
 });
 
@@ -106,14 +106,42 @@ app.use("/admin/stat", (req, res) => {
 // add new blog
 app.use("/admin/blog", (req, res) => {
   res.render(path.join(__dirname + "/src/views/form-blog.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
   });
 });
 
 // add dashboard
 app.use("/admin/dashboard", (req, res) => {
   res.render(path.join(__dirname + "/src/views/dashboard.handlebars"), {
-    layout: false
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
+  });
+});
+
+//add user admin
+app.use("/admin/user", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/user.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
+  });
+});
+
+//add product admin
+app.use("/admin/product-admin", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/product-dashboard.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
+  });
+});
+
+//add blog admin
+app.use("/admin/blog-admin", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/blog-admin.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
+  });
+});
+
+//add analytics admin
+app.use("/admin/analytics", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/analytics.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
   });
 });
 
