@@ -166,16 +166,28 @@
     margin-right: 6px;
     font-size: 16px;
   }
+  
+  .table-title .row {
+    padding: 0 15px 15px 0;
+  }
+
+  .table-title h2 {
+    color: #246dec;
+  }
 
   table.table td a.edit {
     color: rgb(0, 128, 255);
   }
+
   table.table td a.delete {
     color: #F44336;
   }
+
   table.table td i {
     font-size: 19px;
   }
+
+  
 
   @media screen and (max-width: 700px) {
     .sidebar {

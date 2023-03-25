@@ -92,7 +92,7 @@ app.use("/pages/contact", (req, res) => {
 // add new product
 app.use("/admin/product", (req, res) => {
   res.render(path.join(__dirname + "/src/views/form-product.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
   });
 });
 
@@ -106,7 +106,7 @@ app.use("/admin/stat", (req, res) => {
 // add new blog
 app.use("/admin/blog", (req, res) => {
   res.render(path.join(__dirname + "/src/views/form-blog.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
   });
 });
 
@@ -134,6 +134,13 @@ app.use("/admin/product-admin", (req, res) => {
 //add blog admin
 app.use("/admin/blog-admin", (req, res) => {
   res.render(path.join(__dirname + "/src/views/blog-admin.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
+  });
+});
+
+//add analytics admin
+app.use("/admin/analytics", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/analytics.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
   });
 });
