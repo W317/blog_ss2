@@ -135,7 +135,7 @@ html {
   box-sizing: border-box;
 }
 body {
-  font-family: var(--body-font);
+  font-family: var(--body-font) !important;
   font-size: 18px;
   font-weight: 300;
   line-height: 2;
