@@ -28,7 +28,7 @@ app.use(validator());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser())
+app.use(cookieParser());
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -77,8 +77,7 @@ app.use((req, res, next) => {
   next();
 });
 
-
-route(app)
+route(app);
 
 // test UI
 
@@ -92,7 +91,7 @@ app.use("/pages/contact", (req, res) => {
 // add new product
 app.use("/admin/product", (req, res) => {
   res.render(path.join(__dirname + "/src/views/form-product.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
   });
 });
 
@@ -106,42 +105,42 @@ app.use("/admin/stat", (req, res) => {
 // add new blog
 app.use("/admin/blog", (req, res) => {
   res.render(path.join(__dirname + "/src/views/form-blog.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
   });
 });
 
 // add dashboard
 app.use("/admin/dashboard", (req, res) => {
   res.render(path.join(__dirname + "/src/views/dashboard.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
   });
 });
 
 //add user admin
 app.use("/admin/user", (req, res) => {
   res.render(path.join(__dirname + "/src/views/user.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
   });
 });
 
 //add product admin
 app.use("/admin/product-admin", (req, res) => {
   res.render(path.join(__dirname + "/src/views/product-dashboard.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
   });
 });
 
 //add blog admin
 app.use("/admin/blog-admin", (req, res) => {
   res.render(path.join(__dirname + "/src/views/blog-admin.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
   });
 });
 
 //add analytics admin
 app.use("/admin/analytics", (req, res) => {
   res.render(path.join(__dirname + "/src/views/analytics.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
   });
 });
 
@@ -160,22 +159,32 @@ app.use("/home", (req, res) => {
 });
 
 //account
-app.use("/pages/account", (req,res) => {
+app.use("/pages/account", (req, res) => {
   res.render(path.join(__dirname + "/src/views/account.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
 
 // cart
-app.use("/pages/cart", (req,res) => {
+app.use("/pages/cart", (req, res) => {
+  if (!req.session.cart) {
+    return res.render(path.join(__dirname + "/src/views/cart.handlebars"), {
+      layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+      products: null,
+    });
+  }
+
+  let cart = new Cart(req.session.cart);
   res.render(path.join(__dirname + "/src/views/cart.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+    products: cart.generateArray(),
+    totalPrice: cart.totalPrice,
   });
 });
 //wishlist
-app.use("/pages/wishlist",(req,res) => {
+app.use("/pages/wishlist", (req, res) => {
   res.render(path.join(__dirname + "/src/views/wishlist.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars")
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
 
@@ -199,7 +208,6 @@ app.use("/", (req, res) => {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
-
 
 app.use("/js", express.static(__dirname + "/src/public/js"));
 app.use(
