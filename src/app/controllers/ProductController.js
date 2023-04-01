@@ -38,7 +38,7 @@ const getProducts = asyncHandler(async (req, res) => {
       for (let index = 0; index < products.length; index += arraySize) {
         productArray.push(products.slice(index, index + arraySize));
       }
-
+      console.log(res.json(products));
       // render view
       res.render(path.join(__dirname + "/src/views/shop.handlebars"), {
         layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
