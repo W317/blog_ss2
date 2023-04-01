@@ -138,11 +138,11 @@ app.use("/admin/blog-admin", (req, res) => {
 });
 
 //add analytics admin
-app.use("/admin/analytics", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/analytics.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
-  });
-});
+// app.use("/admin/analytics", (req, res) => {
+//   res.render(path.join(__dirname + "/src/views/analytics.handlebars"), {
+//     layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
+//   });
+// });
 
 // checkout
 app.use("/pages/checkout", (req, res) => {

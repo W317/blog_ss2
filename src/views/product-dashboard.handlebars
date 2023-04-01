@@ -44,15 +44,15 @@
       </thead>
     <tbody>
     {{#each products}}
-    {{#each this}}
+      {{#each this}}
     <tr>
       <th>
         <span class="custom-checkbox pl-3">
 					<input class="m-0" type="checkbox" id="selectAll">
 				</span>
       </th>
-      <td>{{this.id}}</td>
-      <td>{{thistitle}}</td>
+      <td>{{this._id}}</td>
+      <td>{{this.title}}</td>
       <td>{{this.category}}</td>
       <td>{{this.price}}</td>
       <td>
@@ -64,7 +64,7 @@
         </a>
       </td>
     </tr>
-    {{/each}}
+      {{/each}}
     {{/each}}
   </tbody>
 </table>
