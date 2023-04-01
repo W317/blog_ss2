@@ -59,9 +59,7 @@ const getProducts = asyncHandler(async (req, res) => {
 });
 
 const listImage = [
-  '/img/dior1.jpg',
-  '/img/gucci-cate.jpeg',
-  '/img/dior1.jpg',
+  '/img/ysl3.jpg',
 ]
 
 const createProduct = asyncHandler(async (req, res) => {

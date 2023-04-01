@@ -17,7 +17,7 @@ const BlogPost = new mongoose.Schema({
       required: true,
       unique: true
   },
-  images: [{
+  image: [{
       type: String,
       required: true
   }],
