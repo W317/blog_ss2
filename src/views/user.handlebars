@@ -1,7 +1,7 @@
 <div class="container">
   <div class="">
-    <div class="table-title">
-      <div class="row">
+    <div class="">
+      <div class="row mb-3">
         <div class="col-sm-12 col-md-12 col-lg-12 p-0 d-flex justify-content-center">
           <h2 class="ml-lg-2">Manage Users</h2>
         </div>
@@ -17,7 +17,11 @@
     <table class="table">
   <thead class="thead-dark">
     <tr>
-      <th scope="col"> #</th>
+      <th scope="col">
+        <span class="custom-checkbox pl-3">
+					<input class="m-0" type="checkbox" id="selectAll">
+				</span>
+      </th>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
       <th scope="col">Address</th>
@@ -29,10 +33,7 @@
     {{#each users}}
     <tr>
       <th>
-        <span class="custom-checkbox">
-					<input type="checkbox" id="selectAll" id = {{id}}>
-					<label for="selectAll"></label>
-				</span>
+        
       </th>
       <td>{{name}}</td>
       <td>{{email}}</td>
