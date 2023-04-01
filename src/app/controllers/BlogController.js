@@ -80,11 +80,15 @@ const createBlog = asyncHandler(async (req, res) => {
     // if (!author || !title || !body || !href) {
     //   throw new Error("Error !!!")
     // }
+    const blogImages = [
+      '/img/blog3.jpg'
+    ]
+
     const blog = new BlogModel({
       author: author,
       title: title,
       body: body,
-      images: [],
+      image: blogImages[0],
       href: href,
     });
     const createBlog = await blog.save();
