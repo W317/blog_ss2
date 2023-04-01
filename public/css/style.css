@@ -135,7 +135,7 @@ html {
   box-sizing: border-box;
 }
 body {
-  font-family: var(--body-font);
+  font-family: var(--body-font) !important;
   font-size: 18px;
   font-weight: 300;
   line-height: 2;
@@ -1302,9 +1302,7 @@ This is main CSS file that contains custom style rules used in this template
 .no-padding-top {
   padding-top: 0 !important;
 }
-.no-padding-bottom {
-  padding-bottom: 0 !important;
-}
+
 .no-gutter {
   padding: 0 !important;
 }

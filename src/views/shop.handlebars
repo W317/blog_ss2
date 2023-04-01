@@ -74,7 +74,7 @@
         </div> --}}
       </div>
       {{/each}}
-      <section id="pagination" class="center">
+      <section id="pagination" class="">
       <nav aria-label="Page navigation example">
         <ul class="pagination">
           <li class="page-item">
@@ -82,8 +82,9 @@
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
-          {{#each pages}}
-            <li class="page-item"><a class="page-link" href="/shop?page={{number}}">{{number}}</a></li>
+          
+          {{#each number}}
+            <li class="page-item"><a class="page-link" href="/shop?page={{this}}">{{this}}</a></li>
           {{/each}}
           <li class="page-item">
             <a class="page-link" href="#" aria-label="Next">
