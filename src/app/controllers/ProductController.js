@@ -22,13 +22,14 @@ const getProducts = asyncHandler(async (req, res) => {
         .limit(PAGE_SIZE);
 
       //count total page
-      let arrayPage = [];
+      // let arrayPage = [];
       const totalData = await Product.countDocuments();
       const totalPage = Math.ceil(totalData / PAGE_SIZE);
-      for (let i = 1; i < totalPage+1; i++) {
-        arrayPage.push(i);
+      const pages ={ number: [] };
+      for (let i = 1; i < totalPage + 1; i++) {
+        pages.number.push(i);
       }
-      console.log(arrayPage);
+      console.log(pages);
       console.log(totalPage);
 
       // push 3 blogs into a row
@@ -42,7 +43,7 @@ const getProducts = asyncHandler(async (req, res) => {
       res.render(path.join(__dirname + "/src/views/shop.handlebars"), {
         layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
         products: productArray,
-        number: arrayPage
+        pages: {pages} 
       })
     } else {
       // get all products
