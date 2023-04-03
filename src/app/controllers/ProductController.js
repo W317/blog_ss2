@@ -28,8 +28,6 @@ const getProducts = asyncHandler(async (req, res) => {
       for (let i = 1; i < totalPage+1; i++) {
         arrayPage.push(i);
       }
-      console.log(arrayPage);
-      console.log(totalPage);
 
       // push 3 blogs into a row
       let productArray = [];
