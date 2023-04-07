@@ -2,7 +2,9 @@ import express from "express";
 const router = express.Router();
 import { Cart } from "../app/models/cartModel.js";
 import Product from "../app/models/productModel.js";
+import Order from '../app/models/orderModel.js'
 import path from 'path'
+import * as stripe from "stripe"
 const __dirname = path.resolve()
 
 router.get("/add-to-cart/:id", (req, res, next) => {
@@ -57,5 +59,94 @@ router.get("/shopping-cart", (req, res, next) => {
     totalPrice: cart.totalPrice,
   });
 });
+
+router.get('/checkout', isLoggedIn, (req, res, next) => {
+  console.log('processing the get checkout...');
+
+  if (!req.session.cart) {
+    return res.redirect('/shop');
+  }
+
+  console.log('req.session.cart: ', req.session.cart);
+
+  let cart = new Cart(req.session.cart);
+  let errMsg = req.flash('error')[0];
+  // res.render('shop/checkout', {total: cart.totalPrice, errMsg: errMsg, noErrors: !errMsg})
+  res.render(path.join(__dirname + "/src/views/checkout.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+    total: cart.totalPrice,
+    errMsg: errMsg,
+    noErrors: !errMsg
+  });
+})
+
+router.post('/checkout', isLoggedIn, (req, res, next) => {
+  console.log('processing the post checkout...');
+  console.log(req.body);
+
+  if (!req.session.cart) {
+      return res.redirect('/shop');
+  }
+  let cart = new Cart(req.session.cart);
+  console.log('cart', cart);
+
+  console.log('created the cart...');
+
+  console.log('token: ', req.body.stripeToken);
+  /*
+  var stripe = require("stripe")(
+      "sk_test_fwmVPdJfpkmwlQRedXec5IxR"
+  );
+  */
+  const stripeApp = stripe.Stripe(
+    "sk_test_l6yzGVoH7wUkz5F7vRrRlczU"
+  )
+  stripeApp.charges.create({
+      amount: cart.totalPrice * 100,
+      currency: "usd",
+      source: req.body.stripeToken, // obtained with Stripe.js
+      description: "Pay With Stripe"
+  }, (err, charge) => {
+      if (err) {
+          console.log('there were errors...');
+          req.flash('error', err.message);
+          return res.redirect('/checkout');
+      }
+      console.log("=============================================");
+      console.log('req.user: ', req.user);
+      console.log('cart: ', cart);
+      console.log('address: ', req.body.address);
+      console.log('name: ', req.body.name);
+      console.log('paymentId: ', charge.id);
+
+      const order = new Order({
+          user: req.user,
+          cart: cart,
+          address: req.body.address,
+          name: req.body.name,
+          paymentId: charge.id
+      });
+
+      order.save(function(err, result) {
+          //if (err) {
+          //  console.log(err);
+          //  throw err;
+          //}
+          console.log(result);
+          req.flash('success', 'Successfully bought product!');
+          req.session.cart = null;
+          res.redirect('/');
+      });
+
+  }); 
+});
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+      return next();
+  }
+  req.session.oldUrl = req.url; // 
+  res.redirect('/user/signin');
+}
 
 export default router

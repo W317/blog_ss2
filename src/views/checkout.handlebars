@@ -1,58 +1,101 @@
-
 <div class="banner-content">
-      <div class="container">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="page-title">Checkout</h1>
+        <div class="breadcum-items">
+          <span class="item">
+            <a href="#">Home /</a>
+          </span>
+          <span class="item">Checkout</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="checkout-content">
+  <div class="form-container">
+    <h2 class="form-title">Payment Details</h2>
+    <form action="/cart/checkout" method="POST" id="payment-form">
+      <div class="row">
+
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" class="form-control" required name="name">
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" class="form-control" required name="address">
+          </div>
+        </div>
+        <hr>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="card-name">Card Holder Name</label>
+            <input type="text" id="card-name" class="form-control" required>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="card-number">Credit Card Number</label>
+            <input type="text" id="card-number" class="form-control" required>
+          </div>
+        </div>
+        <div class="col-xs-12">
           <div class="row">
-            <div class="col-md-12">
-                <h1 class="page-title">Checkout</h1>
-                <div class="breadcum-items">
-                  <span class="item">
-                    <a href="#">Home /</a>
-                  </span>
-                  <span class="item">Checkout</span>
-                </div>
+            <div class="col-xs-6">
+              <div class="form-group">
+                <label for="card-expiry-month">Expiration Month</label>
+                <input type="text" id="card-expiry-month" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="form-group">
+                <label for="card-expiry-year">Expiration Year</label>
+                <input type="text" id="card-expiry-year" class="form-control" required>
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="card-cvc">CVC</label>
+            <input type="text" id="card-cvc" class="form-control" required>
+          </div>
+        </div>
+
       </div>
-</div>
-  <div class="checkout-content">
-    <div class="form-container">
-        <h2 class="form-title">Payment Details</h2>
-        <form action="" class="checkout-form">
-            <div class="input-line">
-                <label for="name">Name on card</label>
-                <input type="text" name="name" id="name" placeholder="Your name and surname">
-            </div>
-            <div class="input-line">
-                <label for="name">Card number</label>
-                <input type="text" name="name" id="name" placeholder="1111-2222-3333-4444">
-            </div>
-            <div class="input-container">
-                <div class="input-line">
-                    <label for="name">Expiring Date</label>
-                    <input type="text" name="name" id="name" placeholder="09-21">
-                </div>
-                <div class="input-line">
-                    <label for="name">CVC</label>
-                    <input type="text" name="name" id="name" placeholder="***">
-                </div>
-            </div>
-            <input type="button" value="Complete purchase">
-        </form>
-    </div>
+
+      <div id="card-errors" role="alert"></div>
+
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="pk_test_G48XW0NOk13xaDsUERQizLeI" data-amount="{{total}}" data-name="Demo Site"
+        data-description="Example charge" data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+        data-locale="auto">
+        </script>
+    </form>
   </div>
-    {{!-- Mẫu {
-      "cartitems": [
-        {
-          "id": "1",
-          "title": "Product",
-          "price": 100,
-        },...
-      ],
-      "total": 1000
-    } --}}
+</div>
+
+<script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+<script type="text/javascript" src="js/checkout.js"></script>
+
+{{!-- Mẫu {
+"cartitems": [
+{
+"id": "1",
+"title": "Product",
+"price": 100,
+},...
+],
+"total": 1000
+} --}}
 <style>
-  .checkout-content{
+  .checkout-content {
     height: 100vh;
     width: 100%;
     display: flex;
@@ -62,14 +105,14 @@
     padding: 0 20%;
   }
 
-  .form-title{
+  .form-title {
     font-size: 36px;
     margin-bottom: 2.5rem;
     font-weight: 500;
     opacity: 0.8;
   }
 
-  .checkout-form{
+  .checkout-form {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -77,7 +120,7 @@
     width: 100%;
   }
 
-  .input-line{
+  .input-line {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -86,13 +129,13 @@
     width: 100%;
   }
 
-  label{
+  label {
     font-size: 16px;
     color: grey;
     margin-bottom: 0.5rem;
   }
 
-  input[type="text"]{
+  input[type="text"] {
     width: 100%;
     height: 40px;
     padding: 0 10px;
@@ -102,23 +145,23 @@
     font-size: 18px;
   }
 
-  input[type="text"]::placeholder{
+  input[type="text"]::placeholder {
     font-size: 14px;
     color: #b9b9b9;
   }
 
-  .input-container{
+  .input-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
   }
 
-  .input-container .input-line{
+  .input-container .input-line {
     width: 48%;
   }
 
-  input[type="button"]{
+  input[type="button"] {
     background-color: rgb(0, 149, 255);
     color: white;
     font-weight: 500;
@@ -130,7 +173,7 @@
     cursor: pointer;
   }
 
-  input[type="button"]:hover{
+  input[type="button"]:hover {
     background-color: rgb(4, 88, 167);
   }
 </style>

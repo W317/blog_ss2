@@ -23,7 +23,8 @@
                   <img class="rounded" src="{{this.item.image}}" width="75">
                 </div>
                 <div class="left-group flex-row flex-grow-1 align-items-center">
-                  <div class="ml-2"><span class="font-weight-bold d-block">{{this.item.title}}</span><span class="spec"></div>
+                  <div class="ml-2"><span class="font-weight-bold d-block">{{this.item.title}}</span><span class="spec">
+                  </div>
                   <div class="edit-price d-flex">
                     <a href="/cart/add-to-cart/{{this.item._id}}">
                       <i class="fa fa-plus" style="margin-right: 15px;" aria-hidden="true"></i>
@@ -85,9 +86,11 @@
           <hr class="line">
           <div class="d-flex justify-content-between information"><span>Total(Incl.
               taxes)</span><span>{{totalPrice}}</span>
-          </div><button class="btn btn-primary btn-block d-flex justify-content-between mt-3"
-            type="button"><span>${{totalPrice}}</span><span>Checkout<i
-                class="fa fa-long-arrow-right ml-1"></i></span></button>
+          </div><a href="/cart/checkout">
+            <button class="btn btn-primary btn-block d-flex justify-content-between mt-3"
+              type="button"><span>${{totalPrice}}</span><span>Checkout<i
+                  class="fa fa-long-arrow-right ml-1"></i></span></button>
+          </a>
         </div>
       </div>
 
