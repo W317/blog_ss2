@@ -1,6 +1,7 @@
 import Product from "../models/productModel.js";
 import asyncHandler from 'express-async-handler'
 import path from "path";
+import { mongooseToObject } from "../../util/mongoose.js";
 
 const __dirname = path.resolve()
 
@@ -9,10 +10,16 @@ const getProducts = asyncHandler(async (req, res) => {
     // pagination with 2 rows a page
     const PAGE_SIZE = 6;
     let page = req.query.page;
+    //count total page
+    const totalData = await Product.countDocuments();
+    const totalPage = Math.ceil(totalData / PAGE_SIZE);
 
-    if (page) {
+    // if (page) {
       if (page < 1) {
         page = 1;
+      }
+      if (page > totalPage) {
+        page = totalPage
       }
       page = parseInt(page);
       const skipData = (page - 1) * PAGE_SIZE;
@@ -21,15 +28,11 @@ const getProducts = asyncHandler(async (req, res) => {
         .skip(skipData)
         .limit(PAGE_SIZE);
 
-      //count total page
-      // let arrayPage = [];
-      const totalData = await Product.countDocuments();
-      const totalPage = Math.ceil(totalData / PAGE_SIZE);
-      const pages ={ number: [] };
+      const pages = [];
       for (let i = 1; i < totalPage + 1; i++) {
-        pages.number.push(i);
+        pages.push(i);
       }
-      console.log(arrayPage);
+      console.log(pages);
       console.log(totalPage);
 
       // push 3 blogs into a row
@@ -38,30 +41,52 @@ const getProducts = asyncHandler(async (req, res) => {
       for (let index = 0; index < products.length; index += arraySize) {
         productArray.push(products.slice(index, index + arraySize));
       }
-      console.log(res.json(products));
-      // render view
-      res.render(path.join(__dirname + "/src/views/shop.handlebars"), {
-        layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-        products: productArray,
-        pages: pages
-      })
-    } else {
-      // get all products
-      const products = await Product.find().lean(); // Add .lean() method here
-      let productArray = [];
-      let arraySize = 3;
-      for (let index = 0; index < products.length; index += arraySize) {
-        productArray.push(products.slice(index, index + arraySize));
+
+      // for button pre and next in pagination
+      let currentPage = parseInt(req.query.page)
+      if (!page) {
+        currentPage = 1
       }
+      const hasPrev = currentPage > 1;
+      const prev = currentPage - 1;
+
+      const hasNext = currentPage < totalPage;
+      const next = currentPage + 1;
 
       // render view
       res.render(path.join(__dirname + "/src/views/shop.handlebars"), {
         layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
         products: productArray,
-        product: products
+        pages: pages,
+        currentPage,
+        hasPrev,
+        prev,
+        hasNext,
+        next
       })
-      
-    }
+    // } else {
+    //   // get all products
+    //   const products = await Product.find().lean(); // Add .lean() method here
+    //   let productArray = [];
+    //   let arraySize = 3;
+    //   for (let index = 0; index < products.length; index += arraySize) {
+    //     productArray.push(products.slice(index, index + arraySize));
+    //   }
+
+    //   const totalData = await Product.countDocuments();
+    //   const totalPage = Math.ceil(totalData / PAGE_SIZE);
+    //   const pages = [];
+    //   for (let i = 1; i < totalPage + 1; i++) {
+    //     pages.push(i);
+    //   }
+    //   // render view
+    //   res.render(path.join(__dirname + "/src/views/shop.handlebars"), {
+    //     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+    //     products: productArray,
+    //     pages: pages
+    //   })
+
+    // }
   } catch (error) {
     console.log(error);
   }

@@ -1,146 +1,157 @@
- <section class="shop-page padding-large">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <h1 class="page-title">Shop</h1>
-            <div class="breadcrumbs">
-              <span class="item">
-                <a href="#">Home /</a>
-              </span>
-              <span class="item">Category</span>
-            </div>
-          </div>
+<section class="shop-page padding-large">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="page-title">Shop</h1>
+        <div class="breadcrumbs">
+          <span class="item">
+            <a href="#">Home /</a>
+          </span>
+          <span class="item">Category</span>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- All product -->
-    <section class="categories" id="categories">
-      <div class="list-order">
-        <div class="order">
-          <span class="home-label">Order by</span>
-          <button class="btn">General</button>
-          <button class="btn btn--primary">Latest</button>
-          <button class="btn">Best seller</button>
-        </div>
-      </div>
-      {{#each products}}
-        <div class="box-container">
-        {{#each this}}
-          <div class="box">
-          <img src={{this.image}} alt="">
-          <h3>{{this.title}}</h3>
-          <p>{{this.category}}</p>
-          <p>${{this.price}}</p>
-          <a href="/cart/add-to-cart/{{this._id}}" class="btn">Add to cart</a>
-        </div>
+<!-- All product -->
+<section class="categories" id="categories">
+  <div class="list-order">
+    <div class="order">
+      <span class="home-label">Order by</span>
+      <button class="btn">General</button>
+      <button class="btn btn--primary">Latest</button>
+      <button class="btn">Best seller</button>
+    </div>
+  </div>
+  {{#each products}}
+  <div class="box-container">
+    {{#each this}}
+    <div class="box">
+      <img src={{this.image}} alt="">
+      <h3>{{this.title}}</h3>
+      <p>{{this.category}}</p>
+      <p>${{this.price}}</p>
+      <a href="/cart/add-to-cart/{{this._id}}" class="btn">Add to cart</a>
+    </div>
 
+    {{/each}}
+    {{!-- <div class="box">
+      <img src="/img/dior1.jpg" alt="">
+      <h3>Dior Rouge Velvet Lipstick Color 999 Magenta Mini</h3>
+      <p>$34.00</p>
+      <a href="/add-to-cart/" class="btn">Add to cart</a>
+    </div>
+    <div class="box">
+      <img src="/img/gucci-cate.jpeg" alt="">
+      <h3>Gucci Rouge Liquid Matte 203 Mildred Rosewood Earth Pink</h3>
+      <p>$38.00</p>
+      <a href="" class="btn">Add to cart</a>
+    </div>
+    <div class="box">
+      <img src="/img/dior1.jpg" alt="">
+      <h3>Dior Rouge Velvet Lipstick Color 999 Magenta Mini</h3>
+      <p>$36.00</p>
+      <a href="" class="btn">Add to cart</a>
+    </div>
+    <div class="box">
+      <img src="/img/gucci-cate.jpeg" alt="">
+      <h3>Gucci Rouge Liquid Matte 203 Mildred Rosewood Earth Pink</h3>
+      <p>$38.00</p>
+      <a href="" class="btn">Add to cart</a>
+    </div>
+    <div class="box">
+      <img src="/img/dior1.jpg" alt="">
+      <h3>Dior Rouge Velvet Lipstick Color 999 Magenta Mini</h3>
+      <p>$34.00</p>
+      <a href="" class="btn">Add to cart</a>
+    </div>
+    <div class="box">
+      <img src="/img/gucci-cate.jpeg" alt="">
+      <h3>Gucci Rouge Liquid Matte 203 Mildred Rosewood Earth Pink</h3>
+      <p>$38.00</p>
+      <a href="" class="btn">Add to cart</a>
+    </div> --}}
+  </div>
+  {{/each}}
+  <section id="pagination" class="">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination" id="pagination">
+        <li class="page-item {{#unless hasPrev}}disabled{{/unless}}">
+          <a class="page-link" href="{{#if hasPrev}}/shop?page={{prev}}{{/if}}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+
+        {{#each pages}}
+        <li class="page-item {{#if isActive}}active{{/if}}">
+          <a class="page-link" href="/shop?page={{this}}">{{this}}</a>
+        </li>
         {{/each}}
-        {{!-- <div class="box">
-          <img src="/img/dior1.jpg" alt="">
-          <h3>Dior Rouge Velvet Lipstick Color 999 Magenta Mini</h3>
-          <p>$34.00</p>
-          <a href="/add-to-cart/" class="btn">Add to cart</a>
-        </div>
-        <div class="box">
-          <img src="/img/gucci-cate.jpeg" alt="">
-          <h3>Gucci Rouge Liquid Matte 203 Mildred Rosewood Earth Pink</h3>
-          <p>$38.00</p>
-          <a href="" class="btn">Add to cart</a>
-        </div>
-        <div class="box">
-          <img src="/img/dior1.jpg" alt="">
-          <h3>Dior Rouge Velvet Lipstick Color 999 Magenta Mini</h3>
-          <p>$36.00</p>
-          <a href="" class="btn">Add to cart</a>
-        </div>
-        <div class="box">
-          <img src="/img/gucci-cate.jpeg" alt="">
-          <h3>Gucci Rouge Liquid Matte 203 Mildred Rosewood Earth Pink</h3>
-          <p>$38.00</p>
-          <a href="" class="btn">Add to cart</a>
-        </div>
-        <div class="box">
-          <img src="/img/dior1.jpg" alt="">
-          <h3>Dior Rouge Velvet Lipstick Color 999 Magenta Mini</h3>
-          <p>$34.00</p>
-          <a href="" class="btn">Add to cart</a>
-        </div>
-        <div class="box">
-          <img src="/img/gucci-cate.jpeg" alt="">
-          <h3>Gucci Rouge Liquid Matte 203 Mildred Rosewood Earth Pink</h3>
-          <p>$38.00</p>
-          <a href="" class="btn">Add to cart</a>
-        </div> --}}
-      </div>
-      {{/each}}
-      <section id="pagination" class="">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          
-          {{#each number}}
-            <li class="page-item"><a class="page-link" href="/shop?page={{this}}">{{this}}</a></li>
-          {{/each}}
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      </section>
-    </section>
 
-    <style>
-      .order {
-        margin-bottom: 30px;
-        background-color: rgba(0, 0, 0, 0.05);
-      }
-      .order .home-label {
-        margin-left: 8px;
-      }
-      .order .btn {
-        background-color: white;
-        color: black;
-        margin: 8px;
-      }
-      .order .btn--primary {
-        background-color: red;
-      }
-      .categories .box-container {
-        margin-bottom: 200px;
-        border: 0px solid;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-        gap: 10rem;
-      }
-      .categories .box-container .box {
-        background: #fff;
-        border-radius: 0.5rem;
-        box-shadow: 1px 1px 10px 4px var(--blue);
-        outline: var(--outline);
-        outline-offset: -1rem;
-        text-align: center;
-      }
-     
-      .categories .box-container .box h3 {
-        font-size: 18px;
-      }
-      .categories .box-container .box p {
-        font-size: 18px;
-      }
-      .categories .box-container .btn {
-        margin-bottom: 20px;
-      }
-      .categories .box-container .btn:hover {
-        background-color: blue;
-        color: #fff;
-        border: 2px;
-      }
-    
-    </style>
+        <li class="page-item {{#unless hasNext}}disabled{{/unless}}">
+          <a class="page-link" href="{{#if hasNext}}/shop?page={{next}}{{/if}}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </section>
+
+</section>
+
+<style>
+  .order {
+    margin-bottom: 30px;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .order .home-label {
+    margin-left: 8px;
+  }
+
+  .order .btn {
+    background-color: white;
+    color: black;
+    margin: 8px;
+  }
+
+  .order .btn--primary {
+    background-color: red;
+  }
+
+  .categories .box-container {
+    margin-bottom: 200px;
+    border: 0px solid;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 10rem;
+  }
+
+  .categories .box-container .box {
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 10px 4px var(--blue);
+    outline: var(--outline);
+    outline-offset: -1rem;
+    text-align: center;
+  }
+
+  .categories .box-container .box h3 {
+    font-size: 18px;
+  }
+
+  .categories .box-container .box p {
+    font-size: 18px;
+  }
+
+  .categories .box-container .btn {
+    margin-bottom: 20px;
+  }
+
+  .categories .box-container .btn:hover {
+    background-color: blue;
+    color: #fff;
+    border: 2px;
+  }
+</style>
