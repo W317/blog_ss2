@@ -88,13 +88,6 @@ app.use("/pages/contact", (req, res) => {
   });
 });
 
-// add new product
-app.use("/admin/product", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/form-product.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
-  });
-});
-
 // stat for admin
 app.use("/admin/stat", (req, res) => {
   res.render(path.join(__dirname + "/src/views/chart.handlebars"), {
@@ -112,20 +105,6 @@ app.use("/admin/blog", (req, res) => {
 // add dashboard
 app.use("/admin/dashboard", (req, res) => {
   res.render(path.join(__dirname + "/src/views/dashboard.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
-  });
-});
-
-//add user admin
-app.use("/admin/user", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/user.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
-  });
-});
-
-//add product admin
-app.use("/admin/product-admin", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/product-dashboard.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
   });
 });

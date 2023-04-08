@@ -3,11 +3,11 @@
     <div class="">
       <div class="row mb-3">
         <div class="col-sm-12 col-md-12 col-lg-12 p-0 d-flex justify-content-center">
-          <h2 class="ml-lg-2">Manage Users</h2>
+          <h2 class="ml-lg-2">Manage Products</h2>
         </div>
         <div class="col-sm-12 col-md-12 col-lg-12 p-0 d-flex justify-content-center">
           <a href="#addUser" class="btn btn-success " data-toggle="modal">
-		  <i class="material-icons mx-2">&#xE147;</i> <span>Add New User</span> </a>
+		  <i class="material-icons mx-2">&#xE147;</i> <span>Add New Product</span> </a>
           <a href="#deleteUser" class="btn btn-danger" data-toggle="modal">
 		  <i class="material-icons mx-2">&#xE15C;</i> <span>Delete</span></a>
         </div>
@@ -44,17 +44,16 @@
       </thead>
     <tbody>
     {{#each products}}
-      {{#each this}}
     <tr>
       <th>
         <span class="custom-checkbox pl-3">
 					<input class="m-0" type="checkbox" id="selectAll">
 				</span>
       </th>
-      <td>{{this._id}}</td>
-      <td>{{this.title}}</td>
-      <td>{{this.category}}</td>
-      <td>{{this.price}}</td>
+      <td>{{_id}}</td>
+      <td>{{title}}</td>
+      <td>{{category}}</td>
+      <td>{{price}}</td>
       <td>
         <a href="admin/product-admin/edit/{{id}}" class="edit" data-toggle="modal">
 	        <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
@@ -64,7 +63,6 @@
         </a>
       </td>
     </tr>
-      {{/each}}
     {{/each}}
   </tbody>
 </table>
@@ -182,4 +180,29 @@
         </tr>
       </tbody>
     </table> --}}
+    <section id="pagination" class="">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination" id="pagination">
+        <li class="page-item {{#unless hasPrev}}disabled{{/unless}}">
+          <a class="page-link" href="{{#if hasPrev}}/admin/product-admin?page={{prev}}{{/if}}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+
+        {{#each pages}}
+        <li class="page-item {{#if isActive}}active{{/if}}">
+          <a class="page-link" href="/admin/product-admin?page={{this}}">{{this}}</a>
+        </li>
+        {{/each}}
+
+        <li class="page-item {{#unless hasNext}}disabled{{/unless}}">
+          <a class="page-link" href="{{#if hasNext}}/admin/product-admin?page={{next}}{{/if}}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </section>
   </div>
+
+  
