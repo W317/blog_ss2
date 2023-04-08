@@ -51,6 +51,13 @@
     margin-right: -10px;
 }
 
+.stripe-button-el {
+    margin: 10px 0px;
+    padding: 10px 15px;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
 .col-xs-1,
 .col-sm-1,
 .col-md-1,
