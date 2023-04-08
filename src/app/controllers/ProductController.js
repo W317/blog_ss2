@@ -1,9 +1,9 @@
 import Product from "../models/productModel.js";
 import asyncHandler from 'express-async-handler'
-import path from "path";
-import { mongooseToObject } from "../../util/mongoose.js";
 
-const __dirname = path.resolve()
+import path from "path";
+
+ const __dirname = path.resolve()
 
 const getProducts = asyncHandler(async (req, res) => {
   try {
@@ -62,29 +62,7 @@ const getProducts = asyncHandler(async (req, res) => {
         hasNext,
         next
       })
-    // } else {
-    //   // get all products
-    //   const products = await Product.find().lean(); // Add .lean() method here
-    //   let productArray = [];
-    //   let arraySize = 3;
-    //   for (let index = 0; index < products.length; index += arraySize) {
-    //     productArray.push(products.slice(index, index + arraySize));
-    //   }
-
-    //   const totalData = await Product.countDocuments();
-    //   const totalPage = Math.ceil(totalData / PAGE_SIZE);
-    //   const pages = [];
-    //   for (let i = 1; i < totalPage + 1; i++) {
-    //     pages.push(i);
-    //   }
-    //   // render view
-    //   res.render(path.join(__dirname + "/src/views/shop.handlebars"), {
-    //     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-    //     products: productArray,
-    //     pages: pages
-    //   })
-
-    // }
+  
   } catch (error) {
     console.log(error);
   }
@@ -97,15 +75,18 @@ const listImage = [
 const createProduct = asyncHandler(async (req, res) => {
   try {
     const { title, category, description, price, quantity } = req.body;
-
+    
+    const imagePath = req.file ? `img/${req.file.filename}` : ''; // save the file path if a file was uploaded
+    
     const product = new Product({
       quantity: quantity,
       title: title,
       category: category,
-      image: listImage[0],
+      image: imagePath,
       description: description,
       price: price,
     });
+
     await product.save();
     res.status(201).redirect('/shop');
   } catch (err) {

@@ -166,4 +166,27 @@
       </tbody>
     </table> --}}
   </div>
+   <section id="pagination" class="">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination" id="pagination">
+        <li class="page-item {{#unless hasPrev}}disabled{{/unless}}">
+          <a class="page-link" href="{{#if hasPrev}}/admin/user?page={{prev}}{{/if}}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+
+        {{#each pages}}
+        <li class="page-item {{#if isActive}}active{{/if}}">
+          <a class="page-link" href="/admin/user?page={{this}}">{{this}}</a>
+        </li>
+        {{/each}}
+
+        <li class="page-item {{#unless hasNext}}disabled{{/unless}}">
+          <a class="page-link" href="{{#if hasNext}}/user?page={{next}}{{/if}}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </section>
 </div>

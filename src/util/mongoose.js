@@ -1,7 +1,11 @@
 export function multipleMongooseToObject(mongooses) {
-    return mongooses.map(mongoose = mongoose.toObject());
-
-}
+    if (!Array.isArray(mongooses)) {
+      return [];
+    }
+    
+    return mongooses.map(mongoose => mongoose.toObject());
+  }
+  
 export function mongooseToObject(mongoose) {
     return mongoose ? mongoose.toObject() : mongoose;
 }
