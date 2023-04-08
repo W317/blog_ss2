@@ -7,7 +7,8 @@
 
             {{!-- <ul class="left-block list-unstyled d-flex flex-wrap">
               <li class="menu-item text-uppercase">Call Us: +5555-00-444</li>
-              <li class="menu-item text-uppercase">Mail Us: <a class=" text-decoration-none text-dark" href="#">hello@SOLStore.com</a>
+              <li class="menu-item text-uppercase">Mail Us: <a class=" text-decoration-none text-dark"
+                  href="#">hello@SOLStore.com</a>
               </li>
             </ul> --}}
 
@@ -23,7 +24,7 @@
                 <i class="icon icon-caret-down"></i>
                 <ul class="dropdown-currency list-unstyled bg-white">
                   <li>
-                    <a  href="#" class=" text-decoration-none text-dark">USD</a>
+                    <a href="#" class=" text-decoration-none text-dark">USD</a>
                   </li>
                   <li>
                     <a href="#" class=" text-decoration-none text-dark">EURO</a>
@@ -41,43 +42,44 @@
     </nav>
     <nav class="navbar navbar-expand-md bg-white navbar-light">
       <div class="container-fluid">
-          <a class="navbar-brand ml-3" href="#"><img src="/img/logo.png" alt="logo" style="width:80px"></a>
-          <button class="navbar-toggler mr-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse  justify-content-end" id="collapsibleNavbar">
-      <ul class="navbar-nav mt-2 mx-3 ">
-        <li class="nav-item">
-          <a class="nav-link text-primary" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-danger" href="/shop">Category</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-success" href="/pages/blog">Blog</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="/pages/contact">Contact</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="/pages/wishlist">Wish list</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-info" href="/user/signin">Sign in</a>
-        </li>
-        {{!-- <li class="nav-item"> // Nếu đăng nhập thì mới hiển thị, khi đăng nhận ẩn sign in đi
-          <a class="nav-link text-info" href="/account">My Account</a>
-        </li> --}}
-        <li class="nav-item bg-grey rounded px-2">
-          <a class="nav-link text-dark" href="/cart/shopping-cart">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="badge rounded-pill badge-notification bg-danger">{{this.quantity}}</span>
-          </a>
-        </li> 
-      </ul>
-    </div>
+        <a class="navbar-brand ml-3" href="#"><img src="/img/logo.png" alt="logo" style="width:80px"></a>
+        <button class="navbar-toggler mr-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse  justify-content-end" id="collapsibleNavbar">
+          <ul class="navbar-nav mt-2 mx-3 ">
+            <li class="nav-item">
+              <a class="nav-link text-primary" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-danger" href="/shop">Category</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-success" href="/pages/blog">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="/pages/contact">Contact</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="/pages/wishlist">Wish list</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-info" href="/user/signin">Sign in</a>
+            </li>
+            {{!-- <li class="nav-item"> // Nếu đăng nhập thì mới hiển thị, khi đăng nhận ẩn sign in đi
+              <a class="nav-link text-info" href="/account">My Account</a>
+            </li> --}}
+            <li>
+              <div class="header__cart-wrap">
+                <span class="cart-notice">3</span>
+                <i class="fa-solid fa-cart-shopping cart-icon"></i>
+
+            </li>
+
+          </ul>
         </div>
+      </div>
     </nav>
   </div>
 </header>
