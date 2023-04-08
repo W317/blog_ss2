@@ -65,6 +65,7 @@ const getAllProducts = asyncHandler(async (req, res) => {
         let page = req.query.page;
         //count total page
         const totalData = await userModel.countDocuments();
+
         const totalPage = Math.ceil(totalData / PAGE_SIZE);
 
         // if (page) {
