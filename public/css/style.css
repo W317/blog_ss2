@@ -210,6 +210,10 @@ img {
   height: auto;
   vertical-align: middle;
 }
+#categories .box img{
+  height: 266px;
+  width: 100%;
+}
 ::selection {
   background: var(--primary-color);
   color: var(--light-color);
@@ -489,22 +493,7 @@ td:last-child {
 /*------------------------------------------------
 /* 2.7 Spacing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-button,
-.button {
-  margin-bottom: 1rem; }
-input,
-textarea,
-select,
-fieldset {
-  margin-bottom: 1.5rem; }
-pre,
-blockquote,
-dl,
-figure,
-table,
-form {
-  margin-bottom: 2rem; 
-}
+
 
 
 /*------------------------------------------------
@@ -618,8 +607,7 @@ button {
   position: relative;
   border: 2px solid transparent;
   border-radius: 0;
-  padding: 0.75em 1.5em;
-  margin-top: 15px;
+  padding: 0.5em 1.5em;
   font-family: var(--body-font);
   font-size: 15px;
   font-weight: 500;
@@ -631,6 +619,7 @@ button {
   cursor: pointer;
   white-space: nowrap;
   vertical-align: middle;
+  border-radius: 10px;
   -webkit-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
   -ms-touch-action: manipulation;
@@ -1416,6 +1405,18 @@ This is main CSS file that contains custom style rules used in this template
     margin-bottom: 0;
     text-transform: uppercase;
     border-right: 1px solid var(--grey-color);
+}
+
+.secondary-nav .top-menu li.menu-item i{
+    position: relative;
+    margin-right: 5px;
+}
+
+.secondary-nav .top-menu li.menu-item i span{
+    position: absolute;
+    right: -5px;
+    bottom: 10px;
+    font-size: 8px;
 }
 .secondary-nav .top-menu li.menu-item i.icon {
     padding-right: 10px;

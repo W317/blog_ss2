@@ -43,7 +43,8 @@
               </li>
               <li class="menu-item">
                 <a href="/cart/shopping-cart">
-                 <i class="fa-solid fa-cart-plus"></i> My Cart {{ session.cart.totalQty }}</a>
+                  <i class="fa-solid fa-cart-plus"><span class="solstore-cart-number-badge">{{ session.cart.totalQty
+                      }}</span></i> My Cart</a>
               </li>
             </ul>
 
@@ -91,14 +92,32 @@
                 .header {
                   justify-content: center;
                 }
-                .secondary-nav{
-                  padding: 20px; 
+
+                .secondary-nav {
+                  padding: 20px;
                 }
+
                 .searchbar {
                   display: flex;
                   align-items: center;
                   justify-content: space-between;
                   padding-right: 10px;
+                }
+
+                .solstore-cart-number-badge {
+                  position: relative;
+                  border-radius: 2.75rem;
+                  min-width: 0.6875rem;
+                  line-height: 1.2em;
+                  padding: 0 0.15rem;
+                  text-align: center;
+                  height: 0.75rem;
+                  border: 0.125rem solid var(--branch-primary-color, #ee4d2d);
+                  color: #fff;
+                  background-color: var(--branch-primary-color, #ee4d2d) ;
+                 
+                  top: -0.5rem;
+                  margin-right: -0.1rem;
                 }
               </style>
             </div>
