@@ -74,25 +74,18 @@ router.get('/checkout', isLoggedIn, (req, res, next) => {
   // res.render('shop/checkout', {total: cart.totalPrice, errMsg: errMsg, noErrors: !errMsg})
   res.render(path.join(__dirname + "/src/views/checkout.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-    total: cart.totalPrice,
+    total: (cart.totalPrice * 100).toFixed(2),
     errMsg: errMsg,
     noErrors: !errMsg
   });
 })
 
 router.post('/checkout', isLoggedIn, (req, res, next) => {
-  console.log('processing the post checkout...');
-  console.log(req.body);
 
   if (!req.session.cart) {
       return res.redirect('/shop');
   }
   let cart = new Cart(req.session.cart);
-  console.log('cart', cart);
-
-  console.log('created the cart...');
-
-  console.log('token: ', req.body.stripeToken);
   /*
   var stripe = require("stripe")(
       "sk_test_fwmVPdJfpkmwlQRedXec5IxR"
@@ -101,8 +94,9 @@ router.post('/checkout', isLoggedIn, (req, res, next) => {
   const stripeApp = stripe.Stripe(
     "sk_test_l6yzGVoH7wUkz5F7vRrRlczU"
   )
+  const total = cart?.totalPrice * 100
   stripeApp.charges.create({
-      amount: cart.totalPrice * 100,
+      amount: total,
       currency: "usd",
       source: req.body.stripeToken, // obtained with Stripe.js
       description: "Pay With Stripe"
@@ -145,7 +139,7 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
       return next();
   }
-  req.session.oldUrl = req.url; // 
+  req.session.oldUrl = req.url;
   res.redirect('/user/signin');
 }
 
