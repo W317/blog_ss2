@@ -1,0 +1,22 @@
+<div class="content">
+    <h1 id="createProduct">Edit {{title}}</h1>
+    <form method="post" action="/admin/product/edit/{{_id}}" enctype="multipart/form-data">
+        <label for="title"><h3>Title</h3></label>
+        <input type="text" id="title" name="title" placeholder="{{title}}">
+        <label for="price"><h3>Category</h3></label>
+        <input type="text" id="category" name = "category" placeholder="{{category}}">
+        <label for="image"><h3>Image</h3></label>
+        <input type="file" id="image" name="image">
+        <label for="quantity"><h3>Quantity</h3></label>
+        <input type="number" id = "quantity" name="quantity" placeholder="{{quantity}}">
+        <br>
+        <label for="description"><h3>Description</h3></label>
+        <textarea name="description" id="description" ></textarea>
+        <label for="price"><h3>Price</h3></label>
+        <input type="number" id="price" name = "price" placeholder="{{price}}"><br>
+        <button type="submit" >Submit</button>
+    </form>
+</div>
+{{!-- Trong bản form này, các dòng để nhập ban đầu sẽ hiển thị giá trị ban đầu của sản phẩm(hiển thị mờ) 
+bằng cách dùng placeholder. 
+Chỉ cần điền vào những phần nào muốn edit, những phần không viết vào hoặc nhập không chính xác sẽ không được thay đổi --}}
