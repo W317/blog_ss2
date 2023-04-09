@@ -9,10 +9,16 @@ const getAllBlogs = asyncHandler(async (req, res) => {
     // pagination with 2 rows a page
     const PAGE_SIZE = 6;
     let page = req.query.page;
+    //count total page
+    const totalData = await BlogModel.countDocuments();
+    const totalPage = Math.ceil(totalData / PAGE_SIZE);
 
-    if (page) {
+    // if (page) {
       if (page < 1) {
         page = 1;
+      }
+      if (page > totalPage) {
+        page = totalPage
       }
       page = parseInt(page);
       const skipData = (page - 1) * PAGE_SIZE;
@@ -21,10 +27,10 @@ const getAllBlogs = asyncHandler(async (req, res) => {
         .skip(skipData)
         .limit(PAGE_SIZE);
 
-      //count total page
-      const totalData = await BlogModel.countDocuments();
-      const totalPage = Math.ceil(totalData/PAGE_SIZE);
-      console.log(totalPage);
+      const pages = [];
+      for (let i = 1; i < totalPage + 1; i++) {
+        pages.push(i);
+      }
 
       // push 3 blogs into a row
       let blogArray = [];
@@ -33,41 +39,29 @@ const getAllBlogs = asyncHandler(async (req, res) => {
         blogArray.push(blogs.slice(index, index + arraySize));
       }
 
+      // for button pre and next in pagination
+      let currentPage = parseInt(req.query.page)
+      if (!page) {
+        currentPage = 1
+      }
+      const hasPrev = currentPage > 1;
+      const prev = currentPage - 1;
+
+      const hasNext = currentPage < totalPage;
+      const next = currentPage + 1;
+
       // render view
       res.render(path.join(__dirname + "/src/views/blog.handlebars"), {
         layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-        blogs : blogArray
+        blogs: blogArray,
+        pages: pages,
+        currentPage,
+        hasPrev,
+        prev,
+        hasNext,
+        next
       })
-
-
-    } else {
-      const blogs = await BlogModel.find().lean(); // Add .lean() method here
-      let blogArray = [];
-      let arraySize = 3;
-      for (let index = 0; index < blogs.length; index += arraySize) {
-        blogArray.push(blogs.slice(index, index + arraySize));
-      }
-
-      //Insert multiple documents of ProductModel using loop (fake data)
-      // let blogData = [];
-      // for (let i = 0; i < 20; i++) { //loop through 10 products
-      //   const blog = new BlogModel({
-      //     author: `Author ${i}`,
-      //     title: 'abc'+i,
-      //     body: 'body'+i,
-      //     images: [],
-      //     href: 'href'+i
-      //   });
-      //   blogData.push(blog);
-      // }
-      // const result = await BlogModel.insertMany(blogData);
-      // console.log(result)
-
-      res.render(path.join(__dirname + "/src/views/blog.handlebars"), {
-        layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-        blogs: blogArray
-      })
-    }
+  
   } catch (error) {
     console.log(error);
   }
@@ -76,23 +70,22 @@ const getAllBlogs = asyncHandler(async (req, res) => {
 
 const createBlog = asyncHandler(async (req, res) => {
   try {
-    const { author, title, body, images, href } = req.body;
+    const { author, title, body, href } = req.body;
     // if (!author || !title || !body || !href) {
     //   throw new Error("Error !!!")
     // }
-    const blogImages = [
-      '/img/blog3.jpg'
-    ]
+    const imagePath = req.file ? `/img/${req.file.filename}` : ''; // save the file path if a file was uploaded
 
     const blog = new BlogModel({
       author: author,
       title: title,
       body: body,
-      image: blogImages[0],
-      href: href,
+      image: imagePath,
+      href: href
     });
-    const createBlog = await blog.save();
-    res.status(201).json(createBlog);
+
+    await blog.save();
+    res.status(201).redirect('/pages/blog');
   } catch (err) {
     console.log(err);
   }

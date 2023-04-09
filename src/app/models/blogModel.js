@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 // const ObjectId = Schema.ObjectId;
 
-const BlogPost = new mongoose.Schema({
+const BlogPost = new Schema({
   author: {
     type: String,
     require: true
@@ -17,10 +17,10 @@ const BlogPost = new mongoose.Schema({
       required: true,
       unique: true
   },
-  image: [{
+  image: {
       type: String,
-      required: true
-  }],
+      required: false
+  },
   href: {
     type: String,
     required: true

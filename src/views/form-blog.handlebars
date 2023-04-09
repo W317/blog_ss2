@@ -22,13 +22,17 @@
     </script> --}}
 <div class="content">
     <h1 id="createProduct">Add New Blog</h1>
-    <form onsubmit="postForm()" method="POST" action="/post">
-        <label for="title"><h3>Title</h3></label>
-        <input type="text" id="title" name="title">
+    <form method="POST" action="/admin/blog-admin/create" enctype="multipart/form-data">
         <label for="author"><h3>Author</h3></label>
         <input type="text" id = "author" name="author"><br>
+        <label for="title"><h3>Title</h3></label>
+        <input type="text" id="title" name="title">
         <label for="blog"><h3>Blog</h3></label>
-        <textarea name="textarea" id="blog" name="blog"></textarea><br>
+        <textarea id="body" name="body"></textarea><br>
+        <label for="image"><h3>Image</h3></label>
+        <input type="file" id="image" name="image"><br>
+        <label for="price"><h3>Href</h3></label>
+        <input type="text" id="href" name = "href"><br><br>
         <input type="submit" value="Save">
     </form>
 </div>

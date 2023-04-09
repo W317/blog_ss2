@@ -10,7 +10,8 @@
 						{{#each this}}
 						<div class="col-md-4 col-sm-6">
 							<figure>
-								<img src={{this.image}} alt="jewellery" class="post-image">
+								<img src="{{this.image}}" alt="{{this.title}}" class="post-image">
+
 							</figure>
 							<div class="post-content">
 								<div class="meta-tags">
@@ -29,4 +30,30 @@
 			</div>
 		</div>
 		{{/each}}
-	</div>
+
+		<section id="pagination my-2" class="">
+			<nav aria-label="Page navigation example">
+				<ul class="pagination" id="pagination">
+					<li class="page-item {{#unless hasPrev}}disabled{{/unless}}">
+						<a class="page-link" href="{{#if hasPrev}}/pages/blog?page={{prev}}{{/if}}" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+
+					{{#each pages}}
+					<li class="page-item {{#if isActive}}active{{/if}}">
+						<a class="page-link" href="/pages/blog?page={{this}}">{{this}}</a>
+					</li>
+					{{/each}}
+
+					<li class="page-item {{#unless hasNext}}disabled{{/unless}}">
+						<a class="page-link" href="{{#if hasNext}}/pages/blog?page={{next}}{{/if}}" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</section>
+
+</section>
+</div>
