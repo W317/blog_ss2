@@ -54,7 +54,7 @@ const getProducts = asyncHandler(async (req, res) => {
       // render view
       res.render(path.join(__dirname + "/src/views/shop.handlebars"), {
         layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-        products: productArray,
+        products,
         pages: pages,
         currentPage,
         hasPrev,

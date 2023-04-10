@@ -1408,15 +1408,14 @@ blockquote cite {
 }
 .cart-notice {
   position: absolute;
-  top: -3px;
+  top: 0px;
   right: -2px;
-  padding: 0 0.4rem;
-  font-size: 0.75rem;
+  padding: 0 0.3rem;
+  font-size: 0.6rem;
   background-color: #EE4D2D  ;
   color: white;
-  border-radius: 10px;
+  border-radius: 20px;
   border: 0.125rem solid #EE4D2D;
-
 }
 .cart-icon {
   font-size: 1rem;
@@ -2234,7 +2233,9 @@ h1.banner-title {
 .footer-bottom-content img.card-image {
   width: 12%;
 }
-
+.footer-content {
+  padding-bottom: 0px;
+}
 
 /* - About Us Page
 --------------------------------------------------------------*/
