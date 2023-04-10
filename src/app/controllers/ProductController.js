@@ -76,7 +76,7 @@ const createProduct = asyncHandler(async (req, res) => {
   try {
     const { title, category, description, price, quantity } = req.body;
     
-    const imagePath = req.file ? `img/${req.file.filename}` : ''; // save the file path if a file was uploaded
+    const imagePath = req.file ? `/img/${req.file.filename}` : ''; // save the file path if a file was uploaded
     
     const product = new Product({
       quantity: quantity,

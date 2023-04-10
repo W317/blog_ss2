@@ -30,12 +30,36 @@
 		</div>
 		{{/each}}
 	</div>
-	<style>
-		.post-image {
-			transition: all 0.3s;
-		}
+	<section id="pagination my-2" class="">
+		<nav aria-label="Page navigation example">
+			<ul class="pagination" id="pagination">
+				<li class="page-item {{#unless hasPrev}}disabled{{/unless}}">
+					<a class="page-link" href="{{#if hasPrev}}/pages/blog?page={{prev}}{{/if}}" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
 
-		.post-image:hover {
-			transform: scale(1.05);
-		}
-	</style>
+				{{#each pages}}
+				<li class="page-item {{#if isActive}}active{{/if}}">
+					<a class="page-link" href="/pages/blog?page={{this}}">{{this}}</a>
+				</li>
+				{{/each}}
+
+				<li class="page-item {{#unless hasNext}}disabled{{/unless}}">
+					<a class="page-link" href="{{#if hasNext}}/pages/blog?page={{next}}{{/if}}" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</section>
+</section>
+<style>
+	.post-image {
+		transition: all 0.3s;
+	}
+
+	.post-image:hover {
+		transform: scale(1.05);
+	}
+</style>

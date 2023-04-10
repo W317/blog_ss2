@@ -77,7 +77,6 @@ app.use((req, res, next) => {
   next();
 });
 
-route(app);
 
 // test UI
 
@@ -95,13 +94,6 @@ app.use("/admin/stat", (req, res) => {
   });
 });
 
-// add new blog
-app.use("/admin/blog", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/form-blog.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
-  });
-});
-
 // add dashboard
 app.use("/admin/dashboard", (req, res) => {
   res.render(path.join(__dirname + "/src/views/dashboard.handlebars"), {
@@ -109,19 +101,6 @@ app.use("/admin/dashboard", (req, res) => {
   });
 });
 
-//add user admin
-app.use("/admin/user", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/user.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
-  });
-});
-
-//add blog admin
-app.use("/admin/blog-admin", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/blog-admin.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
-  });
-});
 
 //add analytics admin
 // app.use("/admin/analytics", (req, res) => {
@@ -188,6 +167,8 @@ app.use("/thank-you", (req, res) => {
   });
 });
 
+route(app);
+
 // home page
 app.use("/", (req, res) => {
   res.render(path.join(__dirname + "/src/views/home.handlebars"), {
@@ -204,5 +185,8 @@ app.use(
 // app.listen(process.env.PORT, () => {
 //   console.log(`Example app listening on port ${process.env.PORT}`);
 // });
+
+
+
 
 export default app;
