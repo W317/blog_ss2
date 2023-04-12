@@ -8,7 +8,7 @@ import path from "path";
 const getProducts = asyncHandler(async (req, res) => {
   try {
     // pagination with 2 rows a page
-    const PAGE_SIZE = 6;
+    const PAGE_SIZE = 8;
     let page = req.query.page;
     //count total page
     const totalData = await Product.countDocuments();
