@@ -775,6 +775,14 @@ button {
   -ms-user-select: none;
   user-select: none;
 }
+a.btn:hover,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="file"],
+button:hover {
+  background-color: var(--primary-color);
+}
 
 .btn:hover,
 .btn:focus,
@@ -1403,13 +1411,12 @@ blockquote cite {
 .header__cart-wrap {
   position: relative;
   display: inline-block;
-  padding: 8px 12px;
   cursor: pointer;
 }
 .cart-notice {
   position: absolute;
-  top: 0px;
-  right: -2px;
+  top: -6px;
+  right: -11px;
   padding: 0 0.3rem;
   font-size: 0.6rem;
   background-color: #EE4D2D  ;
@@ -1422,7 +1429,10 @@ blockquote cite {
   color: var(--white-color);
   margin-top: 6px;
 }
-
+.currency-item {
+  position: relative;
+  
+}
 .bootstrap-tabs .tab-content {
   padding: 20px 0;
 }
@@ -1700,25 +1710,23 @@ This is main CSS file that contains custom style rules used in this template
 /* 7.2 Header
 ------------------------------------------------------------- */
 .header-wrap .secondary-nav {
-  border-top: 1px solid var(--grey-color);
-  border-bottom: 1px solid var(--grey-color);
+  /* border-top: 1px solid var(--grey-color); */
+  /* border-bottom: 1px solid var(--grey-color); */
   font-size: 0.8em;
   color: var(--accent-color);
-  text-transform: uppercase;
+  text-transform: uppercase;  
 }
 
 .secondary-nav .top-menu ul {
+  background-color: rgb(208, 247, 220);
   font-size: 0.9em;
   margin-bottom: 0;
 }
 
 .secondary-nav .top-menu li.menu-item {
-  font-size: 0.8em;
-  padding: 8px 20px 0 0;
-  margin-right: 20px;
-  margin-bottom: 0;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  border-right: 1px solid var(--grey-color);
+  /* border-right: 1px solid var(--grey-color); */
 }
 
 .secondary-nav .top-menu li.menu-item i {
@@ -1778,15 +1786,16 @@ This is main CSS file that contains custom style rules used in this template
 --------------------------------------------------------------*/
 .secondary-nav form.searchbar {
   display: flex;
-  width: 180px;
+  align-items: center;
+  margin: auto;
   height: 30px;
   border-radius: 30px;
   background: var(--light-grey-color);
-  margin: 0;
+  width: fit-content;
 }
 
 .secondary-nav form.searchbar input[type="text"] {
-  width: 140px;
+  width: 450px;
   height: 30px;
   border-radius: 30px;
   border: none;
@@ -1794,6 +1803,18 @@ This is main CSS file that contains custom style rules used in this template
   margin: 0;
   font-style: italic;
 }
+
+@media screen and (max-width: 992px) {
+  .secondary-nav form.searchbar input[type="text"] {
+    width: 250px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .secondary-nav form.searchbar input[type="text"] {
+    width: 150px;
+  }
+}
+
 
 .secondary-nav .searchbar i.icon {
   font-size: 0.9em;
@@ -2125,6 +2146,7 @@ h1.banner-title {
   border-radius: 50%;
   margin: 0 auto;
 }
+
 
 /* 7.12 Footer Section
 --------------------------------------------------------------*/
