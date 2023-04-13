@@ -6,9 +6,11 @@
           <h2 class="ml-lg-2">Manage Users</h2>
         </div>
         <div class="col-sm-12 col-md-12 col-lg-12 p-0 d-flex justify-content-center">
-          <a href="#addUser" class="btn btn-success" data-toggle="modal">
+          <a href="/admin/blog-admin/edit/{{id}}" class="btn btn-danger edit" data-bs-id="{{_id}}" data-bs-toggle="modal"
+         data-bs-target="#edit-modal">
 		  <i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
-          <a href="#deleteUser" class="btn btn-danger" data-toggle="modal">
+          <a href="/admin/blog-admin/delete/{{id}}" class="btn btn-danger delete" data-bs-id="{{_id}}" data-bs-toggle="modal"
+         data-bs-target="#delete-modal">
 		  <i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
         </div>
       </div>
