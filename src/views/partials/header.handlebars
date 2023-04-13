@@ -94,17 +94,7 @@
             {{!-- <li class="nav-item"> // Nếu đăng nhập thì mới hiển thị, khi đăng nhận ẩn sign in đi
               <a class="nav-link text-info" href="/account">My Account</a>
             </li> --}}
-            <li>
-              <div class="header__cart-wrap">
-                {{#if session.cart.totalQty}}
-                <span class="cart-notice">{{ session.cart.totalQty }}</span>
-                {{else}}
-                <span class="cart-notice"> 0 </span>
-                {{/if}}
-                <i class="fa-solid fa-cart-shopping cart-icon"></i>
-
-            </li>
-
+           
           </ul>
         </div>
       </div>
