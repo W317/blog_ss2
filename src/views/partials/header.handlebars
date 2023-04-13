@@ -96,6 +96,7 @@
             </li> --}}
             <li>
               <div class="header__cart-wrap">
+                {{#if session.cart.totalQty}}
                 <span class="cart-notice">{{ session.cart.totalQty }}</span>
                 {{else}}
                 <span class="cart-notice"> 0 </span>
