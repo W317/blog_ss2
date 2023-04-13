@@ -103,11 +103,14 @@ const createProduct = asyncHandler(async (req, res) => {
 
 const getOneProduct = asyncHandler(async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id).lean();
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
-    res.status(200).json(product);
+    res.render(path.join(__dirname + "/src/views/single-product.handlebars"), {
+      layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+      product: product,
+    })
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });
