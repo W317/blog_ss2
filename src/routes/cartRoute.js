@@ -5,6 +5,8 @@ import Product from "../app/models/productModel.js";
 import Order from '../app/models/orderModel.js'
 import path from 'path'
 import * as stripe from "stripe"
+import asyncHandler from 'express-async-handler'
+import userModel from "../app/models/userModel.js";
 const __dirname = path.resolve()
 
 router.get("/add-to-cart/:id", (req, res, next) => {
@@ -116,16 +118,18 @@ router.post('/checkout', isLoggedIn, (req, res, next) => {
       const order = new Order({
           user: req.user,
           cart: cart,
+          phone: req.body.phone,
           address: req.body.address,
           name: req.body.name,
-          paymentId: charge.id
+          paymentId: charge.id,
+          status: "PENDING"
       });
 
       order.save(function(err, result) {
-          //if (err) {
-          //  console.log(err);
-          //  throw err;
-          //}
+          if (err) {
+           console.log(err);
+           throw err;
+          }
           console.log(result);
           req.flash('success', 'Successfully bought product!');
           req.session.cart = null;
@@ -135,12 +139,30 @@ router.post('/checkout', isLoggedIn, (req, res, next) => {
   }); 
 });
 
-function isLoggedIn(req, res, next) {
+export function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
       return next();
   }
   req.session.oldUrl = req.url;
   res.redirect('/user/signin');
 }
+
+
+export const isAdmin = asyncHandler(async (req, res, next) => {
+  if(!req.isAuthenticated()) {
+    res.redirect('/user/signin');
+  }
+
+  let user;
+  if(req.session.passport.user) {
+    user = await userModel.findById(req.session.passport.user)
+  }
+  // console.log('user', user);
+  if(user && user?.isAdmin) {
+    return next()
+  }
+
+  res.redirect('/');
+})
 
 export default router

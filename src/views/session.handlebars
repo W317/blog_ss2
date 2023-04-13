@@ -1,0 +1,102 @@
+<p>{{orders}}</p>
+
+<div class="container">
+  <div class="">
+    <div class="">
+      <div class="row mb-3">
+        <div class="col-sm-12 col-md-12 col-lg-12 p-0 d-flex justify-content-center">
+          <h2 class="ml-lg-2">Manage Orders</h2>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">
+              <span class="custom-checkbox pl-3">
+                <input class="m-0" type="checkbox" id="selectAll">
+              </span>
+            </th>
+            <th scope="col">ID</th>
+            <th scope="col">User ID</th>
+            <th scope="col">Status</th>
+            <th scope="col">Address</th>
+            <th scope="col">Payment ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each orders}}
+          {{#each this}}
+          <tr>
+            <th>
+              <span class="custom-checkbox">
+                <input type="checkbox" id="selectAll">
+                <label for="selectAll"></label>
+              </span>
+            </th>
+            <td><a href="/admin/order/{{this._id}}">{{this._id}}</a></td>
+            <td>{{this.user}}</td>
+            <td>{{this.status}}</td>
+            <td>{{this.address}}</td>
+            <td>{{this.paymentId}}</td>
+          </tr>
+          {{/each}}
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <section id="pagination" class="">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination" id="pagination">
+        <li class="page-item {{#unless hasPrev}}disabled{{/unless}}">
+          <a class="page-link" href="{{#if hasPrev}}/admin/user?page={{prev}}{{/if}}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+
+        {{#each pages}}
+        <li class="page-item {{#if isActive}}active{{/if}}">
+          <a class="page-link" href="/admin/user?page={{this}}">{{this}}</a>
+        </li>
+        {{/each}}
+
+        <li class="page-item {{#unless hasNext}}disabled{{/unless}}">
+          <a class="page-link" href="{{#if hasNext}}/user?page={{next}}{{/if}}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </section>
+  {{!-- {{order}}
+  {{user}} --}}
+  <h1>Manage Order <span> #{{order._id}}</span></h1> 
+  <p>Username: {{user.name}}</p>
+  <p>Email: {{user.email}}</p>
+  <p>Address: {{order.address}}</p>
+  <p>Phone: {{order.phone}}</p>
+
+  <div>
+    <h3>Items:</h3>
+    {{#each order.cart.items}}
+    <div>
+      <div class="product-item d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+        <div class="d-flex flex-row align-items-center">
+          <img class="rounded" src="{{this.item.image}}" width="75">
+        </div>
+        <div class="left-group flex-row flex-grow-1 align-items-center">
+          <div class="ml-2"><span class="font-weight-bold d-block">{{this.item.title}}</span><span class="spec">
+          </div>
+          <div class="edit-price d-flex">
+            <span class="d-block">Quantity: {{this.qty}}</span>
+            <span class="d-block ml-5 font-weight-bold">Price: ${{this.item.price}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+    <p>Total: ${{order.cart.totalPrice}}</p>
+  </div>
+</div>

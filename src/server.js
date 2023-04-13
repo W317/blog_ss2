@@ -14,6 +14,8 @@ import validator from "express-validator";
 import cookieParser from "cookie-parser";
 import methodOverride from "method-override"
 import csurf from "csurf";
+import { Cart } from "./app/models/cartModel.js";
+import Handlebars from 'handlebars'
 
 import "./config/passport.js";
 
@@ -93,6 +95,13 @@ app.use("/pages/contact", (req, res) => {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
+
+app.use("/session", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/session.handlebars"), {
+    session: req.session.toString(),
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+  })
+})
 
 // stat for admin
 app.use("/admin/stat", (req, res) => {
@@ -193,7 +202,8 @@ app.use(
 //   console.log(`Example app listening on port ${process.env.PORT}`);
 // });
 
-
-
+// Handlebars.registerHelper("xif", function (expression, options) {
+//   return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
+// });
 
 export default app;

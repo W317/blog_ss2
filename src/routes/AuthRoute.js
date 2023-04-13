@@ -22,6 +22,17 @@ router.get("/signup", (req, res, next) => {
   });
 });
 
+router.get("/logout", (req, res, next) => {
+  let messages = req.flash("error");
+  req.logOut({}, (err) => {
+    if(err) {
+      return
+    }
+    res.redirect("/")
+  })
+
+})
+
 router.post(
   '/signup',
   passport.authenticate('local.signup', {
