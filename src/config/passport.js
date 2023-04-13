@@ -44,6 +44,7 @@ passport.use(
         return done(null, false, { message: "Email already in use." });
       }
       let newUser = new userModel();
+      newUser.isAdmin = false
       newUser.name = name;
       newUser.email = email;
       newUser.password = newUser.encryptPassword(password);
@@ -88,7 +89,7 @@ passport.use(
         if (!user.validPassword(password)) {
           return done(null, false, { message: "Wrong password." });
         }
-
+        req.session.user = user
         return done(null, user);
       });
     }
