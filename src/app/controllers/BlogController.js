@@ -50,11 +50,18 @@ const getAllBlogs = asyncHandler(async (req, res) => {
       const hasNext = currentPage < totalPage;
       const next = currentPage + 1;
 
+      const isActive = (page) => {
+        return currentPage === page;
+      };
+
       // render view
       res.render(path.join(__dirname + "/src/views/blog.handlebars"), {
         layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
         blogs: blogArray,
-        pages: pages,
+        pages: pages.map((page) => ({
+          page,
+          active: isActive(page),
+        })),
         currentPage,
         hasPrev,
         prev,
@@ -66,7 +73,6 @@ const getAllBlogs = asyncHandler(async (req, res) => {
     console.log(error);
   }
 });
-
 
 const createBlog = asyncHandler(async (req, res) => {
   try {
@@ -85,10 +91,23 @@ const createBlog = asyncHandler(async (req, res) => {
     });
 
     await blog.save();
-    res.status(201).redirect('/pages/blog');
+    res.status(201).redirect('/admin/blog-admin');
   } catch (err) {
     console.log(err);
   }
 });
 
-export { createBlog, getAllBlogs };
+const deleteBlog = asyncHandler(async (req, res) => {
+  try {
+    const blog = await BlogModel.findByIdAndDelete(req.params.id);
+    if (!blog) {
+      return res.status(404).json({ message: "Blog not found" });
+    }
+    res.status(204).redirect('back');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+})
+
+export { createBlog, getAllBlogs, deleteBlog };

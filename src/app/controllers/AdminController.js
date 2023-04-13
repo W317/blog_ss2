@@ -44,23 +44,43 @@ const getAllProducts = asyncHandler(async (req, res) => {
         const hasNext = currentPage < totalPage;
         const next = currentPage + 1;
 
+        const isActive = (page) => {
+            return currentPage === page;
+        };
+        
         res.render(path.join(__dirname + "/src/views/product-dashboard.handlebars"), {
             layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
             products: multipleMongooseToObject(products),
-            pages: pages,
+            pages: pages.map((page) => ({
+                page,
+                active: isActive(page),
+            })),
             currentPage,
             hasPrev,
             prev,
             hasNext,
             next
-        });
+        });        
     } catch (error) {
         console.log(error);
         res.sendStatus(500);
     }
   });
 
-  const getAllUser = asyncHandler(async (req, res) => {
+const getEditProduct = asyncHandler(async (req, res) => {
+    try {
+        const product = await Product.findById(req.params.id).lean();
+        res.render(path.join(__dirname + "/src/views/edit-product.handlebars"), {
+          layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
+          product: product
+        });
+      } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+      }
+})
+
+const getAllUser = asyncHandler(async (req, res) => {
     try {
         const PAGE_SIZE = 12;
         let page = req.query.page;
@@ -98,10 +118,17 @@ const getAllProducts = asyncHandler(async (req, res) => {
         const hasNext = currentPage < totalPage;
         const next = currentPage + 1;
 
+        const isActive = (page) => {
+            return currentPage === page;
+        };
+        
         res.render(path.join(__dirname + "/src/views/user.handlebars"), {
             layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
             users: multipleMongooseToObject(users),
-            pages: pages,
+            pages: pages.map((page) => ({
+                page,
+                active: isActive(page),
+            })),
             currentPage,
             hasPrev,
             prev,
@@ -114,8 +141,7 @@ const getAllProducts = asyncHandler(async (req, res) => {
     }
   })
 
-
-  const getAllBlogs = asyncHandler(async (req, res) => {
+const getAllBlogs = asyncHandler(async (req, res) => {
     try {
         const PAGE_SIZE = 12;
         let page = req.query.page;
@@ -152,10 +178,17 @@ const getAllProducts = asyncHandler(async (req, res) => {
         const hasNext = currentPage < totalPage;
         const next = currentPage + 1;
 
+        const isActive = (page) => {
+            return currentPage === page;
+        };
+        
         res.render(path.join(__dirname + "/src/views/blog-admin.handlebars"), {
             layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
             blogs: multipleMongooseToObject(blogs),
-            pages: pages,
+            pages: pages.map((page) => ({
+                page,
+                active: isActive(page),
+            })),
             currentPage,
             hasPrev,
             prev,
@@ -168,4 +201,4 @@ const getAllProducts = asyncHandler(async (req, res) => {
     }
   });
 
-  export {getAllProducts, getAllUser, getAllBlogs}
+export {getAllProducts, getEditProduct, getAllUser, getAllBlogs}
