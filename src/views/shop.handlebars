@@ -84,8 +84,8 @@
         </li>
 
         {{#each pages}}
-        <li class="page-item {{#if isActive}}active{{/if}}">
-          <a class="page-link" href="/shop?page={{this}}">{{this}}</a>
+        <li class="page-item {{#if active}}active{{/if}} {{#if disabled}}disabled{{/if}}">
+          <a class="page-link" href="{{#unless disabled}}/shop?page={{page}}{{/unless}}">{{page}}</a>
         </li>
         {{/each}}
 

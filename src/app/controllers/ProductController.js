@@ -34,11 +34,11 @@ const getProducts = asyncHandler(async (req, res) => {
       }
 
       // push 3 blogs into a row
-      let productArray = [];
-      let arraySize = 3;
-      for (let index = 0; index < products.length; index += arraySize) {
-        productArray.push(products.slice(index, index + arraySize));
-      }
+      // let productArray = [];
+      // let arraySize = 3;
+      // for (let index = 0; index < products.length; index += arraySize) {
+      //   productArray.push(products.slice(index, index + arraySize));
+      // }
 
       // for button pre and next in pagination
       let currentPage = parseInt(req.query.page)
@@ -51,11 +51,18 @@ const getProducts = asyncHandler(async (req, res) => {
       const hasNext = currentPage < totalPage;
       const next = currentPage + 1;
 
+      const isActive = (page) => {
+        return currentPage === page;
+      };
+
       // render view
       res.render(path.join(__dirname + "/src/views/shop.handlebars"), {
         layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
         products,
-        pages: pages,
+        pages: pages.map((page) => ({
+          page,
+          active: isActive(page),
+        })),
         currentPage,
         hasPrev,
         prev,
@@ -88,7 +95,7 @@ const createProduct = asyncHandler(async (req, res) => {
     });
 
     await product.save();
-    res.status(201).redirect('/shop');
+    res.status(201).redirect('/admin/product-admin');
   } catch (err) {
     console.log(err);
   }
@@ -116,12 +123,14 @@ const updateProduct = asyncHandler(async (req, res) => {
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
-    res.status(200).json(product);
+    res.status(200).redirect('/admin/product-admin');
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });
   }
 })
+
+
 
 const deleteProduct = asyncHandler(async (req, res) => {
   try {
@@ -129,7 +138,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
-    res.status(204).end();
+    res.status(204).redirect('back');
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });

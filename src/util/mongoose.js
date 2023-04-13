@@ -5,7 +5,6 @@ export function multipleMongooseToObject(mongooses) {
     
     return mongooses.map(mongoose => mongoose.toObject());
   }
-  
-export function mongooseToObject(mongoose) {
-    return mongoose ? mongoose.toObject() : mongoose;
-}
+
+// if converts one mongoose.Document to Plain Javascript Object.
+// using await + lean()

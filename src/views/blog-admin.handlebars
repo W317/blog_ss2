@@ -34,7 +34,7 @@
               <input class="m-0" type="checkbox" id="selectAll">
             </span>
           </th>
-          <th scope="col">ID</th>
+          <th scope="col">Number</th>
           <th scope="col">Title</th>
           <th scope="col">Author</th>
           <th scope="col">Link</th>
@@ -46,10 +46,10 @@
         <tr>
           <th>
             <span class="custom-checkbox pl-3">
-              <input class="m-0" type="checkbox" id="checkbox1" name="options[]" value={{id}}>
+              <input class="m-0" type="checkbox" id="checkbox1" name="options[]" value={{sum @index 1}}>
             </span>
           </th>
-          <td>{{_id}}</td>
+          <td>{{sum @index 1}}</td>
           <td>{{title}}</td>
           <td>{{author}}</td>
           <td>{{href}}</td>
@@ -57,7 +57,8 @@
             <a href="admin/blog-admin/edit/{{id}}" class="edit" data-toggle="modal">
               <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
             </a>
-            <a href="admin/blog-admin/delete/{{id}}" class="delete" data-toggle="modal">
+            <a href="admin/blog-admin/delete/{{id}}" class="delete" data-bs-id="{{_id}}" data-bs-toggle="modal"
+              data-bs-target="#delete-modal">
               <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
             </a>
           </td>
@@ -185,8 +186,8 @@
         </li>
 
         {{#each pages}}
-        <li class="page-item {{#if isActive}}active{{/if}}">
-          <a class="page-link" href="/admin/blog-admin?page={{this}}">{{this}}</a>
+        <li class="page-item {{#if active}}active{{/if}} {{#if disabled}}disabled{{/if}}">
+          <a class="page-link" href="{{#unless disabled}}/admin/blog-admin?page={{page}}{{/unless}}">{{page}}</a>
         </li>
         {{/each}}
 
@@ -199,3 +200,45 @@
     </nav>
   </section>
 </div>
+
+{{!-- confirm delete --}}
+<div id="delete-modal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Blog ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Do you want to delete this blog?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="btn-delete">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- form hidden for deleting --}}
+<form method="post" name="delete-form"></form>
+
+<script>
+  const deleteModal = document.getElementById('delete-modal');
+  const deleteForm = document.forms['delete-form'];
+  let deleteId;
+  if (deleteModal) {
+      deleteModal.addEventListener('show.bs.modal', event => {
+      // Button that triggered the modal
+      const button = event.relatedTarget
+      // Extract info from data-bs-* attributes
+      deleteId = button.getAttribute('data-bs-id')
+    })
+  }
+
+  const btnDelete = document.getElementById('btn-delete');
+  btnDelete.onclick = function () {
+    deleteForm.action = '/admin/blog-admin/delete/' + deleteId + '?_method=DELETE';
+    deleteForm.submit();
+  }
+</script>

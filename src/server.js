@@ -12,6 +12,7 @@ import bodyParser from "body-parser";
 import flash from "connect-flash";
 import validator from "express-validator";
 import cookieParser from "cookie-parser";
+import methodOverride from "method-override"
 import csurf from "csurf";
 
 import "./config/passport.js";
@@ -48,6 +49,9 @@ const hbs = create({
   defaultLayout: "./views/layout",
   partialsDir: { dir: path.join(__dirname + "/src/views/partials") },
   extname: ".handlebars",
+  helpers: {
+    sum: (a, b) => a + b,
+  }
 });
 
 app.engine(".handlebars", hbs.engine);
@@ -76,6 +80,9 @@ app.use((req, res, next) => {
   res.locals.session = req.session;
   next();
 });
+
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'))
 
 
 // test UI
