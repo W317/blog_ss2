@@ -12,27 +12,32 @@
               </li>
             </ul> --}}
 
-            <ul class="right-block d-flex flex-wrap list-unstyled justify-content-evenly">
-              <li class="menu-item mb-2">
+            <ul class="header-items right-block d-flex flex-wrap list-unstyled">
+              <li class="nav-logo">
+                <a class="ml-3" href="#"><img src="/img/logo.png" alt="logo" style="width:150px"></a>
+              </li>
+              <li class="menu-item search-bar">
                 <form class="searchbar">
                   <input type="text" name="search" placeholder="Search Here..">
-                  <span><i class="fa-solid fa-magnifying-glass mt-2 p-0"></i></span>
+                  <span><i class="fa-solid fa-magnifying-glass pr-1"></i></span>
                 </form>
               </li>
-              <li class="menu-item dropdown-submenu">
-                <a href="#" class="currency-item text-decoration-none text-dark">Currency</a>
-                <i class="icon icon-caret-down"></i>
-                <ul class="dropdown-currency list-unstyled bg-white">
-                  <li>
-                    <a href="#" class=" text-decoration-none text-dark">USD</a>
-                  </li>
-                  <li>
-                    <a href="#" class=" text-decoration-none text-dark">EURO</a>
-                  </li>
-                  <li>
-                    <a href="#" class=" text-decoration-none text-dark">VND</a>
-                  </li>
-                </ul>
+              
+              <li>
+                <div class="header__cart-wrap">
+                  <a class="header__cart-wrap text-decoration-none text-dark" href="/pages/cart">
+                    <span class="cart-notice" id="cart-notification">{{ session.cart.totalQty }}</span>
+                    <img class="cart-icon"
+                      src="https://salt.tikicdn.com/ts/upload/51/e2/92/8ca7e2cc5ede8c09e34d1beb50267f4f.png"
+                      alt="header_header_img_Cart" width="25px">
+                    <script>
+                      const cartNotice = document.getElementById('cart-notification')
+                      let totalQty = {{ session.cart.totalQty }}
+                      if (!(totalQty >= 1))
+                        cartNotice.style.display = 'none'
+                    </script>
+                  </a>
+                </div>
               </li>
             </ul>
 
@@ -42,7 +47,7 @@
     </nav>
     <nav class="navbar navbar-expand-md bg-white navbar-light">
       <div class="container-fluid">
-        <a class="navbar-brand ml-3" href="#"><img src="/img/logo.png" alt="logo" style="width:80px"></a>
+        <a class="navbar-brand ml-3" href="#"><img src="/img/logo.png" alt="logo" style="width:150px"></a>
         <button class="navbar-toggler mr-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -65,21 +70,65 @@
               <a class="nav-link text-dark" href="/pages/wishlist">Wish list</a>
             </li>
             <li class="nav-item">
+              {{#if session.passport.user}}
+              <a class="nav-link text-info" href="/user/logout">Logout</a>
+              {{else}}
               <a class="nav-link text-info" href="/user/signin">Sign in</a>
+              {{/if}}
+
             </li>
             {{!-- <li class="nav-item"> // Nếu đăng nhập thì mới hiển thị, khi đăng nhận ẩn sign in đi
               <a class="nav-link text-info" href="/account">My Account</a>
             </li> --}}
-            <li>
-              <div class="header__cart-wrap text-decoration-none text-dark">
-                <span class="cart-notice">{{ session.cart.totalQty }}</span>
-                <i class="fa-solid fa-cart-shopping cart-icon"></i>
-              </a>
-            </li>
-
+           
           </ul>
         </div>
       </div>
     </nav>
   </div>
+  <style>
+    .header-items {
+      align-items: center;
+      width: 100%;
+      justify-content: end;
+      padding-right: 30px;
+    }
+
+    .header-items>* {
+      padding-right: 10px;
+      margin-bottom: 0;
+      padding: 10px 20px;
+    }
+
+    .search-bar {
+      flex-grow: 1;
+    }
+
+    .dropdown-submenu {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-brand {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      .header-items {
+        padding-right: 0;
+      }
+
+      .header-items>* {
+        padding: 10px;
+      }
+
+      .nav-logo {
+        display: none;
+      }
+
+      .navbar-brand {
+        display: block;
+      }
+    }
+  </style>
 </header>

@@ -2,13 +2,15 @@ import Product from "../models/productModel.js";
 import asyncHandler from 'express-async-handler'
 
 import path from "path";
+import Order from "../models/orderModel.js";
+import userModel from "../models/userModel.js";
 
  const __dirname = path.resolve()
 
 const getProducts = asyncHandler(async (req, res) => {
   try {
     // pagination with 2 rows a page
-    const PAGE_SIZE = 8;
+    const PAGE_SIZE = 6;
     let page = req.query.page;
     //count total page
     const totalData = await Product.countDocuments();
@@ -34,11 +36,11 @@ const getProducts = asyncHandler(async (req, res) => {
       }
 
       // push 3 blogs into a row
-      // let productArray = [];
-      // let arraySize = 3;
-      // for (let index = 0; index < products.length; index += arraySize) {
-      //   productArray.push(products.slice(index, index + arraySize));
-      // }
+      let productArray = [];
+      let arraySize = 3;
+      for (let index = 0; index < products.length; index += arraySize) {
+        productArray.push(products.slice(index, index + arraySize));
+      }
 
       // for button pre and next in pagination
       let currentPage = parseInt(req.query.page)
@@ -51,69 +53,61 @@ const getProducts = asyncHandler(async (req, res) => {
       const hasNext = currentPage < totalPage;
       const next = currentPage + 1;
 
-      const isActive = (page) => {
-        return currentPage === page;
-      };
+      console.log(req.session)
 
       // render view
       res.render(path.join(__dirname + "/src/views/shop.handlebars"), {
         layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-        products,
-        pages: pages.map((page) => ({
-          page,
-          active: isActive(page),
-        })),
+        products: productArray,
+        pages: pages,
         currentPage,
         hasPrev,
         prev,
         hasNext,
         next
       })
-  
+
   } catch (error) {
     console.log(error);
   }
 });
 
+const getAllOrders = asyncHandler(async (req, res) => {
+  try {
+    // const user = await userModel.findById(req.session?.passport.user)
+
+    const orders = await Order?.find({})
+    // const orders = await Order?.find({user: user?._id})
+    res.render(path.join(__dirname + "/src/views/session.handlebars"), {
+      orders: orders,
+      layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+    })
+  } catch(err) {
+    res.redirect("/")
+  }
+})
 const listImage = [
   '/img/ysl3.jpg',
 ]
 
-const createProduct = asyncHandler(async (req, res) => {
-  try {
-    const { title, category, description, price, quantity } = req.body;
-    
-    const imagePath = req.file ? `/img/${req.file.filename}` : ''; // save the file path if a file was uploaded
-    
-    const product = new Product({
-      quantity: quantity,
-      title: title,
-      category: category,
-      image: imagePath,
-      description: description,
-      price: price,
-    });
 
-    await product.save();
-    res.status(201).redirect('/admin/product-admin');
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-const getOneProduct = asyncHandler(async (req, res) => {
+const getOrderDetails = asyncHandler(async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id).lean();
-    if (!product) {
-      return res.status(404).json({ message: "Product not found" });
+    const order = await Order.findById(req.params.id).lean();
+    console.log('order', order);
+    const user = await userModel.findById(order.user).lean();
+    console.log('user', user);
+    if (!order) {
+      res.redirect("/admin/order")
     }
-    res.render(path.join(__dirname + "/src/views/single-product.handlebars"), {
+    res.render(path.join(__dirname + "/src/views/session.handlebars"), {
+      order: order,
+      user: user,
       layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-      product: product,
     })
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Server Error" });
+    res.redirect("/admin/order")
   }
 })
 
@@ -126,14 +120,12 @@ const updateProduct = asyncHandler(async (req, res) => {
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
-    res.status(200).redirect('/admin/product-admin');
+    res.status(200).json(product);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });
   }
 })
-
-
 
 const deleteProduct = asyncHandler(async (req, res) => {
   try {
@@ -141,11 +133,11 @@ const deleteProduct = asyncHandler(async (req, res) => {
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
-    res.status(204).redirect('back');
+    res.status(204).end();
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });
   }
 })
 
-export { createProduct, getProducts, getOneProduct, updateProduct, deleteProduct };
+export { getAllOrders, getOrderDetails };

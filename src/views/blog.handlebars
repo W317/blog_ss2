@@ -1,4 +1,16 @@
 {{!-- BLOG --}}
+<div class="row">
+	<div class="col-md-12">
+    <h1 class="page-title">Blog</h1>
+    <div class="breadcrumbs">
+    <span class="item">
+        <a href="/">Home</a>
+    </span>
+        <span class="item">/ Blog</span>
+    </div>
+    </div>
+</div>
+
 <section id="latest-blog" class="scrollspy-section padding-large">
 	<div class="container">
 		{{#each blogs}}
@@ -40,8 +52,8 @@
 				</li>
 
 				{{#each pages}}
-				<li class="page-item {{#if isActive}}active{{/if}}">
-					<a class="page-link" href="/pages/blog?page={{this}}">{{this}}</a>
+				<li class="page-item {{#if active}}active{{/if}} {{#if disabled}}disabled{{/if}}">
+					<a class="page-link" href="{{#unless disabled}}/pages/blog?page={{page}}{{/unless}}">{{page}}</a>
 				</li>
 				{{/each}}
 

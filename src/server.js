@@ -12,7 +12,10 @@ import bodyParser from "body-parser";
 import flash from "connect-flash";
 import validator from "express-validator";
 import cookieParser from "cookie-parser";
+import methodOverride from "method-override"
 import csurf from "csurf";
+import { Cart } from "./app/models/cartModel.js";
+import Handlebars from 'handlebars'
 
 import "./config/passport.js";
 
@@ -48,6 +51,9 @@ const hbs = create({
   defaultLayout: "./views/layout",
   partialsDir: { dir: path.join(__dirname + "/src/views/partials") },
   extname: ".handlebars",
+  helpers: {
+    sum: (a, b) => a + b,
+  }
 });
 
 app.engine(".handlebars", hbs.engine);
@@ -77,6 +83,9 @@ app.use((req, res, next) => {
   next();
 });
 
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'))
+
 
 // test UI
 
@@ -86,6 +95,13 @@ app.use("/pages/contact", (req, res) => {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
+
+app.use("/session", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/session.handlebars"), {
+    session: req.session.toString(),
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+  })
+})
 
 // stat for admin
 app.use("/admin/stat", (req, res) => {
@@ -146,9 +162,17 @@ app.use("/pages/cart", (req, res) => {
     totalPrice: cart.totalPrice,
   });
 });
+
 //wishlist
 app.use("/pages/wishlist", (req, res) => {
   res.render(path.join(__dirname + "/src/views/wishlist.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+  });
+});
+
+//single-product
+app.use("/pages/single-product", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/single-product.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
@@ -186,7 +210,8 @@ app.use(
 //   console.log(`Example app listening on port ${process.env.PORT}`);
 // });
 
-
-
+// Handlebars.registerHelper("xif", function (expression, options) {
+//   return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
+// });
 
 export default app;

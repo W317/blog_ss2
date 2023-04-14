@@ -5,9 +5,9 @@
         <h1 class="page-title">Shop</h1>
         <div class="breadcrumbs">
           <span class="item">
-            <a href="#">Home /</a>
+            <a href="/">Home</a>
           </span>
-          <span class="item">Category</span>
+          <span class="item">/ Category</span>
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
     <div class="text-center product" data-aos="fade" data-aos-delay="0">
       <div class="product-image" style="background: url('{{this.image}}'); background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
       <div class="category align-center">
-        <h5 class="font-weight-bold">{{this.title}}</h5>
+        <a href="/pages/single-product" class="line"><h5 class="font-weight-bold">{{this.title}}</h5></a>
         <p class="text-secondary">{{this.category}}</p>
       </div>
       <div class="price-tag text-center pb-1">$36.00</div>
@@ -74,7 +74,7 @@
     <a href="" class="btn">Add to cart</a>
   </div> --}}
 
-  <section id="pagination my-2" class="">
+  <section id="pagination my-2" class="pagination">
     <nav aria-label="Page navigation example">
       <ul class="pagination" id="pagination">
         <li class="page-item {{#unless hasPrev}}disabled{{/unless}}">
@@ -84,8 +84,8 @@
         </li>
 
         {{#each pages}}
-        <li class="page-item {{#if isActive}}active{{/if}}">
-          <a class="page-link" href="/shop?page={{this}}">{{this}}</a>
+        <li class="page-item {{#if active}}active{{/if}} {{#if disabled}}disabled{{/if}}">
+          <a class="page-link" href="{{#unless disabled}}/shop?page={{page}}{{/unless}}">{{page}}</a>
         </li>
         {{/each}}
 
@@ -101,12 +101,16 @@
 </section>
 
 <style>
+  .line {
+    text-decoration: none;
+  }
+  
   .product-list {
     display: grid;
     grid-template-columns: repeat(4, minmax(250px, 1fr));
     justify-content: start;
     grid-gap: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
 
   @media screen and (max-width: 1280px) {
