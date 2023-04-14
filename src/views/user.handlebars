@@ -6,12 +6,12 @@
           <h2 class="ml-lg-2">Manage Users</h2>
         </div>
         <div class="col-sm-12 col-md-12 col-lg-12 p-0 d-flex justify-content-center">
-          <a href="/admin/blog-admin/edit/{{id}}" class="btn btn-danger edit" data-bs-id="{{_id}}" data-bs-toggle="modal"
+          <a href="/admin/blog-admin/edit/{{id}}" class="btn btn-success edit mx-2" data-bs-id="{{_id}}" data-bs-toggle="modal"
          data-bs-target="#edit-modal">
-		  <i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
+		  <i class="fas fa-plus-circle"></i> <span>Add New User</span></a>
           <a href="/admin/blog-admin/delete/{{id}}" class="btn btn-danger delete" data-bs-id="{{_id}}" data-bs-toggle="modal"
          data-bs-target="#delete-modal">
-		  <i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+		  <i class="fas fa-minus-circle"></i> <span>Delete</span></a>
         </div>
       </div>
     </div>
@@ -21,7 +21,7 @@
     <tr>
       <th scope="col">
         <span class="custom-checkbox pl-3">
-					<input class="m-0" type="checkbox" id="selectAll">
+					<input class="m-0" type="checkbox" id="selectAll"  onclick="toggle(this)">
 				</span>
       </th>
       <th scope="col">Name</th>
@@ -35,9 +35,9 @@
     {{#each users}}
     <tr>
       <th>
-        <span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
+        <span class="custom-checkbox pl-3">
+								<input type="checkbox" name="foo">
+								
 							</span>
       </th>
       <td>{{name}}</td>
@@ -90,7 +90,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Edit User ?</h5>
+        <h5 class="modal-title">Edit User</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -122,27 +122,6 @@
 {{!-- form hidden for editing --}}
 <form method="post" name="edit-form"></form>
 
-<script>
-  const editModal = document.getElementById('edit-modal');
-  const editForm = document.forms['edit-form'];
-  let editId;
-  if (editModal) {
-      editModal.addEventListener('show.bs.modal', event => {
-      // Button that triggered the modal
-      const button = event.relatedTarget
-      // Extract info from data-bs-* attributes
-      editId = button.getAttribute('data-bs-id')
-    })
-  }
-
-  const btnEdit = document.getElementById('btn-edit');
-  btnEdit.onclick = function () {
-    editForm.action = '/admin/user/edit/' + editId + '?_method=EDIT';
-    editForm.submit();
-  }
-</script>
-
-
 {{!-- confirm delete --}}
 <div id="delete-modal" class="modal" tabindex="-1">
   <div class="modal-dialog">
@@ -164,8 +143,33 @@
 
 {{!-- form hidden for deleting --}}
 <form method="post" name="delete-form"></form>
-
 <script>
+  const editModal = document.getElementById('edit-modal');
+  const editForm = document.forms['edit-form'];
+  let editId;
+  if (editModal) {
+      editModal.addEventListener('show.bs.modal', event => {
+      // Button that triggered the modal
+      const button = event.relatedTarget
+      // Extract info from data-bs-* attributes
+      editId = button.getAttribute('data-bs-id')
+    })
+  }
+
+  const btnEdit = document.getElementById('btn-edit');
+  btnEdit.onclick = function () {
+    editForm.action = '/admin/user/edit/' + editId + '?_method=EDIT';
+    editForm.submit();
+  }
+</script>
+<script>
+  function toggle(source) {
+    checkboxes = document.getElementsByName('foo');
+    for(var i=0, n=checkboxes.length;i<n;i++) {
+      checkboxes[i].checked = source.checked;
+    }
+  }
+
   const deleteModal = document.getElementById('delete-modal');
   const deleteForm = document.forms['delete-form'];
   let deleteId;

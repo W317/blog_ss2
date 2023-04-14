@@ -5,12 +5,12 @@
         <div class="col-sm-12 col-md-12 col-lg-12 p-0 d-flex justify-content-center">
           <h2 class="ml-lg-2">Manage Products</h2>
         </div>
-        <div class="col-sm-12 col-md-12 col-lg-12 p-0 d-flex justify-content-center">
-          <a href="/admin/product-admin/create" class="btn btn-success " data-toggle="modal">
-		  <i class="material-icons ">&#xE147;</i> <span>Add New Product</span> </a>
+        <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
+          <a href="/admin/product-admin/create" class="btn btn-success mx-2" data-toggle="modal">
+		  <i class="fas fa-plus-circle"></i> <span>Add New Product</span> </a>
           <a href="/admin/blog-admin/delete/{{id}}" class="btn btn-danger delete" data-bs-id="{{_id}}" data-bs-toggle="modal"
          data-bs-target="#delete-modal">
-		  <i class="material-icons ">&#xE15C;</i> <span>Delete</span></a>
+		  <i class="fas fa-minus-circle"></i> <span>Delete</span></a>
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@
         <tr>
           <th scope="col">
             <span class="custom-checkbox pl-3">
-              <input class="m-0" type="checkbox" id="selectAll">
+              <input class="m-0" type="checkbox" id="selectAll" onclick="toggle(this)">
             </span>
           </th>
           <th scope="col">ID</th>
@@ -48,7 +48,7 @@
         <tr>
           <th>
             <span class="custom-checkbox pl-3">
-              <input class="m-0" type="checkbox" id="selectAll">
+              <input class="m-0" type="checkbox" name="foo">
             </span>
           </th>
           <td>{{_id}}</td>
@@ -227,6 +227,13 @@
 <form method="post" name="delete-form"></form>
 
 <script>
+  function toggle(source) {
+    checkboxes = document.getElementsByName('foo');
+    for(var i=0, n=checkboxes.length;i<n;i++) {
+      checkboxes[i].checked = source.checked;
+    }
+  }
+
   const deleteModal = document.getElementById('delete-modal');
   const deleteForm = document.forms['delete-form'];
   let deleteId;
