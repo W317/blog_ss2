@@ -5,9 +5,9 @@
         <h1 class="page-title">Shop</h1>
         <div class="breadcrumbs">
           <span class="item">
-            <a href="#">Home /</a>
+            <a href="/">Home</a>
           </span>
-          <span class="item">Category</span>
+          <span class="item">/ Category</span>
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
     <div class="text-center product" data-aos="fade" data-aos-delay="0">
       <div class="product-image" style="background: url('{{this.image}}'); background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
       <div class="category align-center">
-        <h5 class="font-weight-bold">{{this.title}}</h5>
+        <a href="/pages/single-product" class="line"><h5 class="font-weight-bold">{{this.title}}</h5></a>
         <p class="text-secondary">{{this.category}}</p>
       </div>
       <div class="price-tag text-center pb-1">$36.00</div>
@@ -101,6 +101,10 @@
 </section>
 
 <style>
+  .line {
+    text-decoration: none;
+  }
+  
   .product-list {
     display: grid;
     grid-template-columns: repeat(4, minmax(250px, 1fr));

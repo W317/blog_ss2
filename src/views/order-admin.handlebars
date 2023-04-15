@@ -3,12 +3,12 @@
     <div class="">
       <div class="row mb-3">
         <div class="col-sm-12 col-md-12 col-lg-12 p-0 d-flex justify-content-center">
-          <h2 class="ml-lg-2">Manage Users</h2>
+          <h2 class="ml-lg-2">Manage Orders</h2>
         </div>
         <div class="col-sm-12 col-md-12 col-lg-12 p-0 d-flex justify-content-center">
           <a href="/admin/blog-admin/edit/{{id}}" class="btn btn-success edit mx-2" data-bs-id="{{_id}}" data-bs-toggle="modal"
          data-bs-target="#edit-modal">
-		  <i class="fas fa-plus-circle"></i> <span>Add New User</span></a>
+		  <i class="fas fa-plus-circle"></i> <span>Add New Order</span></a>
           <a href="/admin/blog-admin/delete/{{id}}" class="btn btn-danger delete" data-bs-id="{{_id}}" data-bs-toggle="modal"
          data-bs-target="#delete-modal">
 		  <i class="fas fa-minus-circle"></i> <span>Delete</span></a>
@@ -24,10 +24,10 @@
 					<input class="m-0" type="checkbox" id="selectAll"  onclick="toggle(this)">
 				</span>
       </th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Address</th>
-      <th scope="col">Phone</th>
+      <th scope="col">Order ID</th>
+      <th scope="col">User ID</th>
+      <th scope="col">Status</th>
+      <th scope="col">Total payment</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -90,28 +90,20 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Edit User</h5>
+        <h5 class="modal-title">Edit Order</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="form-group">
-		    <label>Name</label>
+		    <label>Order ID</label>
 			<input type="text" class="form-control" required>
 		</div>
-    <div class="form-group">
-		    <label>Image</label>
-			<input type="file" class="form-control" required>
-		</div>
 		<div class="form-group">
-		    <label>Email</label>
+		    <label>User ID</label>
 			<input type="email" class="form-control" required>
 		</div>
 		<div class="form-group">
-		    <label>Address</label>
-			<textarea class="form-control" required></textarea>
-		</div>
-		<div class="form-group">
-		    <label>Phone</label>
+		    <label>Total payment</label>
 			<input type="text" class="form-control" required>
 		</div>
       </div>
@@ -131,11 +123,11 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Delete User ?</h5>
+        <h5 class="modal-title">Delete Order ?</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Do you want to delete this user?</p>
+        <p>Do you want to delete this order?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

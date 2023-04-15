@@ -111,6 +111,14 @@ app.use("/admin/stat", (req, res) => {
 });
 
 // add dashboard
+app.use("/admin/order-admin", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/order-admin.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
+  });
+});
+
+
+// add dashboard
 app.use("/admin/dashboard", (req, res) => {
   res.render(path.join(__dirname + "/src/views/dashboard.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
@@ -162,9 +170,17 @@ app.use("/pages/cart", (req, res) => {
     totalPrice: cart.totalPrice,
   });
 });
+
 //wishlist
 app.use("/pages/wishlist", (req, res) => {
   res.render(path.join(__dirname + "/src/views/wishlist.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+  });
+});
+
+//single-product
+app.use("/pages/single-product", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/single-product.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });

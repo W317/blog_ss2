@@ -12,11 +12,17 @@
               <p>{{product.category}}</p>
               <span class="price">${{product.price}}</span>
               <p>{{product.description}}</p>
-               
-              <p>This lipstick possesses an eye-catching, luxurious and classy appearance, along with a magical lipstick that enhances the extremely attractive brick red color.</p>
-              <button type="submit" name="add-to-cart" value="27545" class="button">Add to cart</button>
+              {{!-- <p>This lipstick possesses an eye-catching, luxurious and classy appearance, along with a magical lipstick that enhances the extremely attractive brick red color.</p> 
+              <button type="submit" name="add-to-cart" value="27545" class="button">Add to cart</button>--}}
+              <button><a href="/cart/add-to-cart/{{this._id}}" class="button">Add to cart</a></button>
             </div>
           </div>
         </div>
       </div>
     </section>
+    <style>
+      .button {
+        text-decoration: none;
+        color: #fff;
+      }
+    </style>

@@ -3,9 +3,10 @@
     <div class="cart-page row no-gutters">
       <div class="product-details mr-2">
         <div class="d-flex flex-row align-items-center">
+          <a href="/shop" class="line">
           <i class="fa fa-long-arrow-left"></i>
           <span class=" ml-2"></span>Continue
-          Shopping</span>
+          Shopping</span></a>
         </div>
 
         <div class="product-cart">
@@ -42,7 +43,7 @@
 
         </div>
       </div>
-      <a href="/cart/checkout">
+      <a href="/cart/checkout" class="line">
         <button class="btn btn-primary btn-block d-flex justify-content-between mt-3 "
           type="button"><span>Total: ${{totalPrice}}</span><span>Checkout<i
               class="fa fa-long-arrow-right ml-1"></i></span></button>
@@ -94,6 +95,10 @@
       </div> --}}
 
       <style>
+        .line {
+          text-decoration: none;
+        }
+
         .carts {
 
           font-family: var(--body-font);

@@ -1,0 +1,14 @@
+<div class="content">
+    <h1 id="createProduct">Edit {{title}}</h1>
+    <form method="post" action="/admin/product/edit/{{_id}}" enctype="multipart/form-data">
+        <label for="title"><h3>Title</h3></label>
+        <input type="text" id="title" name="title" placeholder={{title}}>
+        <label for="author"><h3>Author</h3></label>
+        <input type="text" id="author" name = "author" placeholder={{author}}>
+        <label for="image"><h3>Image</h3></label>
+        <input type="file" id="image" name="image">
+        <label for="href"><h3>Link</h3></label>
+        <input type="text" name="href" id="href" placeholder={{href}}></input><br>
+        <button type="submit" >Submit</button>
+    </form>
+</div>
