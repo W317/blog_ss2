@@ -1,6 +1,6 @@
-<header id="header">
+<header class="solstore-top solstore-top--sticky">
   <div class="header-wrap">
-    <nav class="secondary-nav border-top">
+    <nav class="secondary-nav border-top" id="upper-nav">
       <div>
         <div class="row header">
           <div class="top-menu d-flex flex-wrap justify-content-end">
@@ -14,7 +14,7 @@
 
             <ul class="header-items right-block d-flex flex-wrap list-unstyled">
               <li class="nav-logo">
-                <a class="ml-3" href="#"><img src="/img/logo.png" alt="logo" style="width:150px"></a>
+                <a class="ml-3" href="/"><img src="/img/logo.png" alt="logo" style="width:150px" id="img-logo"></a>
               </li>
               <li class="menu-item search-bar">
                 <form class="searchbar">
@@ -25,7 +25,7 @@
               <li class="menu-item dropdown-submenu">
                 <a href="#" class="currency-item text-decoration-none text-dark">Currency</a>
                 <i class="icon icon-caret-down"></i>
-                <ul class="dropdown-currency list-unstyled bg-white">
+                <ul class="dropdown-currency list-unstyled">
                   <li>
                     <a href="#" class=" text-decoration-none text-dark">USD</a>
                   </li>
@@ -40,16 +40,12 @@
               <li>
                 <div class="header__cart-wrap">
                   <a class="header__cart-wrap text-decoration-none text-dark" href="/pages/cart">
+                    {{#if session.cart.totalQty}}
                     <span class="cart-notice" id="cart-notification">{{ session.cart.totalQty }}</span>
+                    {{/if}}
                     <img class="cart-icon"
                       src="https://salt.tikicdn.com/ts/upload/51/e2/92/8ca7e2cc5ede8c09e34d1beb50267f4f.png"
                       alt="header_header_img_Cart" width="25px">
-                    <script>
-                      const cartNotice = document.getElementById('cart-notification')
-                      let totalQty = {{ session.cart.totalQty }}
-                      if (!(totalQty >= 1))
-                        cartNotice.style.display = 'none'
-                    </script>
                   </a>
                 </div>
               </li>
@@ -59,7 +55,7 @@
         </div>
       </div>
     </nav>
-    <nav class="navbar navbar-expand-md bg-white navbar-light">
+    <nav class="navbar navbar-expand-md ">
       <div class="container-fluid">
         <a class="navbar-brand ml-3" href="#"><img src="/img/logo.png" alt="logo" style="width:150px"></a>
         <button class="navbar-toggler mr-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -68,13 +64,13 @@
         <div class="collapse navbar-collapse  justify-content-end" id="collapsibleNavbar">
           <ul class="navbar-nav mt-2 mx-3 ">
             <li class="nav-item">
-              <a class="nav-link text-primary" href="/">Home</a>
+              <a class="nav-link text-dark" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-danger" href="/shop">Category</a>
+              <a class="nav-link text-dark" href="/shop">Category</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-success" href="/pages/blog">Blog</a>
+              <a class="nav-link text-dark" href="/pages/blog">Blog</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-dark" href="/pages/contact">Contact</a>
@@ -85,9 +81,9 @@
             </li>
             <li class="nav-item">
               {{#if session.passport.user}}
-              <a class="nav-link text-info" href="/user/logout">Logout</a>
+              <a class="nav-link text-dark" href="/user/logout">Logout</a>
               {{else}}
-              <a class="nav-link text-info" href="/user/signin">Sign in</a>
+              <a class="nav-link text-dark" href="/user/signin">Sign in</a>
               {{/if}}
 
             </li>
@@ -99,8 +95,29 @@
         </div>
       </div>
     </nav>
+    <script>
+      const imgLogo = document.getElementById('img-logo')
+      const header = document.getElementsByTagName('header')[0]
+      document.addEventListener('scroll', event => {
+        let imgHeight = (150 - window.pageYOffset) < 90 ? 90 : (150 - window.pageYOffset)
+        let headerColor = window.pageYOffset === 0 ? '#fff' : '#d7fcf4'
+        imgLogo.style.width = `${imgHeight}px`
+        header.style.background = `${headerColor}`
+      });
+    </script>
   </div>
   <style>
+    .solstore-top--sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: translateZ(0);
+    z-index: 100;
+  
+}
+
+    
     .header-items {
       align-items: center;
       width: 100%;

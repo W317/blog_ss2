@@ -1718,9 +1718,9 @@ This is main CSS file that contains custom style rules used in this template
 }
 
 .secondary-nav .top-menu ul {
-  background-color: rgb(208, 247, 220);
   font-size: 0.9em;
   margin-bottom: 0;
+  border-bottom: 1px solid gray;
 }
 
 .secondary-nav .top-menu li.menu-item {

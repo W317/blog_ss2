@@ -15,6 +15,10 @@
     padding-right: 10px;
 }
 
+.main-container {
+    margin-top: 145px;
+}
+
 @media (min-width: 768px) {
     .container {
         width: 740px;
