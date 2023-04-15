@@ -9,6 +9,11 @@
         </div>
       </div>
     </div>
+    <h2>Order of <span> #{{order._id}}</span></h2> 
+    <p>Username: {{user.name}}</p>
+    <p>Email: {{user.email}}</p>
+    <p>Address: {{order.address}}</p>
+    <p>Phone: {{order.phone}}</p>
     <div class="table-responsive">
       <table class="table">
         <thead class="thead-dark">
@@ -72,11 +77,7 @@
   </section>
   {{!-- {{order}}
   {{user}} --}}
-  <h1>Manage Order <span> #{{order._id}}</span></h1> 
-  <p>Username: {{user.name}}</p>
-  <p>Email: {{user.email}}</p>
-  <p>Address: {{order.address}}</p>
-  <p>Phone: {{order.phone}}</p>
+
 
   <div>
     <h3>Items:</h3>
