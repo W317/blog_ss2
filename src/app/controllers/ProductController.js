@@ -25,7 +25,7 @@ const getProducts = asyncHandler(async (req, res) => {
     page = parseInt(page);
     const skipData = (page - 1) * PAGE_SIZE;
     const products = await Product.find(
-      req.body.category.length
+      req.body.category
         ? {
             category: req.body.category,
           }
