@@ -82,9 +82,8 @@ const listImage = [
 const createProduct = asyncHandler(async (req, res) => {
   try {
     const { title, category, description, price, quantity } = req.body;
-    
+
     const imagePath = req.file ? `/img/${req.file.filename}` : ''; // save the file path if a file was uploaded
-    
     const product = new Product({
       quantity: quantity,
       title: title,
@@ -119,6 +118,7 @@ const getOneProduct = asyncHandler(async (req, res) => {
 
 const updateProduct = asyncHandler(async (req, res) => {
   try {
+    console.log(req.body);
     const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,

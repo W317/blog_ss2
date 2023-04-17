@@ -19,6 +19,4 @@ export default function route(app) {
   app.use("/user", authRoute)
 
   app.use("/shop", productRoute)
-
-  app.use("/admin/order", orderRoute)
 }

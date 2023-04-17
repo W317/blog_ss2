@@ -6,72 +6,6 @@ import Order from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 
  const __dirname = path.resolve()
-
-const getProducts = asyncHandler(async (req, res) => {
-  try {
-    // pagination with 2 rows a page
-    const PAGE_SIZE = 6;
-    let page = req.query.page;
-    //count total page
-    const totalData = await Product.countDocuments();
-    const totalPage = Math.ceil(totalData / PAGE_SIZE);
-
-    // if (page) {
-      if (page < 1) {
-        page = 1;
-      }
-      if (page > totalPage) {
-        page = totalPage
-      }
-      page = parseInt(page);
-      const skipData = (page - 1) * PAGE_SIZE;
-      const products = await Product.find()
-        .lean()
-        .skip(skipData)
-        .limit(PAGE_SIZE);
-
-      const pages = [];
-      for (let i = 1; i < totalPage + 1; i++) {
-        pages.push(i);
-      }
-
-      // push 3 blogs into a row
-      let productArray = [];
-      let arraySize = 3;
-      for (let index = 0; index < products.length; index += arraySize) {
-        productArray.push(products.slice(index, index + arraySize));
-      }
-
-      // for button pre and next in pagination
-      let currentPage = parseInt(req.query.page)
-      if (!page) {
-        currentPage = 1
-      }
-      const hasPrev = currentPage > 1;
-      const prev = currentPage - 1;
-
-      const hasNext = currentPage < totalPage;
-      const next = currentPage + 1;
-
-      console.log(req.session)
-
-      // render view
-      res.render(path.join(__dirname + "/src/views/shop.handlebars"), {
-        layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-        products: productArray,
-        pages: pages,
-        currentPage,
-        hasPrev,
-        prev,
-        hasNext,
-        next
-      })
-
-  } catch (error) {
-    console.log(error);
-  }
-});
-
 const getAllOrders = asyncHandler(async (req, res) => {
   try {
     // const user = await userModel.findById(req.session?.passport.user)
@@ -86,10 +20,6 @@ const getAllOrders = asyncHandler(async (req, res) => {
     res.redirect("/")
   }
 })
-const listImage = [
-  '/img/ysl3.jpg',
-]
-
 
 const getOrderDetails = asyncHandler(async (req, res) => {
   try {

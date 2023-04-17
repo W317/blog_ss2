@@ -5,10 +5,12 @@ import { isAdmin, isLoggedIn } from './cartRoute.js';
 const router = express.Router();
 
 
-//read all products
-router.get('/', isLoggedIn, isAdmin, getAllOrders);
+// //read all products
+// router.get('/', isLoggedIn, isAdmin, getAllOrders);
 
-router.get('/:id', isLoggedIn, isAdmin, getOrderDetails)
+// router.get('/:id', isLoggedIn, isAdmin, getOrderDetails);
+
+// router.get('/hello', isLoggedIn ,getOrderH);
 
 // // read a product by id
 // router.get('/:id', getOneProduct);

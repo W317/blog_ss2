@@ -140,6 +140,7 @@ router.post('/checkout', isLoggedIn, (req, res, next) => {
 });
 
 export function isLoggedIn(req, res, next) {
+  // console.log(req);
   if (req.isAuthenticated()) {
       return next();
   }

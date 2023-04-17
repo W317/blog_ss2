@@ -4,6 +4,7 @@ import Blog from "../models/blogModel.js";
 import asyncHandler from 'express-async-handler'
 import path from "path";
 import { multipleMongooseToObject } from "../../util/mongoose.js";
+import CategoryModel from "../models/categoryModel.js";
 const __dirname = path.resolve()
 
 
@@ -60,7 +61,7 @@ const getAllProducts = asyncHandler(async (req, res) => {
             prev,
             hasNext,
             next
-        });        
+        });
     } catch (error) {
         console.log(error);
         res.sendStatus(500);
@@ -70,9 +71,12 @@ const getAllProducts = asyncHandler(async (req, res) => {
 const getEditProduct = asyncHandler(async (req, res) => {
     try {
         const product = await Product.findById(req.params.id).lean();
+        const category = await CategoryModel.find({}).lean()
+        // console.log(listCate);
         res.render(path.join(__dirname + "/src/views/edit-product.handlebars"), {
           layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
-          product: product
+          product: product,
+          category: category
         });
       } catch (err) {
         console.error(err);
