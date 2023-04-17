@@ -7,6 +7,8 @@ const router = express.Router();
 //read all products
 router.get('/', getProducts);
 
+router.post('/', getProducts)
+
 // read a product by id
 router.get('/:id', getOneProduct);
 

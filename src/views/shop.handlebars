@@ -19,9 +19,21 @@
   <div class="list-order">
     <div class="order">
       <span class="home-label">Order by</span>
-      <button class="btn">General</button>
-      <button class="btn btn--primary">Latest</button>
-      <button class="btn">Best seller</button>
+      <form id="filter-form" method="post" action="/shop">
+        <input type="text" name="keyword" placeholder="Search..." id="search" />
+        <select name="category" id="category" form="filter-form">
+          <option value="">Brand</option>
+            {{#each category}}
+            <option value="{{title}}">{{title}}</option>
+            {{/each}}
+        </select>
+        <select name="sorting" id="sorting" form="filter-form">
+          <option value="">Sort by price</option>
+          <option value="ascending">Ascending</option>
+          <option value="descending">Descending</option>
+        </select>
+        <input type="submit" value="Filter" />
+      </form>
     </div>
   </div>
   <div class="product-list">
@@ -32,7 +44,7 @@
         <a href="/pages/single-product" class="line"><h5 class="font-weight-bold">{{this.title}}</h5></a>
         <p class="text-secondary">{{this.category}}</p>
       </div>
-      <div class="price-tag text-center pb-1">$36.00</div>
+      <div class="price-tag text-center pb-1">${{this.price}}</div>
       <a href="/cart/add-to-cart/{{this._id}}" class="btn add-to-cart">Add to cart</a>
     </div>
     {{/each}}
