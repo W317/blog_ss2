@@ -22,7 +22,11 @@
                   <span><i class="fa-solid fa-magnifying-glass mr-1"></i></span>
                 </form>
               </li>
-              <li class="menu-item dropdown-submenu">
+
+              <li class="menu-item px-0">
+                <a href="/pages/profile"><i class="fas fa-user user-icon"></i></a>
+              </li>
+              {{!--<li class="menu-item dropdown-submenu">
                 <a href="#" class="currency-item text-decoration-none text-dark">Currency</a>
                 <i class="icon icon-caret-down"></i>
                 <ul class="dropdown-currency list-unstyled">
@@ -36,7 +40,7 @@
                     <a href="#" class=" text-decoration-none text-dark">VND</a>
                   </li>
                 </ul>
-              </li>
+              </li>--}}
               <li>
                 <div class="header__cart-wrap">
                   <a class="header__cart-wrap text-decoration-none text-dark" href="/pages/cart">
@@ -116,10 +120,8 @@
     right: 0;
     transform: translateZ(0);
     z-index: 100;
-  
-}
+    }
 
-    
     .header-items {
       align-items: center;
       width: 100%;
@@ -144,6 +146,11 @@
 
     .navbar-brand {
       display: none;
+    }
+
+    .user-icon {
+      font-size: 20px;
+      margin-top: 7px;
     }
 
     @media screen and (max-width: 768px) {

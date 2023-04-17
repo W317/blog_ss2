@@ -46,6 +46,7 @@
       </div>
       <div class="price-tag text-center pb-1">${{this.price}}</div>
       <a href="/cart/add-to-cart/{{this._id}}" class="btn add-to-cart">Add to cart</a>
+      <a href="#" class="icon-heart"><i class="fas fa-heart"></i></a>
     </div>
     {{/each}}
   </div>
@@ -221,5 +222,15 @@
     background-color: blue;
     color: #fff;
     border: 2px;
+  }
+  
+  .product-list .icon-heart {
+    font-size: 25px;
+    margin-top: 2px;
+    color: black;
+  }
+
+  .product-list .icon-heart:hover {
+    color: red;
   }
 </style>
