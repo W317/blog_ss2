@@ -18,6 +18,16 @@ const __dirname = path.resolve()
 // BLOG ADMIN
 router.get('/blog-admin', getAllBlogs)
 
+router.get('/blog-admin/create', (req, res) => {
+    res.render(path.join(__dirname + "/src/views/form-blog.handlebars"), {
+        layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
+    });
+})
+
+router.post('/blog-admin/create', upload, createBlog);
+
+router.delete('/blog-admin/delete/:id', deleteBlog);
+
 // ORDER FOR ADMIN
 router.get('/order',isLoggedIn, isAdmin, getAllOrders)
 
@@ -31,12 +41,6 @@ router.post('/category/create', isLoggedIn, isAdmin, createCategory)
 router.get('/category/edit/:id', isLoggedIn, isAdmin, getCateDetail)
 router.post('/category/edit/:id', isLoggedIn, isAdmin, updateCateDetail)
 router.get('/category/delete/:id', isLoggedIn, isAdmin, deleteCateDetail)
-
-
-
-router.post('/blog-admin/create', upload, createBlog);
-
-router.delete('/blog-admin/delete/:id', deleteBlog);
 
 
 // USER ADMIN
