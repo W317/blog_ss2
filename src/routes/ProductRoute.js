@@ -10,7 +10,7 @@ router.get('/', getProducts);
 router.post('/', getProducts)
 
 // read a product by id
-router.get('/:id', getOneProduct);
+router.get('/product/:id', getOneProduct);
 
 // update a product by id
 router.put('/update/:id', updateProduct);
