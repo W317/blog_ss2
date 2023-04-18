@@ -45,7 +45,10 @@
         <p class="text-secondary">{{this.category}}</p>
       </div>
       <div class="price-tag text-center pb-1">${{this.price}}</div>
+      <div class="cart">
       <a href="/cart/add-to-cart/{{this._id}}" class="btn add-to-cart">Add to cart</a>
+      <a href="/pages/wishlist" class="fas fa-heart icon-heart"></a>
+      </div>
     </div>
     {{/each}}
   </div>
@@ -187,8 +190,20 @@
 
   .add-to-cart {
     width: fit-content;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .icon-heart {
+    text-decoration: none;
+    font-size: 25px;
+    color: #000;
+    margin-left: 15px;
+    padding-top: 15px;
+  }
+
+  .icon-heart:hover {
+    color: red;
   }
 
   .order {
@@ -245,13 +260,4 @@
     border: 2px;
   }
   
-  .product-list .icon-heart {
-    font-size: 25px;
-    margin-top: 2px;
-    color: black;
-  }
-
-  .product-list .icon-heart:hover {
-    color: red;
-  }
 </style>
