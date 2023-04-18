@@ -3,7 +3,7 @@ import { createProduct, getOneProduct, updateProduct, deleteProduct } from '../a
 import path from "path";
 import upload from '../app/middleware/uploadFile.js';
 import { getAllProducts, getEditProduct, getAllUser, getAllBlogs } from '../app/controllers/AdminController.js';
-import { createBlog, deleteBlog } from '../app/controllers/BlogController.js';
+import { createBlog, deleteBlog, updateBlog, getEditBlog } from '../app/controllers/BlogController.js';
 import Product from '../app/models/productModel.js';
 import { deleteUser } from '../app/controllers/UserController.js';
 import { getAllOrders, getOrderDetails } from '../app/controllers/OrderController.js';
@@ -26,6 +26,10 @@ router.get('/blog-admin/create', (req, res) => {
 
 router.post('/blog-admin/create', upload, createBlog);
 
+router.put('/blog-admin/update/:id', upload, updateBlog);
+
+router.get('/blog-admin/edit/:id', getEditBlog);
+
 router.delete('/blog-admin/delete/:id', deleteBlog);
 
 // ORDER FOR ADMIN
@@ -46,6 +50,8 @@ router.get('/category/delete/:id', isLoggedIn, isAdmin, deleteCateDetail)
 // USER ADMIN
 router.get('/user', getAllUser)
 
+
+// PRODUCT ADMIN
 // read all product
 router.get('/product-admin', getAllProducts);
 
@@ -67,7 +73,7 @@ router.get('/product-admin/create', asyncHandler(async(req, res, next) => {
 
 
 // update a product by id
-router.post('/product-admin/edit/:id', updateProduct);
+router.put('/product-admin/update/:id', upload, updateProduct);
 
 router.get('/product-admin/edit/:id', getEditProduct);
 

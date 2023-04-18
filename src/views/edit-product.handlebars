@@ -1,6 +1,7 @@
 <div class="content">
     <h1 id="createProduct">Edit {{product.title}}</h1>
-    <form method="post" action="/admin/product-admin/edit/{{product._id}}?_method=PUT" enctype="multipart/form-data" id="edit-product">
+    <form method="post" action="/admin/product-admin/update/{{product._id}}?_method=PUT" enctype="multipart/form-data"
+        id="edit-product">
         <label for="title">
             <h3>Title</h3>
         </label>
@@ -8,11 +9,20 @@
         <label for="category">
             <h3>Category</h3>
         </label>
-        <input type="text" id="category" name="category" value="{{product.category}}">
+        {{!-- <input type="text" id="category" name="category" value="{{product.category}}"> --}}
+        <select name="category" id="category" form="edit-product">
+            {{#each category}}
+            <option value="{{title}}">{{title}}</option>
+            {{/each}}
+        </select>
         <label for="image">
             <h3>Image</h3>
         </label>
+        <figure>
+            <img src="{{product.image}}" width="300">
+        </figure>
         <input type="file" id="image" name="image">
+        <input type="hidden" name="old_image" value="{{product.image}}">
         <label for="quantity">
             <h3>Quantity</h3>
         </label>

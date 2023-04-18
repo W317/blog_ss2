@@ -39,13 +39,13 @@
   <div class="product-list">
     {{#each products}}
     <div class="text-center product" data-aos="fade" data-aos-delay="0">
-      <div class="product-image" style="background: url('{{this.image}}'); background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+      <div class="product-image" style="background: url('{{image}}'); background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
       <div class="category align-center">
-        <a href="/shop/{{this._id}}" class="line"><h5 class="font-weight-bold">{{this.title}}</h5></a>
+        <a href="/shop/product/{{_id}}" class="line"><h5 class="font-weight-bold">{{title}}</h5></a>
         <p class="text-secondary">{{this.category}}</p>
       </div>
-      <div class="price-tag text-center pb-1">${{this.price}}</div>
-      <a href="/cart/add-to-cart/{{this._id}}" class="btn add-to-cart">Add to cart</a>
+      <div class="price-tag text-center pb-1">${{price}}</div>
+      <a href="/cart/add-to-cart/{{_id}}" class="btn add-to-cart">Add to cart</a>
     </div>
     {{/each}}
   </div>

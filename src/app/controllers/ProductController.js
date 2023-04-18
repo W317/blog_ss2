@@ -1,5 +1,6 @@
 import Product from "../models/productModel.js";
 import asyncHandler from "express-async-handler";
+import fs from "fs"
 
 import path from "path";
 import CategoryModel from "../models/categoryModel.js";
@@ -27,8 +28,8 @@ const getProducts = asyncHandler(async (req, res) => {
     const products = await Product.find(
       req.body.category
         ? {
-            category: req.body.category,
-          }
+          category: req.body.category,
+        }
         : {}
     )
       .lean()
@@ -47,11 +48,13 @@ const getProducts = asyncHandler(async (req, res) => {
       foundProducts = [...products];
     }
 
-    if(req.body.sorting === 'ascending') {
+    console.log(foundProducts)
+
+    if (req.body.sorting === 'ascending') {
       foundProducts.sort((item, nextItem) => {
         return item.price - nextItem.price
       })
-    }else if(req.body.sorting === 'descending') {
+    } else if (req.body.sorting === 'descending') {
       foundProducts.sort((item, nextItem) => {
         return nextItem.price - item.price
       })
@@ -152,10 +155,28 @@ const updateProduct = asyncHandler(async (req, res) => {
       new: true,
       runValidators: true,
     });
+
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
-    res.status(200).redirect("/admin/product-admin");
+
+    // Check if a new file was uploaded
+    if (req.file) {
+      // Get the full path to the img directory
+      const filePath = path.join(__dirname, '/public', req.body.old_image);
+
+      fs.unlinkSync(filePath);
+
+
+      // If a new file was uploaded, delete the old image
+      const imagePath = req.file ? `/img/${req.file.filename}` : "";
+      // Update the product's image with the new file
+      product.image = imagePath;
+      console.log('this is ' + product.image)
+      await product.save();
+    }
+
+    res.status(302).redirect("/admin/product-admin");
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });

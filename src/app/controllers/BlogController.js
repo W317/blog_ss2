@@ -97,6 +97,54 @@ const createBlog = asyncHandler(async (req, res) => {
   }
 });
 
+const getEditBlog = asyncHandler(async (req, res) => {
+  try {
+      const blog = await BlogModel.findById(req.params.id).lean();
+      res.render(path.join(__dirname + "/src/views/blog-admin.handlebars"), {
+        layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
+        blog : blog
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    }
+})
+
+const updateBlog = asyncHandler(async (req, res) => {
+  try {
+    console.log(req.body);
+    const blog = await BlogModel.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!blog) {
+      return res.status(404).json({ message: "Blog not found" });
+    }
+
+    // Check if a new file was uploaded
+    if (req.file) {
+      // Get the full path to the img directory
+      const filePath = path.join(__dirname, '/public', req.body.old_image);
+
+      fs.unlinkSync(filePath);
+
+
+      // If a new file was uploaded, delete the old image
+      const imagePath = req.file ? `/img/${req.file.filename}` : "";
+      // Update the product's image with the new file
+      blog.image = imagePath;
+      console.log('this is ' + blog.image)
+      await product.save();
+    }
+
+    res.status(302).redirect("/admin/blog-admin");
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 const deleteBlog = asyncHandler(async (req, res) => {
   try {
     const blog = await BlogModel.findByIdAndDelete(req.params.id);
@@ -110,4 +158,4 @@ const deleteBlog = asyncHandler(async (req, res) => {
   }
 })
 
-export { createBlog, getAllBlogs, deleteBlog };
+export { createBlog, getAllBlogs, deleteBlog, updateBlog, getEditBlog };
