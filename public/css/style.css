@@ -1714,7 +1714,7 @@ This is main CSS file that contains custom style rules used in this template
   /* border-bottom: 1px solid var(--grey-color); */
   font-size: 0.8em;
   color: var(--accent-color);
-  text-transform: uppercase;  
+  
 }
 
 .secondary-nav .top-menu ul {
