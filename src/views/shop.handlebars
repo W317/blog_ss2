@@ -32,7 +32,7 @@
           <option value="ascending">Ascending</option>
           <option value="descending">Descending</option>
         </select>
-        <input type="submit" value="Filter" />
+        <input type="submit" value="Filter" class="filter-button" />
       </form>
     </div>
   </div>
@@ -44,8 +44,8 @@
         <a href="/shop/product/{{_id}}" class="line"><h5 class="font-weight-bold">{{title}}</h5></a>
         <p class="text-secondary">{{this.category}}</p>
       </div>
-      <div class="price-tag text-center pb-1">${{price}}</div>
-      <a href="/cart/add-to-cart/{{_id}}" class="btn add-to-cart">Add to cart</a>
+      <div class="price-tag text-center pb-1">${{this.price}}</div>
+      <a href="/cart/add-to-cart/{{this._id}}" class="btn add-to-cart">Add to cart</a>
     </div>
     {{/each}}
   </div>
@@ -116,7 +116,29 @@
   .line {
     text-decoration: none;
   }
-  
+  .order {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 10px;
+  }
+
+#filter-form {
+  display: flex;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+@media screen and (max-width: 992px) {
+  #filter-form {
+    flex-direction: column;
+  }
+}
+
+.filter-button {
+  margin-left: auto;
+}
+
   .product-list {
     display: grid;
     grid-template-columns: repeat(4, minmax(250px, 1fr));
@@ -221,5 +243,15 @@
     background-color: blue;
     color: #fff;
     border: 2px;
+  }
+  
+  .product-list .icon-heart {
+    font-size: 25px;
+    margin-top: 2px;
+    color: black;
+  }
+
+  .product-list .icon-heart:hover {
+    color: red;
   }
 </style>

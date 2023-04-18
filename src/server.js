@@ -147,6 +147,13 @@ app.use("/pages/account", (req, res) => {
   });
 });
 
+//profile
+app.use("/pages/profile", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/profile.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+  });
+});
+
 // cart
 app.use("/pages/cart", (req, res) => {
   if (!req.session.cart) {
