@@ -53,6 +53,7 @@
     "stripe": "^11.18.0"
   },
   "devDependencies": {
+    "@types/bcrypt-nodejs": "^0.0.31",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.2",
     "morgan": "^1.10.0",

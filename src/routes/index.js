@@ -13,6 +13,8 @@ import path from "path";
 export default function route(app) {
   app.use("/pages/blog", blogRouter);
 
+  app.use("/pages/user", userRouter);
+
   app.use("/cart", cartRoute);
 
   app.use("/admin", adminRoute);

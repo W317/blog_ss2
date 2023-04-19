@@ -141,18 +141,18 @@ app.use("/pages/checkout", (req, res) => {
 });
 
 //account
-app.use("/pages/account", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/account.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-  });
-});
+// app.use("/pages/account", (req, res) => {
+//   res.render(path.join(__dirname + "/src/views/account.handlebars"), {
+//     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+//   });
+// });
 
 //profile
-app.use("/pages/profile", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/profile.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-  });
-});
+// app.use("/pages/profile", (req, res) => {
+//   res.render(path.join(__dirname + "/src/views/profile.handlebars"), {
+//     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+//   });
+// });
 
 // cart
 app.use("/pages/cart", (req, res) => {

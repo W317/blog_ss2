@@ -48,8 +48,6 @@ const getProducts = asyncHandler(async (req, res) => {
       foundProducts = [...products];
     }
 
-    console.log(foundProducts)
-
     if (req.body.sorting === 'ascending') {
       foundProducts.sort((item, nextItem) => {
         return item.price - nextItem.price
@@ -150,7 +148,6 @@ const getOneProduct = asyncHandler(async (req, res) => {
 
 const updateProduct = asyncHandler(async (req, res) => {
   try {
-    console.log(req.body);
     const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,

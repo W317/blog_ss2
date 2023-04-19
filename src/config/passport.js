@@ -28,9 +28,12 @@ passport.use(
         .checkBody("password", "Invalid password")
         .notEmpty()
         .isLength({ min: 4 });
+
       let errors = req.validationErrors();
 
-      const { name } = req.body
+      if (req.body.password !== req.body.confirmPassword) {
+        return done(null, false, { message: "Passwords do not match." });
+      }
 
       if (errors) {
         let messages = [];
@@ -39,24 +42,36 @@ passport.use(
         });
         return done(null, false, messages);
       }
-      const user = await userModel.findOne({ email: email });
-      if (user) {
-        return done(null, false, { message: "Email already in use." });
-      }
-      let newUser = new userModel();
-      newUser.isAdmin = false
-      newUser.name = name;
-      newUser.email = email;
-      newUser.password = newUser.encryptPassword(password);
-      newUser.save((err, result) => {
-        if (err) {
-          return done(err);
+
+      const { name } = req.body;
+
+      try {
+        const user = await userModel.findOne({ email: email });
+        if (user) {
+          return done(null, false, { message: "Email already in use." });
         }
+
+        let newUser = new userModel()
+          newUser.name = name
+          newUser.email = email
+          newUser.isAdmin = false
+          newUser.password = newUser.encryptPassword(password)
+          newUser.address = ""
+          newUser.phone = ""
+          newUser.username = ""
+          newUser.image = "/img/user_default.png"
+          newUser.dayJoined = new Date()
+
+        await newUser.save();
         return done(null, newUser);
-      });
+      } catch (err) {
+        return done(err);
+      }
     }
   )
 );
+
+
 
 passport.use(
   "local.signin",
