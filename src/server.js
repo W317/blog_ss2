@@ -185,6 +185,12 @@ app.use("/pages/wishlist", (req, res) => {
 //   });
 // });
 
+app.use("/receipt", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/receipt.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+  });
+})
+
 // about
 app.use("/about", (req, res) => {
   res.render(path.join(__dirname + "/src/views/about.handlebars"), {
