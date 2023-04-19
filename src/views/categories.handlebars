@@ -1,0 +1,16 @@
+
+<button>
+  <a href="/admin/category/create">Create New Cate</a>
+</button>
+{{#each category}}
+<div>
+  <p>{{title}}</p>
+  <a href="/admin/category/edit/{{_id}}">
+    <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+  </a>
+  <a href="/admin/category/delete/{{_id}}">
+    <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+  </a>
+  <hr />
+</div>
+{{/each}}

@@ -16,93 +16,74 @@
               <li class="nav-logo">
                 <a class="ml-3" href="/"><img src="/img/logo.png" alt="logo" style="width:150px" id="img-logo"></a>
               </li>
-              <li class="menu-item search-bar px-0">
-                <form class="searchbar px-2">
-                  <input type="text" name="search" placeholder="Search Here..">
-                  <span><i class="fa-solid fa-magnifying-glass mr-1"></i></span>
-                </form>
-              </li>
-              <li class="menu-item dropdown-submenu">
-                <a href="#" class="currency-item text-decoration-none text-dark">Currency</a>
-                <i class="icon icon-caret-down"></i>
-                <ul class="dropdown-currency list-unstyled">
-                  <li>
-                    <a href="#" class=" text-decoration-none text-dark">USD</a>
-                  </li>
-                  <li>
-                    <a href="#" class=" text-decoration-none text-dark">EURO</a>
-                  </li>
-                  <li>
-                    <a href="#" class=" text-decoration-none text-dark">VND</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <div class="header__cart-wrap">
-                  <a class="header__cart-wrap text-decoration-none text-dark" href="/pages/cart">
-                    {{#if session.cart.totalQty}}
-                    <span class="cart-notice" id="cart-notification">{{ session.cart.totalQty }}</span>
-                    {{/if}}
-                    <img class="cart-icon"
-                      src="https://salt.tikicdn.com/ts/upload/51/e2/92/8ca7e2cc5ede8c09e34d1beb50267f4f.png"
-                      alt="header_header_img_Cart" width="25px">
-                  </a>
+
+              <nav class="navbar navbar-expand-md ">
+                <div class="container-fluid">
+                  <a class="navbar-brand ml-3" href="#"><img src="/img/logo.png" alt="logo" style="width:150px"></a>
+                  <button class="navbar-toggler mr-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse  justify-content-end" id="collapsibleNavbar">
+                    <ul class="navbar-nav mt-2 mx-3">
+                      <li class="nav-item">
+                        <a class="nav-link text-dark" href="/">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-dark" href="/shop">Category</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-dark" href="/pages/blog">Blog</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-dark" href="/pages/contact">Contact</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-dark" href="/session">Order</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-dark" href="/pages/wishlist">Wish list</a>
+                      </li>
+                      <li class="nav-item">
+                        {{#if session.passport.user}}
+                        <a class="nav-link text-dark" href="/user/logout">Logout</a>
+                        {{else}}
+                        <a class="nav-link text-dark" href="/user/signin">Sign in</a>
+                        {{/if}}
+                      </li>
+                      <li class="menu-item px-0 account-container">
+                        <a href="/pages/profile"> <button class="account-button">
+                            <i class="fa-regular fa-user user-icon"></i> account
+                          </button></a>
+                      </li>
+                      <li>
+                        <div class="header__cart-wrap">
+                          <a class="header__cart-wrap text-decoration-none text-dark" href="/pages/cart">
+                            {{#if session.cart.totalQty}}
+                            <span class="cart-notice" id="cart-notification">{{ session.cart.totalQty }}</span>
+                            {{/if}}
+                            <img class="cart-icon"
+                              src="https://salt.tikicdn.com/ts/upload/51/e2/92/8ca7e2cc5ede8c09e34d1beb50267f4f.png"
+                              alt="header_header_img_Cart" width="25px">
+                          </a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-              </li>
+              </nav>
             </ul>
-
           </div>
-        </div>
-      </div>
-    </nav>
-    <nav class="navbar navbar-expand-md ">
-      <div class="container-fluid">
-        <a class="navbar-brand ml-3" href="#"><img src="/img/logo.png" alt="logo" style="width:150px"></a>
-        <button class="navbar-toggler mr-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse  justify-content-end" id="collapsibleNavbar">
-          <ul class="navbar-nav mt-2 mx-3 ">
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="/shop">Category</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="/pages/blog">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="/pages/contact">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="/session">Order</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="/pages/wishlist">Wish list</a>
-            </li>
-            <li class="nav-item">
-              {{#if session.passport.user}}
-              <a class="nav-link text-dark" href="/user/logout">Logout</a>
-              {{else}}
-              <a class="nav-link text-dark" href="/user/signin">Sign in</a>
-              {{/if}}
-
-            </li>
-            {{!-- <li class="nav-item"> // Nếu đăng nhập thì mới hiển thị, khi đăng nhận ẩn sign in đi
-              <a class="nav-link text-info" href="/account">My Account</a>
-            </li> --}}
-           
-          </ul>
         </div>
       </div>
     </nav>
     <script>
       const imgLogo = document.getElementById('img-logo')
       const header = document.getElementsByTagName('header')[0]
+      header.style.background = 'white'
       document.addEventListener('scroll', event => {
         let imgHeight = (150 - window.pageYOffset) < 90 ? 90 : (150 - window.pageYOffset)
-        let headerColor = window.pageYOffset === 0 ? '#fff' : '#d7fcf4'
+        let headerColor = window.pageYOffset === 0 ? '#fff' : '#dcfcf3'
         imgLogo.style.width = `${imgHeight}px`
         header.style.background = `${headerColor}`
       });
@@ -110,21 +91,26 @@
   </div>
   <style>
     .solstore-top--sticky {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    transform: translateZ(0);
-    z-index: 100;
-  
-}
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      transform: translateZ(0);
+      z-index: 100;
+    }
 
-    
+    .account-container {
+      margin: 0 10px;
+    }
+
+    .account-container>a {
+      text-decoration: none;
+    }
+
     .header-items {
       align-items: center;
       width: 100%;
-      justify-content: end;
-      padding-right: 30px;
+      padding-right: 0px;
     }
 
     .header-items>* {
@@ -133,8 +119,15 @@
       padding: 10px 20px;
     }
 
-    .search-bar {
+    .navbar.navbar-expand-md {
       flex-grow: 1;
+      font-size: 18px;
+    }
+
+    .navbar-nav {
+      border-bottom: none !important;
+      align-items: center;
+
     }
 
     .dropdown-submenu {
@@ -144,6 +137,27 @@
 
     .navbar-brand {
       display: none;
+    }
+
+    .account-button {
+      background-color: transparent;
+      color: black;
+      border-radius: 30px;
+      border: rgb(0, 132, 255) solid 2px;
+      height: 30px;
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .user-icon {
+      font-size: 20px;
+      margin-top: none;
+      color:rgb(0, 81, 255);
+    }
+
+    .cart-icon {
+      color: rgb(0, 81, 255);
     }
 
     @media screen and (max-width: 768px) {
@@ -162,6 +176,7 @@
       .navbar-brand {
         display: block;
       }
+
     }
   </style>
 </header>

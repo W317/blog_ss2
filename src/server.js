@@ -140,16 +140,16 @@ app.use("/pages/checkout", (req, res) => {
   });
 });
 
-// index
-app.use("/home", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/home.handlebars"), {
+//account
+app.use("/pages/account", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/account.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
 
-//account
-app.use("/pages/account", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/account.handlebars"), {
+//profile
+app.use("/pages/profile", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/profile.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
   });
 });
@@ -179,11 +179,11 @@ app.use("/pages/wishlist", (req, res) => {
 });
 
 //single-product
-app.use("/pages/single-product", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/single-product.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-  });
-});
+// app.use("/pages/single-product", (req, res) => {
+//   res.render(path.join(__dirname + "/src/views/single-product.handlebars"), {
+//     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+//   });
+// });
 
 // about
 app.use("/about", (req, res) => {
@@ -202,11 +202,11 @@ app.use("/thank-you", (req, res) => {
 route(app);
 
 // home page
-app.use("/", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/home.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-  });
-});
+// app.use("/", (req, res) => {
+//   res.render(path.join(__dirname + "/src/views/home.handlebars"), {
+//     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+//   });
+// });
 
 app.use("/js", express.static(__dirname + "/src/public/js"));
 app.use(

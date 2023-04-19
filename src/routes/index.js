@@ -7,6 +7,7 @@ import BlogSchema from "../app/models/blogModel.js";
 import authRoute from './AuthRoute.js'
 import productRoute from "./ProductRoute.js"
 import orderRoute from "./OrderRoute.js"
+import homeRoute from "./HomeRoute.js"
 import path from "path";
 
 export default function route(app) {
@@ -20,5 +21,5 @@ export default function route(app) {
 
   app.use("/shop", productRoute)
 
-  app.use("/admin/order", orderRoute)
+  app.use("/", homeRoute)
 }
