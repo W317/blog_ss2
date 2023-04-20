@@ -35,7 +35,7 @@
         <div class="col-xs-12">
           <div class="form-group">
             <label for="address">Street</label>
-            <select name="address" id="address">
+            <select name="address" class="form-control" required name="address">
               <option value="street">Thanh Xuan</option>
               <option value="street">Le Trong Tan</option>
               <option value="street">Nguyen Trai</option>
@@ -46,7 +46,7 @@
         <div class="col-xs-12">
           <div class="form-group">
             <label for="address">District</label>
-            <select name="address" id="address">
+            <select name="address" class="form-control" required name="address">
               <option value="district">Nam Tu Liem</option>
               <option value="district">Bac Tu Liem</option>
               <option value="district">Ba Dinh</option>
@@ -57,7 +57,7 @@
         <div class="col-xs-12">
           <div class="form-group">
             <label for="address">Province</label>
-            <select name="address" id="address">
+            <select name="address" class="form-control" required name="address">
               <option value="district">Ha Noi</option>
               <option value="district">Bac Giang</option>
               <option value="district">Cao Bang</option>
@@ -174,7 +174,7 @@
     margin-bottom: 0.5rem;
   }
 
-  input[type="text"] {
+  input[type="text", ""] {
     width: 100%;
     height: 40px;
     padding: 0 10px;
