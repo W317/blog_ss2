@@ -1,8 +1,10 @@
 import express from "express";
-// import userModel from "../app/models/userModel.js";
 import passport from "passport";
 import csurf from "csurf";
 import path from "path";
+import userModel from "../app/models/userModel.js";
+import asyncHandler from 'express-async-handler';
+import bcrypt from 'bcrypt-nodejs';
 
 const __dirname = path.resolve();
 
@@ -22,17 +24,6 @@ router.get("/signup", (req, res, next) => {
   });
 });
 
-router.get("/logout", (req, res, next) => {
-  let messages = req.flash("error");
-  req.logOut({}, (err) => {
-    if(err) {
-      return
-    }
-    res.redirect("/")
-  })
-
-})
-
 router.post(
   '/signup',
   passport.authenticate('local.signup', {
@@ -45,10 +36,22 @@ router.post(
       req.session.oldUrl = null;
       res.redirect(oldUrl);
     } else {
-      res.redirect("/index");
+      res.redirect("/");
     }
   }
 );
+
+router.get("/logout", (req, res, next) => {
+  let messages = req.flash("error");
+  req.logOut({}, (err) => {
+    if(err) {
+      return
+    }
+    res.redirect("/")
+  })
+
+})
+
 
 router.get("/signin", (req, res, next) => {
   let messages = req.flash("error");
@@ -63,7 +66,7 @@ router.get("/signin", (req, res, next) => {
 router.post(
   "/signin",
   passport.authenticate("local.signin", {
-    failureRedirect: "/user/signup",
+    failureRedirect: "/user/signin",
     failureFlash: true,
   }),
   (req, res, next) => {
@@ -72,7 +75,7 @@ router.post(
       req.session.oldUrl = null;
       res.redirect(oldUrl);
     } else {
-      res.redirect("/index");
+      res.redirect("/");
     }
   }
 );

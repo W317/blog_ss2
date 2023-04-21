@@ -110,13 +110,20 @@ app.use("/admin/stat", (req, res) => {
   });
 });
 
-// add dashboard
+// add order
 app.use("/admin/order-admin", (req, res) => {
   res.render(path.join(__dirname + "/src/views/order-admin.handlebars"), {
     layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
   });
 });
 
+
+// add order
+app.use("/admin/categories", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/categories.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
+  });
+});
 
 // add dashboard
 app.use("/admin/dashboard", (req, res) => {
@@ -141,18 +148,18 @@ app.use("/pages/checkout", (req, res) => {
 });
 
 //account
-app.use("/pages/account", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/account.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-  });
-});
+// app.use("/pages/account", (req, res) => {
+//   res.render(path.join(__dirname + "/src/views/account.handlebars"), {
+//     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+//   });
+// });
 
 //profile
-app.use("/pages/profile", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/profile.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-  });
-});
+// app.use("/pages/profile", (req, res) => {
+//   res.render(path.join(__dirname + "/src/views/profile.handlebars"), {
+//     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+//   });
+// });
 
 // cart
 app.use("/pages/cart", (req, res) => {
@@ -184,6 +191,12 @@ app.use("/pages/wishlist", (req, res) => {
 //     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
 //   });
 // });
+
+app.use("/receipt", (req, res) => {
+  res.render(path.join(__dirname + "/src/views/receipt.handlebars"), {
+    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+  });
+})
 
 // about
 app.use("/about", (req, res) => {

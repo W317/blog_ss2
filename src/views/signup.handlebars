@@ -5,7 +5,7 @@
         <h1>Sign Up</h1>
         {{#if hasErrors}}
         <div class="alert alert-danger">
-            {{# each messages}}
+            {{#each messages}}
             <p>{{this}}</p>
             {{/each}}
         </div>
@@ -28,8 +28,8 @@
             </div>
             
             <div class="form-group">
-                <label for="password">Confirm Password</label>
-                <input type="password" id="password" name="password" placeholder=" password" title="enter your password" class="form-control">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="repassword" name="confirmPassword" placeholder=" password" title="enter your password" class="form-control">
             </div>
 
             <p>Already a member? <a href="/user/signin">Sign in</a></p>
