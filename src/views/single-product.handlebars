@@ -1,28 +1,386 @@
-    <section class="single-product padding-large">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <a href="#" class="product-image">
-              <img src="{{product.image}}"/>
-            </a>
+<section class="single-product padding-large">
+  <div class="container">
+    <div class="product-content">
+      <div class="product-content-left">
+        <div class="product-content-left-big-img">
+          <a href="#" class="product-image">
+            <img src="{{product.image}}" />
+          </a>
+        </div>
+        <div class="product-content-left-small-img">
+          <img src="/img/son-kem-ysl-425-2.png" alt="">
+          <img src="/img/son-thoi-ysl-rouge-pur-couture-the-slim-sheer-matte1032.jpg" alt="">
+          <img src="/img/son-ysl-10-1.jpg">
+          <img src="/img/son-10-ysl-the-slim.jpg">
+          <img src="/img/son-yves-sain-laurent-the-slim-sheer-matte-orchard.vn-2.jpg">
+          <img src="/img/son-kem-ysl-425-2.png" alt="">
+          <img src="/img/son-thoi-ysl-rouge-pur-couture-the-slim-sheer-matte1032.jpg" alt="">
+          <img src="/img/son-ysl-10-1.jpg">
+          <img src="/img/son-10-ysl-the-slim.jpg">
+          <img src="/img/son-yves-sain-laurent-the-slim-sheer-matte-orchard.vn-2.jpg">
+          
+        </div>
+      </div>
+      <div class="product-content-right">
+        <div class="product-content-right-product-name">
+          <h2 class="product-title">{{product.title}}</h2>
+          <p>{{product.category}}</p>
+        </div>
+        <div class="product-content-right-product-price">
+          <span>${{product.price}}</span>
+        </div>
+        <div class="product-content-right-product-color">
+          <p style="font-weight: bold;">Color</p>
+          <div class="color">
+            <span>GLow Matte</span>
+            <span>Slim Glow</span>
+            <span>Slim Velvet</span>
+            <span>Laurent Rouge</span>
+            <span>Slim Sheer</span>
           </div>
-          <div class="col-md-6">
-            <div class="product-detail">
-              <h2 class="product-title">{{product.title}}</h2>
-              <p>{{product.category}}</p>
-              <span class="price">${{product.price}}</span>
-              <p>{{product.description}}</p>
-              {{!-- <p>This lipstick possesses an eye-catching, luxurious and classy appearance, along with a magical lipstick that enhances the extremely attractive brick red color.</p> 
-              <button type="submit" name="add-to-cart" value="27545" class="button">Add to cart</button>--}}
-              <button><a href="/cart/add-to-cart/{{this._id}}" class="button">Add to cart</a></button>
+          <div class="quantity">
+            <p style="font-weight: bold;">Qty</p>
+            <div class="container-group-button">
+              <button class="quantity-button minus-quantity"><i class="fa-solid fa-minus"></i></button>
+              <input class="quantity-button quantity-input" type="text" min="0" value="1"></input>
+              <button class="quantity-button plus-quantity"><i class="fa-solid fa-plus"></i></button>
+            </div>
+
+          </div>
+          <p style="color:red"> Please choose color * </p>
+          <div class="product-content-right-product-buying">
+            <button> <a href="/cart/add-to-cart/{{this._id}}" class="cart-quantity">Add to cart</a></button>
+            <i class="fa-regular fa-heart" style="font-size:25px;"></i>
+          </div>
+          <div class="product-content-right-bottom">
+            <div class="product-content-right-bottom-top">
+              &#8744;
+            </div>
+            <div class="product-content-right-bottom-content-big">
+              <div class="product-content-right-bottom-content-title">
+                <div class="product-content-right-bottom-content-title-items">
+                  <div class="product-content-right-bottom-content-title-item detail">
+                    <span>PRODUCT DETAIL</span>
+                  </div>
+                  <div class="product-content-right-bottom-content-title-item ingredients">
+                    <span>INGREDIENTS</span>
+                  </div>
+                  <div class="product-content-right-bottom-content-title-item userguide">
+                    <span>USER GUIDE</span>
+                  </div>
+                </div>
+
+                <div class="product-content-right-bottom-content">
+                  <div class="product-content-right-bottom-content-detail">
+                    Specification: 2.2g<br>
+                    Origin: France <br>
+
+                    YSL The Slim 28 True Chili lipstick possesses a youthful, attractive and outstanding brick red color
+                    anywhere, making millions of girls' hearts "desire to own".
+                  </div>
+                  <div class="product-content-right-bottom-content-ingredients">
+                    Slender and tall in general, the yellow-black lipstick case is extremely haughty with a slimmer
+                    lipstick body, "thinner" than its "seniors". Still inspired by the classics from YSL, but the shape
+                    of the YSL 28 lipstick is shortened and stretched out.<br>
+
+                    The glossy gold-plated traditional lipstick body is adorned with the YSL logo in the middle. The
+                    difference is depicted by the contrasting black lipstick cap. The words Yves Saint Laurent brand
+                    name are engraved vertically on the YSL lipstick color 28 True Chili.<br>
+
+                    💋Luxury brick red color
+                    YSL Rouge Pur Couture The Slim 28 True Chili lipstick is a new brick red tone from the company that
+                    combines 2 colors of earth orange and dark red to create a brick red lipstick with outstanding
+                    orange tones and skin tones.
+                  </div>
+                  <div class="product-content-right-bottom-content-user-guide">
+                    1. You can mix lipstick colors to create an extremely impressive gradient ombre (for example,
+                    combine More taupe 799 as a base & More magenta 399 in the center of your lips to create an
+                    extremely earthy pink tone. flattering and attractive).<br>
+
+                    2. Or use in conjunction with Maybelline Fitme Concealer at lip contour &amp; ultimate lipstick on
+                    the inside of the lips to create a more haughty pout effect.
+                  </div>
+
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+    <script>
+
+      const bigImg = document.querySelector(".product-content-left-big-img img")
+      const smallImg = document.querySelectorAll(".product-content-left-small-img img")
+      smallImg.forEach(function (imgItem, X) {
+        imgItem.addEventListener("click", function () {
+          bigImg.src = imgItem.src
+        })
+      })
+
+      const ingredients = document.querySelector(".product-content-right-bottom-content-ingredients")
+      const detail = document.querySelector(".product-content-right-bottom-content-detail")
+      const userguide = document.querySelector(".product-content-right-bottom-content-user-guide")
+      const ingredientsButton = document.querySelector(".ingredients")
+      const detailButton = document.querySelector(".detail")
+      const userguideButton = document.querySelector(".userguide")
+      const tickButton = document.querySelector(".product-content-right-bottom-top")
+      const bigContent = document.querySelector(".product-content-right-bottom-content-big")
+      ingredients.style.display = "none"
+      userguide.style.display = "none"
+      detailButton.classList.add('product-content-right-bottom-content-title-item--active')
+
+      function changeTab(tab, button) {
+        ingredients.style.display = "none"
+        detail.style.display = "none"
+        userguide.style.display = "none"
+        tab.style.display = "block"
+        ingredientsButton.classList.remove('product-content-right-bottom-content-title-item--active')
+        userguideButton.classList.remove('product-content-right-bottom-content-title-item--active')
+        detailButton.classList.remove('product-content-right-bottom-content-title-item--active')
+        button.classList.add('product-content-right-bottom-content-title-item--active')
+      }
+
+      ingredientsButton.addEventListener("click", function () {
+        changeTab(ingredients, ingredientsButton)
+      })
+      detailButton.addEventListener("click", function () {
+        changeTab(detail, detailButton)
+
+      })
+      userguideButton.addEventListener("click", function () {
+        changeTab(userguide, userguideButton)
+      })
+      tickButton.addEventListener("click", function () {
+        bigContent.classList.toggle('product-content-right-bottom-content-big--expand')
+      })
+
+
+    </script>
+
     <style>
-      .button {
+      .product-title {
+        color: black;
+        margin-bottom: -1px;
+      }
+
+
+      .product-content {
+        display: flex;
+      }
+
+      @media screen and (max-width: 768px) {
+        .product-content {
+          display: block;
+        }
+      }
+
+      .product-content-left {
+        display: flex;
+        flex-basis: 50%;
+        gap: 20px;
+      }
+
+      .product-content-right {
+        padding: 0 20px;
+      }
+
+      .product-content-left-big-img {
+        flex-basis: 80%;
+      }
+
+      .product-content-left-big-img img {
+        width: 100%;
+      }
+
+      .product-content-left-small-img {
+        flex-basis: 20%;
+        max-height: 370px;
+        overflow-y: auto;
+        padding-right: 2px;
+      }
+
+      .product-content-left-small-img::-webkit-scrollbar {
+        width: 3px;
+      }
+
+      .product-content-left-small-img::-webkit-scrollbar-thumb {
+        width: 3px;
+        height: 10px;
+        background-color: gray;
+        border-radius: 20px;
+      }
+
+      .product-content-left-small-img img {
+        width: 100px;
+        margin-bottom: 10px;
+      }
+
+      .product-content-right {
+        flex-basis: 50%;
+      }
+
+      .product-content-right-product-name p {
+        color: #cccccc;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .product-content-right-product-price {
+        font-size: 20px;
+        color: rgb(128, 128, 128);
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .color {
+        margin-top: -10px;
+      }
+
+      .color span {
+        display: inline-block;
+        padding: 3px 6px;
+        border: 1px solid #dddddd;
+        margin: 5px 0 5px 0;
+        font-size: 15px;
+        cursor: pointer;
+      }
+
+      .quantity {
+        display: flex;
+        margin-bottom: 10px;
+        gap: 30px;
+        margin-top: 10px;
+      }
+
+      .container-group-button {
+        display: flex;
+        gap: -1px;
+      }
+
+      .minus-quantity {
+        border: 1px solid #dddddd;
+        border-right: none;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        width: 35px;
+      }
+
+      .quantity-input {
+        border: solid 1px #dddddd !important;
+        border-radius: 0 !important;
+        width: 60px;
+        text-align: center;
+      }
+
+      .plus-quantity {
+        border: 1px solid #dddddd;
+        border-left: none;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width:35px;
+      }
+
+      .quantity-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        outline: none;
+        cursor: pointer;
+        font-size: .875rem;
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: 0;
+        transition: background-color .1s cubic-bezier(.4, 0, .6, 1);
+        background: transparent;
+        color: rgba(0, 0, 0, .8);
+        height: 35px;
+      }
+
+      .product-content-right-product-buying {
+        margin-bottom: 10px;
+      }
+
+
+      .product-content-right-product-buying button {
+        background-color: transparent;
+        border: 1px solid black;
+        margin-bottom: 10px;
+        width: 200px;
+        margin-right: 10px;
+
+      }
+
+      .product-content-right-product-buying button>a {
+        text-transform: uppercase;
         text-decoration: none;
-        color: #fff;
+        color: black;
+        font-weight: bold;
+      }
+
+      .product-content-right-product-buying button:hover {
+        background-color: black;
+      }
+
+      .product-content-right-product-buying button:hover a {
+        color: white;
+      }
+
+      .product-content-right-bottom {
+        padding-top: 40px;
+        border-top: 1px solid #dddddd;
+        position: relative;
+      }
+
+      .product-content-right-bottom-top {
+        position: absolute;
+        width: 30px;
+        border: 1px solid #dddddd;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        top: -15px;
+        left: 50%;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        color: gray;
+        cursor: pointer;
+      }
+
+      .product-content-right-bottom-content-title-items {
+        display: flex;
+        border-bottom: 2px solid #dddddd;
+        font-size: 15px;
+      
+      }
+
+      .product-content-right-bottom-content-title-item {
+        padding: 6px;
+        cursor: pointer;
+        margin-right: 6px;
+      }
+
+      .product-content-right-bottom-content {
+        padding-top: 30px;
+        font-size: 15px;
+      }
+
+      .product-content-right-bottom-content-big {
+        transition: all 0.5s;
+        max-height: 0;
+        overflow: hidden;
+      }
+
+      .product-content-right-bottom-content-big--expand {
+        max-height: 1000px;
+      }
+
+      .product-content-right-bottom-content-title-item--active {
+        position: relative;
+        top: 2px;
+        border-bottom: 2px solid black;
       }
     </style>
+  </div>
+</section>
