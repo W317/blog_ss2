@@ -24,6 +24,33 @@ router.get("/signup", (req, res, next) => {
   });
 });
 
+router.get("/logout", (req, res, next) => {
+  let messages = req.flash("error");
+  req.logOut({}, (err) => {
+    if(err) {
+      return
+    }
+    res.redirect("/")
+  })
+
+})
+
+// const checkConfirmPass = async (req, res, next) => {
+//   try {
+//     const { password, confirmPassword} = req.body
+//     console.log(password, confirmPassword);
+//     if(password && confirmPassword && password === confirmPassword) {
+//       delete req.body.confirmPassword
+//       next()
+//     }
+
+//     return
+//   } catch (error) {
+//     console.error(error)
+//     throw new Error(error.toString())
+//   }
+// }
+
 router.post(
   '/signup',
   passport.authenticate('local.signup', {

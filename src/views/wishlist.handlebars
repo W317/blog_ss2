@@ -3,6 +3,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h1 class="my-2 pb-5 text-center text-success">My wishlist</h1>
+				<h3>{{isEmpty}}</h3>
 				<div class="table-responsive">
 					<table class="table mx-auto table-borderless">
 						<thead class="">
@@ -15,12 +16,12 @@
 							</tr>
 						</thead>
 						<tbody>
-						{{!-- {{#each products}} --}}
+						{{#each wishlist}}
 						<tr class="mt-4">
 							<th class="img-product align-middle">
 								<img src={{this.image}} alt="" class="mCS_img_loaded">
 							</th>
-							<td class="align-middle text-center">{{this.product}}</td>
+							<td class="align-middle text-center">{{this.title}}</td>
 							<td class="align-middle text-center">${{this.price}}</td>
 							{{#if this.inStock}}
 							<td class="align-middle text-center"><span class="in-stock-box py-2">In Stock</span></td>
@@ -29,13 +30,12 @@
 							{{/if}}
 							<td class="align-middle text-center">
 								<div  class="d-flex align-items-center justify-content-center">
-									<span class="mx-2"><a class="round-black-btn small-btn text-white py-2">Add to Cart</a></span>
-								<span class="mx-2"><a href="#"><i class="fas fa-trash"></i></a></span>
+									<span class="mx-2"><a href="/cart/add-to-cart/{{this._id}}"class="round-black-btn small-btn text-white py-2">Add to Cart</a></span>
+								<span class="mx-2"><a href="/user/remove-from-wishlist/{{this._id}}"><i class="fas fa-trash"></i></a></span>
 								</div>
-								
 							</td>
 						</tr>
-						{{!-- {{/each}} --}}
+						{{/each}}
 						</tbody>
 					</table>
 				</div>

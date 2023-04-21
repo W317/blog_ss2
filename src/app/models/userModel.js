@@ -37,11 +37,11 @@ const userSchema = mongoose.Schema({
     type: String,
     required: false
   },
-  username: {
-    type: String,
-    required: false,
-    unique: true
-  },
+  // username: {
+  //   type: String,
+  //   required: false,
+  //   unique: true
+  // },
   dayJoined: {
     type: Date,
     default: Date.now

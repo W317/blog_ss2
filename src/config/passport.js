@@ -58,7 +58,7 @@ passport.use(
           newUser.password = newUser.encryptPassword(password)
           newUser.address = ""
           newUser.phone = ""
-          newUser.username = ""
+          // newUser.username = ""
           newUser.image = "/img/user_default.png"
           newUser.dayJoined = new Date()
 
