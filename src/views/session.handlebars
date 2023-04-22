@@ -9,25 +9,46 @@
         </div>
       </div>
     </div>
-    <h2>Order of <span> #{{order._id}}</span></h2> 
-    <p>Username: {{user.name}}</p>
-    <p>Email: {{user.email}}</p>
-    <p>Address: {{order.address}}</p>
-    <p>Phone: {{order.phone}}</p>
-    <div class="table-responsive">
-      <table class="table">
-        <thead class="thead-dark">
+    {{user}}
+  <h1>My Order <span> {{order._id}}</span></h1>
+  <p>Username: {{user.name}}</p>
+  <p>Email: {{user.email}}</p>
+  <p>Address: {{order.address}}</p>
+  <p>Phone: {{order.phone}}</p>
+
+  <div>
+    
+    {{#each order.cart.items}}
+    <div>
+      <div class="product-item d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+        <div class="d-flex flex-row align-items-center">
+          <img class="rounded" src="{{this.item.image}}" width="75">
+        </div>
+        <div class="left-group flex-row flex-grow-1 align-items-center">
+          <div class="ml-2"><span class="font-weight-bold d-block">{{this.item.title}}</span><span class="spec">
+          </div>
+          <div class="edit-price d-flex">
+            <span class="d-block">Quantity: {{this.qty}}</span>
+            <span class="d-block ml-5 font-weight-bold">Price: ${{this.item.price}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+    
+  </div>
+    <div class="table-responsive my-4 mx-auto">
+      <table class="table table-borderless">
+        <thead>
           <tr>
-            <th scope="col">
-              <span class="custom-checkbox pl-3">
-                <input class="m-0" type="checkbox" id="selectAll">
-              </span>
+            <th scope="col" class="text-danger text-center">
+              Image
             </th>
-            <th scope="col">ID</th>
-            <th scope="col">User ID</th>
-            <th scope="col">Status</th>
-            <th scope="col">Address</th>
-            <th scope="col">Payment ID</th>
+            <th scope="col" class="text-danger text-center">ID</th>
+            <th scope="col" class="text-danger text-center">User ID</th>
+            <th scope="col" class="text-danger text-center">Status</th>
+            <th scope="col" class="text-danger text-center">Address</th>
+            <th scope="col" class="text-danger text-center">Payment ID</th>
           </tr>
         </thead>
         <tbody>
@@ -35,10 +56,7 @@
           {{#each this}}
           <tr>
             <th>
-              <span class="custom-checkbox">
-                <input type="checkbox" id="selectAll">
-                <label for="selectAll"></label>
-              </span>
+              <img src={{this.image}} alt="" class="mCS_img_loaded">
             </th>
             <td><a href="/admin/order/{{this._id}}">{{this._id}}</a></td>
             <td>{{this.user}}</td>
@@ -75,7 +93,10 @@
       </ul>
     </nav>
   </section>
-  {{order}}
+
+  <h3 class="text-right">Items:</h3>
+  <p class="text-right">Total: ${{order.cart.totalPrice}}</p>
+
 
   {{!-- <div class="row">
     <div class="container py-5 h-100">
@@ -129,34 +150,4 @@
       </div>
     </div>
   </div> --}}
-
-
-  {{user}}
-  <h1>My Order <span> {{order._id}}</span></h1>
-  <p>Username: {{user.name}}</p>
-  <p>Email: {{user.email}}</p>
-  <p>Address: {{order.address}}</p>
-  <p>Phone: {{order.phone}}</p>
-
-  <div>
-    <h3>Items:</h3>
-    {{#each order.cart.items}}
-    <div>
-      <div class="product-item d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-        <div class="d-flex flex-row align-items-center">
-          <img class="rounded" src="{{this.item.image}}" width="75">
-        </div>
-        <div class="left-group flex-row flex-grow-1 align-items-center">
-          <div class="ml-2"><span class="font-weight-bold d-block">{{this.item.title}}</span><span class="spec">
-          </div>
-          <div class="edit-price d-flex">
-            <span class="d-block">Quantity: {{this.qty}}</span>
-            <span class="d-block ml-5 font-weight-bold">Price: ${{this.item.price}}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    {{/each}}
-    <p>Total: ${{order.cart.totalPrice}}</p>
-  </div>
 </div>
