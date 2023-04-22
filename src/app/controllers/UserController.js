@@ -73,21 +73,17 @@ const updateUser = asyncHandler(async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
+    let imagePath = user.image; // set the image path to the old image by default
+
     // Check if a new file was uploaded
     if (req.file) {
-      // Get the full path to the img directory
-      const filePath = path.join(__dirname, '/public', req.body.old_image);
-
-      fs.unlinkSync(filePath);
-
-
-      // If a new file was uploaded, delete the old image
-      const imagePath = req.file ? `/img/${req.file.filename}` : "";
-      // Update the user's image with the new file
-      user.image = imagePath;
-      console.log('this is ' + user.image)
-      await user.save();
+      // If a new file was uploaded, update the image path with the new file
+      imagePath = `/img/${req.file.filename}`;
     }
+
+    // Update the user's image
+    user.image = imagePath;
+    await user.save();
 
     res.status(302).redirect("/pages/user/profile");
   } catch (error) {
