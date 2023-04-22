@@ -30,24 +30,16 @@
           <span>${{product.price}}</span>
         </div>
         <div class="product-content-right-product-color">
-          <p style="font-weight: bold;">Color</p>
-          <div class="color">
-            <span>GLow Matte</span>
-            <span>Slim Glow</span>
-            <span>Slim Velvet</span>
-            <span>Laurent Rouge</span>
-            <span>Slim Sheer</span>
-          </div>
+          
           <div class="quantity">
             <p style="font-weight: bold;">Qty</p>
             <div class="container-group-button">
-              <button class="quantity-button minus-quantity"><i class="fa-solid fa-minus"></i></button>
-              <input class="quantity-button quantity-input" type="text" min="0" value="1"></input>
-              <button class="quantity-button plus-quantity"><i class="fa-solid fa-plus"></i></button>
+              <button onclick="decreaseValue()" class="quantity-button minus-quantity"><i class="fa-solid fa-minus"></i></button>
+              <input id="Quantity" class="quantity-button quantity-input" type="text" min="0" value="1"></input>
+              <button onclick="increaseValue()" class="quantity-button plus-quantity"><i class="fa-solid fa-plus"></i></button>
             </div>
 
           </div>
-          <p style="color:red"> Please choose color * </p>
           <div class="product-content-right-product-buying">
             <button> <a href="/cart/add-to-cart/{{this._id}}" class="cart-quantity">Add to cart</a></button>
             <i class="fa-regular fa-heart" style="font-size:25px;"></i>
@@ -109,6 +101,22 @@
       </div>
     </div>
     <script>
+      //tang giam so luong
+      function increaseValue() {
+        var value = document.getElementById("Quantity").value;
+        value = isNaN(value) ? 0 : value;
+        value++;
+        document.getElementById('Quantity').value = value;
+      }
+
+      function decreaseValue() {
+        
+        var value = document.getElementById("Quantity").value;
+        value = isNaN(value) ? 0 : value;
+        value < 1 ? value = 1 : '';
+        value--;
+        document.getElementById('Quantity').value = value;
+      }
 
       const bigImg = document.querySelector(".product-content-left-big-img img")
       const smallImg = document.querySelectorAll(".product-content-left-small-img img")
