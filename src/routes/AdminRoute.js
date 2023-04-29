@@ -44,7 +44,7 @@ router.get('/category/create', isLoggedIn, isAdmin, createCategoryView)
 router.post('/category/create', isLoggedIn, isAdmin, createCategory)
 router.get('/category/edit/:id', isLoggedIn, isAdmin, getCateDetail)
 router.post('/category/edit/:id', isLoggedIn, isAdmin, updateCateDetail)
-router.get('/category/delete/:id', isLoggedIn, isAdmin, deleteCateDetail)
+router.delete('/category/delete/:id', isLoggedIn, isAdmin, deleteCateDetail)
 
 
 // USER ADMIN
