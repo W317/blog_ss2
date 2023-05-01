@@ -138,7 +138,7 @@ const getOneProduct = asyncHandler(async (req, res) => {
     }
     res.render(path.join(__dirname + "/src/views/single-product.handlebars"), {
       layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-      product: product,
+      product: {...product, _id: product?._id.toString()},
     });
   } catch (error) {
     console.error(error);

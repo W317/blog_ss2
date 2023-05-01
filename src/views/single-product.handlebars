@@ -18,7 +18,7 @@
           <img src="/img/son-ysl-10-1.jpg">
           <img src="/img/son-10-ysl-the-slim.jpg">
           <img src="/img/son-yves-sain-laurent-the-slim-sheer-matte-orchard.vn-2.jpg">
-          
+
         </div>
       </div>
       <div class="product-content-right">
@@ -30,19 +30,21 @@
           <span>${{product.price}}</span>
         </div>
         <div class="product-content-right-product-color">
-          
+
           <div class="quantity">
             <p style="font-weight: bold;">Qty</p>
             <div class="container-group-button">
-              <button onclick="decreaseValue()" class="quantity-button minus-quantity"><i class="fa-solid fa-minus"></i></button>
+              <button onclick="decreaseValue()" class="quantity-button minus-quantity"><i
+                  class="fa-solid fa-minus"></i></button>
               <input id="Quantity" class="quantity-button quantity-input" type="text" min="0" value="1"></input>
-              <button onclick="increaseValue()" class="quantity-button plus-quantity"><i class="fa-solid fa-plus"></i></button>
+              <button onclick="increaseValue()" class="quantity-button plus-quantity"><i
+                  class="fa-solid fa-plus"></i></button>
             </div>
 
           </div>
           <div class="product-content-right-product-buying">
-            <button> <a href="/cart/add-to-cart/{{this._id}}" class="cart-quantity">Add to cart</a></button>
-            <i class="fa-regular fa-heart" style="font-size:25px;"></i>
+            <button><a href="/cart/add-to-cart/{{product._id}}" class="cart-quantity">Add to cart</a></button>
+            <a href="/user/add-to-wishlist/{{product._id}}"><i class="fa-regular fa-heart" style="font-size:25px;"></i></a>
           </div>
           <div class="product-content-right-bottom">
             <div class="product-content-right-bottom-top">
@@ -110,7 +112,7 @@
       }
 
       function decreaseValue() {
-        
+
         var value = document.getElementById("Quantity").value;
         value = isNaN(value) ? 0 : value;
         value < 1 ? value = 1 : '';
@@ -286,7 +288,7 @@
         border-left: none;
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
-        width:35px;
+        width: 35px;
       }
 
       .quantity-button {
@@ -360,7 +362,7 @@
         display: flex;
         border-bottom: 2px solid #dddddd;
         font-size: 15px;
-      
+
       }
 
       .product-content-right-bottom-content-title-item {

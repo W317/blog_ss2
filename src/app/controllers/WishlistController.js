@@ -22,7 +22,7 @@ const addToWishlist = asyncHandler(async (req, res) => {
     const product = await Product.findById(wishlistPro);
     const wishlist = await Wishlist.findOne({ user: user });
 
-    if (wishlist) {
+    if (wishlist !== null) {
       wishlist.wishlist.forEach((item) => {
         if (item.title !== product.title) {
           wishlist.wishlist = [...wishlist.wishlist, product];
@@ -33,7 +33,7 @@ const addToWishlist = asyncHandler(async (req, res) => {
     } else {
       const newWishlist = await Wishlist.create({
         user: user,
-        wishlist: [...wishlist.wishlist, product],
+        wishlist: [product],
       });
 
       await newWishlist.save();
