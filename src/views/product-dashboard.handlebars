@@ -8,25 +8,12 @@
         <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
           <a href="/admin/product-admin/create" class="btn btn-success mx-2" data-toggle="modal">
 		  <i class="fas fa-plus-circle"></i> <span>Add New Product</span> </a>
-          <a href="/admin/blog-admin/delete/{{id}}" class="btn btn-danger delete" data-bs-id="{{_id}}" data-bs-toggle="modal"
-         data-bs-target="#delete-modal">
+          <a href="/admin/product-admin/delete-multiple" class="btn btn-danger delete" id="btn-delete-selected"  data-bs-id="{{_id}}" data-bs-toggle="modal">
 		  <i class="fas fa-minus-circle"></i> <span>Delete</span></a>
         </div>
       </div>
     </div>
-  {{!-- <div class="table-title">
-    <div class="row">
-      <div class="col-sm-6 p-0 d-flex justify-content-lg-start justify-content-center">
-        <h2 class="ml-lg-2">Manage Products</h2>
-      </div>
-      <div class="col-sm-6 p-0 d-flex justify-content-lg-end justify-content-center">
-        <a href="/admin/product" class="btn btn-success" data-toggle="modal">
-          <i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
-        <a href="#deleteProduct" class="btn btn-danger" data-toggle="modal">
-          <i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
-      </div>
-    </div>
-  </div> --}}
+
   <div class="table-responsive" .>
     <table class="table">
       <thead class="thead-dark">
@@ -48,7 +35,7 @@
         <tr>
           <th>
             <span class="custom-checkbox pl-3">
-              <input class="m-0" type="checkbox" name="foo">
+                <input class="m-0" type="checkbox" id="checkbox1" name="ids[]" value="{{_id}}">
             </span>
           </th>
           <td>{{_id}}</td>
@@ -251,4 +238,34 @@
     deleteForm.action = '/admin/product-admin/delete/' + deleteId + '?_method=DELETE';
     deleteForm.submit();
   }
+
+
+
+  // detele multiple product
+  const btnDeleteSelected = document.getElementById('btn-delete-selected');
+  btnDeleteSelected.onclick = function () {
+  const checkboxes = document.getElementsByName('ids[]');
+  const selectedIds = [];
+  checkboxes.forEach(checkbox => {
+    if (checkbox.checked) {
+      selectedIds.push(checkbox.value);
+    }
+  });
+  if (selectedIds.length === 0) {
+    alert('Please select at least one product to delete.');
+  } else {
+    if (confirm('Are you sure you want to delete the selected product?')) {
+      const deleteForm = document.forms['delete-form'];
+      deleteForm.action = '/admin/product-admin/delete-multiple?_method=DELETE';
+      selectedIds.forEach(id => {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', 'ids[]');
+        input.setAttribute('value', id);
+        deleteForm.appendChild(input);
+      });
+      deleteForm.submit();
+    }
+  }
+};
 </script>

@@ -126,11 +126,11 @@ app.use("/admin/order-admin", (req, res) => {
 // });
 
 // add dashboard
-app.use("/admin/dashboard", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/dashboard.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
-  });
-});
+// app.use("/admin/dashboard", (req, res) => {
+//   res.render(path.join(__dirname + "/src/views/dashboard.handlebars"), {
+//     layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
+//   });
+// });
 
 
 //add analytics admin

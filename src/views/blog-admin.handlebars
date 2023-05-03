@@ -7,25 +7,12 @@
       <div class="col-sm-12 col-md-12 col-lg-12 p-0 d-flex justify-content-center">
         <a href="/admin/blog-admin/create" class="btn btn-success mx-2" data-toggle="modal">
           <i class="fas fa-plus-circle"></i> <span>Add New Blog</span></a>
-        <a href="/admin/blog-admin/delete/{{id}}" class="btn btn-danger delete" data-bs-id="{{_id}}" data-bs-toggle="modal"
-         data-bs-target="#delete-modal">
+        <a href="/admin/blog-admin/delete-multiple" class="btn btn-danger delete " id="btn-delete-selected"  data-bs-id="{{_id}}" data-bs-toggle="modal">
           <i class="fas fa-minus-circle"></i> <span>Delete</span></a>
       </div>
     </div>
   </div>
-  {{!-- <div class="table-title">
-    <div class="row">
-      <div class="col-sm-6 p-0 d-flex justify-content-lg-start justify-content-center">
-        <h2 class="ml-lg-2">Manage Posts</h2>
-      </div>
-      <div class="col-sm-6 p-0 d-flex justify-content-lg-end justify-content-center">
-        <a href="/admin/blog" class="btn btn-success" data-toggle="modal">
-          <i class="material-icons">&#xE147;</i> <span>Add New Post</span></a>
-        <a href="#deletePost" class="btn btn-danger" data-toggle="modal">
-          <i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
-      </div>
-    </div>
-  </div> --}}
+
   <div class="table-responsive">
     <table class="table">
       <thead class="thead-dark">
@@ -47,7 +34,7 @@
         <tr>
           <th>
             <span class="custom-checkbox pl-3">
-              <input class="m-0" type="checkbox" id="checkbox1" name="foo" value={{sum @index 1}}>
+              <input class="m-0" type="checkbox" id="checkbox1" name="ids[]" value="{{_id}}">
             </span>
           </th>
           <td>{{sum @index 1}}</td>
@@ -55,9 +42,8 @@
           <td>{{author}}</td>
           <td>{{href}}</td>
           <td>
-            <a href="/admin/blog-admin/edit/{{_id}}" class="edit" data-bs-id="{{_id}}" data-bs-toggle="modal"
-              data-bs-target="#edit-modal">
-	          <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+            <a href="/admin/blog-admin/edit/{{_id}}" class="edit" data-toggle="modal">
+              <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
             </a>
             <a href="admin/blog-admin/delete/{{_id}}" class="delete" data-bs-id="{{_id}}" data-bs-toggle="modal"
               data-bs-target="#delete-modal">
@@ -96,68 +82,6 @@
 </div>
 
 
-{{!-- confirm edit --}}
-<div id="edit-modal" class="modal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Edit Post </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-		    <label>Title</label>
-			<input type="text" class="form-control" required>
-		</div>
-		<div class="form-group">
-		    <label>Author</label>
-			<input type="text" class="form-control" required>
-		</div>
-    <div class="form-group">
-		    <label>Blog</label>
-			<input type="text" class="form-control" required>
-		</div>
-    <div class="form-group">
-		    <label>Image</label>
-			<input type="file" class="form-control" required>
-		</div>
-		<div class="form-group">
-		    <label>Link</label>
-			<textarea class="form-control" required></textarea>
-		</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger" id="btn-edit">Save</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-{{!-- form hidden for editing --}}
-<form method="post" name="edit-form"></form>
-
-<script>
-  const editModal = document.getElementById('edit-modal');
-  const editForm = document.forms['edit-form'];
-  let editId;
-  if (editModal) {
-      editModal.addEventListener('show.bs.modal', event => {
-      // Button that triggered the modal
-      const button = event.relatedTarget
-      // Extract info from data-bs-* attributes
-      editId = button.getAttribute('data-bs-id')
-    })
-  }
-
-  const btnEdit = document.getElementById('btn-edit');
-  btnEdit.onclick = function () {
-    editForm.action = '/admin/blog-admin/edit/' + editId + '?_method=PUT';
-    editForm.submit();
-  }
-</script>
-
-
 {{!-- confirm delete --}}
 <div id="delete-modal" class="modal" tabindex="-1">
   <div class="modal-dialog">
@@ -182,7 +106,7 @@
 
 <script>
   function toggle(source) {
-    checkboxes = document.getElementsByName('foo');
+    checkboxes = document.getElementsByName('ids[]');
     for(var i=0, n=checkboxes.length;i<n;i++) {
       checkboxes[i].checked = source.checked;
     }
@@ -198,10 +122,40 @@
       deleteId = button.getAttribute('data-bs-id')
     })
   }
-
   const btnDelete = document.getElementById('btn-delete');
   btnDelete.onclick = function () {
     deleteForm.action = '/admin/blog-admin/delete/' + deleteId + '?_method=DELETE';
     deleteForm.submit();
   }
+
+// detele multiple blog
+  const btnDeleteSelected = document.getElementById('btn-delete-selected');
+  btnDeleteSelected.onclick = function () {
+  const checkboxes = document.getElementsByName('ids[]');
+  const selectedIds = [];
+  checkboxes.forEach(checkbox => {
+    if (checkbox.checked) {
+      selectedIds.push(checkbox.value);
+    }
+  });
+  if (selectedIds.length === 0) {
+    alert('Please select at least one blog to delete.');
+  } else {
+    if (confirm('Are you sure you want to delete the selected blogs?')) {
+      const deleteForm = document.forms['delete-form'];
+      deleteForm.action = '/admin/blog-admin/delete-multiple?_method=DELETE';
+      selectedIds.forEach(id => {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', 'ids[]');
+        input.setAttribute('value', id);
+        deleteForm.appendChild(input);
+      });
+      deleteForm.submit();
+    }
+  }
+};
+
 </script>
+
+

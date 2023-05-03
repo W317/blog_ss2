@@ -169,7 +169,6 @@ const updateProduct = asyncHandler(async (req, res) => {
       const imagePath = req.file ? `/img/${req.file.filename}` : "";
       // Update the product's image with the new file
       product.image = imagePath;
-      console.log('this is ' + product.image)
       await product.save();
     }
 
@@ -193,10 +192,28 @@ const deleteProduct = asyncHandler(async (req, res) => {
   }
 });
 
+const deleteManyProduct = asyncHandler(async (req, res) => {
+  try {
+    const ids = req.body['ids[]'];
+    if (!ids) {
+      return res.status(400).json({ message: "Bad Request" });
+    }
+    const result = await Product.deleteMany({ _id: { $in: ids } });
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "Products not found" });
+    }
+    res.status(204).redirect('back');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 export {
   createProduct,
   getProducts,
   getOneProduct,
   updateProduct,
   deleteProduct,
+  deleteManyProduct
 };

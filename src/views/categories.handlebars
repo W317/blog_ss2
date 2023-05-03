@@ -8,8 +8,7 @@
         <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
           <a href="/admin/category/create" class="btn btn-success mx-2" data-toggle="modal">
 		  <i class="fas fa-plus-circle"></i> <span>Add New Cate</span> </a>
-          <a href="/admin/category/delete/{{id}}" class="btn btn-danger delete" data-bs-id="{{_id}}" data-bs-toggle="modal"
-         data-bs-target="#delete-modal">
+          <a href="/admin/category/delete-multiple" class="btn btn-danger delete" data-bs-id="{{_id}}" id="btn-delete-selected" data-bs-toggle="modal">
 		  <i class="fas fa-minus-circle"></i> <span>Delete</span></a>
         </div>
       </div>
@@ -34,7 +33,7 @@
         <tr>
           <th>
             <span class="custom-checkbox pl-3">
-              <input class="m-0" type="checkbox" id="checkbox1" name="foo" value={{sum @index 1}}>
+              <input class="m-0" type="checkbox" id="checkbox1" name="ids[]" value="{{_id}}">
             </span>
           </th>
           <td>{{sum @index 1}}</td>
@@ -128,6 +127,36 @@
     deleteForm.action = '/admin/category/delete/' + deleteId + '?_method=DELETE';
     deleteForm.submit();
   }
+
+
+  // detele multiple category
+  const btnDeleteSelected = document.getElementById('btn-delete-selected');
+  btnDeleteSelected.onclick = function () {
+  const checkboxes = document.getElementsByName('ids[]');
+  const selectedIds = [];
+  checkboxes.forEach(checkbox => {
+    if (checkbox.checked) {
+      selectedIds.push(checkbox.value);
+    }
+  });
+  if (selectedIds.length === 0) {
+    alert('Please select at least one category to delete.');
+  } else {
+    if (confirm('Are you sure you want to delete the selected category?')) {
+      const deleteForm = document.forms['delete-form'];
+      deleteForm.action = '/admin/category/delete-multiple?_method=DELETE';
+      selectedIds.forEach(id => {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', 'ids[]');
+        input.setAttribute('value', id);
+        deleteForm.appendChild(input);
+      });
+      deleteForm.submit();
+    }
+  }
+};
+
 </script>
 
 

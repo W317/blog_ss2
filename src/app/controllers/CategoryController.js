@@ -165,11 +165,29 @@ const deleteCateDetail = asyncHandler(async (req, res) => {
   }
 })
 
+const deleteManyCate = asyncHandler(async (req, res) => {
+  try {
+    const ids = req.body['ids[]'];
+    if (!ids) {
+      return res.status(400).json({ message: "Bad Request" });
+    }
+    const result = await CategoryModel.deleteMany({ _id: { $in: ids } });
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "Categorys not found" });
+    }
+    res.status(204).redirect('back');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 export {
   getAllCategory,
   createCategory,
   createCategoryView,
   getCateDetail,
   updateCateDetail,
-  deleteCateDetail
+  deleteCateDetail,
+  deleteManyCate
 };
