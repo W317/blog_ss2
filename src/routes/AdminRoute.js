@@ -6,7 +6,7 @@ import { getAllProducts, getEditProduct, getAllUser, getAllBlogs } from '../app/
 import { createBlog, deleteBlog, updateBlog, getEditBlog } from '../app/controllers/BlogController.js';
 import Product from '../app/models/productModel.js';
 import { deleteUser } from '../app/controllers/UserController.js';
-import { getAllOrders, getOrderDetails } from '../app/controllers/OrderController.js';
+import { deleteOrder, getAllOrders, getOrderDetails, updateOrderDetails } from '../app/controllers/OrderController.js';
 import { isAdmin, isLoggedIn } from './cartRoute.js';
 import { createCategory, createCategoryView, deleteCateDetail, getAllCategory, getCateDetail, updateCateDetail } from '../app/controllers/CategoryController.js';
 import CategoryModel from '../app/models/categoryModel.js';
@@ -36,6 +36,10 @@ router.delete('/blog-admin/delete/:id', deleteBlog);
 router.get('/order',isLoggedIn, isAdmin, getAllOrders)
 
 router.get('/order/:id', isLoggedIn, isAdmin, getOrderDetails)
+
+router.post('/order/:id', isLoggedIn, isAdmin, updateOrderDetails)
+
+router.get('/order/:id/delete', isLoggedIn, isAdmin, deleteOrder)
 
 
 // CATEGORY

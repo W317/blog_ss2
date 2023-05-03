@@ -108,16 +108,22 @@ router.post('/checkout', isLoggedIn, (req, res, next) => {
           req.flash('error', err.message);
           return res.redirect('/checkout');
       }
-      console.log("=============================================");
-      console.log('req.user: ', req.user);
-      console.log('cart: ', cart);
-      console.log('address: ', req.body.address);
-      console.log('name: ', req.body.name);
-      console.log('paymentId: ', charge.id);
+      // console.log("=============================================");
+      // console.log('req.user: ', req.user);
+      // console.log('cart: ', cart);
+      // console.log('address: ', req.body.address);
+      // console.log('name: ', req.body.name);
+      // console.log('paymentId: ', charge.id);
+
+      const changedCart = Object.keys(cart?.items)?.map((item) => cart?.items?.[item])
 
       const order = new Order({
           user: req.user,
-          cart: cart,
+          cart: {
+            items: changedCart,
+            totalPrice: cart?.totalPrice,
+            totalQty: cart?.totalQty
+          },
           phone: req.body.phone,
           address: req.body.address,
           name: req.body.name,
