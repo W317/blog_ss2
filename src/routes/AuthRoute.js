@@ -3,8 +3,7 @@ import passport from "passport";
 import csurf from "csurf";
 import path from "path";
 import userModel from "../app/models/userModel.js";
-import asyncHandler from "express-async-handler";
-import bcrypt from "bcrypt-nodejs";
+import { getEmail, handleSendEmail, getResetPassword, handleUpdatePassword } from "../app/controllers/PasswordController.js";
 
 const __dirname = path.resolve();
 
@@ -108,5 +107,10 @@ router.post(
     }
   }
 );
+
+router.get('/reset-password', getEmail)
+router.post('/reset-password', handleSendEmail)
+router.get('/reset-password/:token', getResetPassword)
+router.post('/reset-password/:token', handleUpdatePassword)
 
 export default router;

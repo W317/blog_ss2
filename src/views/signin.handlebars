@@ -8,19 +8,23 @@
             {{/each}}
         </div>
         {{/if}}
-         
+
         <form action="/user/signin" method="post">
             <div class="form-group">
                 <label for="email">E-Mail</label>
-                <input type="text" id="email" name="email"  placeholder="your email" title="enter your email" class="form-control">
-                
+                <input type="text" id="email" name="email" placeholder="your email" title="enter your email"
+                    class="form-control">
+
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder=" your password" title="enter your password." class="form-control">
+                <input type="password" id="password" name="password" placeholder=" your password"
+                    title="enter your password." class="form-control">
             </div>
-            <div class="pass">Forgot Password?</div>
+            <div class="pass">
+                <a href="/user/reset-password">Forgot Password?</a>
+            </div>
             <input type="hidden" name="_csrf" value="{{ csrfToken }}">
             <button type="submit" class="btn btn-primary">Sign In</button>
         </form>
