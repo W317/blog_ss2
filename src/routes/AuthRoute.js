@@ -3,8 +3,8 @@ import passport from "passport";
 import csurf from "csurf";
 import path from "path";
 import userModel from "../app/models/userModel.js";
-import asyncHandler from 'express-async-handler';
-import bcrypt from 'bcrypt-nodejs';
+import asyncHandler from "express-async-handler";
+import bcrypt from "bcrypt-nodejs";
 
 const __dirname = path.resolve();
 
@@ -27,13 +27,12 @@ router.get("/signup", (req, res, next) => {
 router.get("/logout", (req, res, next) => {
   let messages = req.flash("error");
   req.logOut({}, (err) => {
-    if(err) {
-      return
+    if (err) {
+      return;
     }
-    res.redirect("/")
-  })
-
-})
+    res.redirect("/");
+  });
+});
 
 // const checkConfirmPass = async (req, res, next) => {
 //   try {
@@ -52,8 +51,8 @@ router.get("/logout", (req, res, next) => {
 // }
 
 router.post(
-  '/signup',
-  passport.authenticate('local.signup', {
+  "/signup",
+  passport.authenticate("local.signup", {
     failureRedirect: "/user/signup",
     failureFlash: true,
   }),
@@ -71,14 +70,12 @@ router.post(
 router.get("/logout", (req, res, next) => {
   let messages = req.flash("error");
   req.logOut({}, (err) => {
-    if(err) {
-      return
+    if (err) {
+      return;
     }
-    res.redirect("/")
-  })
-
-})
-
+    res.redirect("/");
+  });
+});
 
 router.get("/signin", (req, res, next) => {
   let messages = req.flash("error");
@@ -96,13 +93,18 @@ router.post(
     failureRedirect: "/user/signin",
     failureFlash: true,
   }),
-  (req, res, next) => {
+  async (req, res, next) => {
     if (req.session.oldUrl) {
       let oldUrl = req.session.oldUrl;
       req.session.oldUrl = null;
       res.redirect(oldUrl);
     } else {
-      res.redirect("/");
+      const user = await userModel.findById(req?.session?.passport?.user);
+      if (user && user?.isAdmin) {
+        res?.redirect("/admin/dashboard");
+      } else {
+        res.redirect("/");
+      }
     }
   }
 );

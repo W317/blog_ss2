@@ -37,11 +37,10 @@ const getUserOrders = asyncHandler(async (req, res) => {
 const getOrderDetails = asyncHandler(async (req, res) => {
   try {
     const order = await Order.findById(req.params.id).lean();
-    const user = await userModel.findById(order.user).lean();
+    const user = await userModel.findById(req?.session?.passport?.user).lean();
     if (!order) {
       res.redirect("/admin/order");
     }
-    console.log(order?.cart[0]?.items);
     res.render(path.join(__dirname + "/src/views/orderDetail.handlebars"), {
       order: order,
       user: user,
@@ -57,7 +56,7 @@ const getOrderDetails = asyncHandler(async (req, res) => {
 const updateOrderDetails = asyncHandler(async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
-    const user = await userModel.findById(order.user);
+    const user = await userModel.findById(req?.session?.passport?.user);
     if (!order) {
       res.redirect("/admin/order");
     }

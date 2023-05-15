@@ -111,11 +111,11 @@ app.use("/admin/stat", (req, res) => {
 });
 
 // add order
-app.use("/admin/order-admin", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/order-admin.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
-  });
-});
+// app.use("/admin/order-admin", (req, res) => {
+//   res.render(path.join(__dirname + "/src/views/order-admin.handlebars"), {
+//     layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
+//   });
+// });
 
 
 // add order
