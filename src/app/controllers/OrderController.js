@@ -1,5 +1,6 @@
 import Product from "../models/productModel.js";
 import asyncHandler from "express-async-handler";
+import { multipleMongooseToObject } from "../../util/mongoose.js";
 
 import path from "path";
 import Order from "../models/orderModel.js";
@@ -8,13 +9,10 @@ import userModel from "../models/userModel.js";
 const __dirname = path.resolve();
 const getAllOrders = asyncHandler(async (req, res) => {
   try {
-    // const user = await userModel.findById(req.session?.passport.user)
-
-    const orders = await Order?.find({});
-    // const orders = await Order?.find({user: user?._id})
+    const orders = await Order?.find();
     res.render(path.join(__dirname + "/src/views/session.handlebars"), {
-      orders: orders,
-      layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+      orders: multipleMongooseToObject(orders),
+      layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
     });
   } catch (err) {
     res.redirect("/");
