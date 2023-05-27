@@ -107,7 +107,26 @@ const getProducts = asyncHandler(async (req, res) => {
   }
 });
 
-const listImage = ["/img/ysl3.jpg"];
+
+const getProductData = asyncHandler(async (req, res) => {
+  try {
+    const productAll = await Product.find({})
+    const category = await CategoryModel.find({})
+
+    if(!productAll) {
+      res.status(404).json({
+        message: "Not Found!"
+      })
+    }
+
+    res.status(200).json({
+      product: productAll,
+      categories: category
+    });
+  } catch (err) {
+    res.status(500).json({message: "Something went wrong!"});
+  }
+})
 
 const createProduct = asyncHandler(async (req, res) => {
   try {
@@ -215,5 +234,6 @@ export {
   getOneProduct,
   updateProduct,
   deleteProduct,
-  deleteManyProduct
+  deleteManyProduct,
+  getProductData
 };
