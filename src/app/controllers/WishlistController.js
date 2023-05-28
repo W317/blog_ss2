@@ -23,20 +23,13 @@ const addToWishlist = asyncHandler(async (req, res) => {
     const wishlist = await Wishlist.findOne({ user: user });
 
     if (wishlist !== null) {
-      wishlist.wishlist.forEach((item) => {
-        if (item.title !== product.title) {
-          wishlist.wishlist = [...wishlist.wishlist, product];
-        }
-      });
-
-      await wishlist.save();
+      wishlist.wishlist.push(product);
+      await Wishlist.findByIdAndUpdate(wishlist._id, wishlist);
     } else {
       const newWishlist = await Wishlist.create({
         user: user,
         wishlist: [product],
       });
-
-      await newWishlist.save();
     }
 
     res.redirect("/user/wishlist");
