@@ -4,15 +4,31 @@ import path from "path";
 import Product from "../models/productModel.js";
 const __dirname = path.resolve();
 const getAllWishList = asyncHandler(async (req, res) => {
-  const user = req.session?.passport?.user;
-  const wishlist = await Wishlist.findOne({ user: user }).lean();
+  try {
+    const user = req.session?.passport?.user;
+    const wishlist = await Wishlist.findOne({ user: user }).lean();
 
-  res.render(path.join(__dirname + "/src/views/wishlist.handlebars"), {
-    wishlist: wishlist.wishlist,
-    isEmpty: wishlist.wishlist.length ? "" : "Your wishlist is empty",
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-  });
+    if (!wishlist) {
+      // Wishlist not found for the user
+      return res.render(path.join(__dirname + "/src/views/wishlist.handlebars"), {
+        wishlist: [],
+        isEmpty: "Your wishlist is empty",
+        layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+      });
+    }
+
+    res.render(path.join(__dirname + "/src/views/wishlist.handlebars"), {
+      wishlist: wishlist.wishlist,
+      isEmpty: wishlist.wishlist.length ? "" : "Your wishlist is empty",
+      layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+    });
+  } catch (error) {
+    console.error(error);
+    // Handle the error accordingly
+    res.status(500).send("Internal Server Error");
+  }
 });
+
 
 const addToWishlist = asyncHandler(async (req, res) => {
   try {

@@ -43,7 +43,7 @@
 
           </div>
           <div class="product-content-right-product-buying">
-            <button><a href="/cart/add-to-cart/{{product._id}}" class="cart-quantity">Add to cart</a></button>
+            <button onclick="addToCart()" style="color: black;">Add to cart</button>
             <a href="/user/add-to-wishlist/{{product._id}}"><i class="fa-regular fa-heart" style="font-size:25px;"></i></a>
           </div>
           <div class="product-content-right-bottom">
@@ -118,6 +118,14 @@
         value < 1 ? value = 1 : '';
         value--;
         document.getElementById('Quantity').value = value;
+      }
+
+      function addToCart (){
+        var value = document.getElementById("Quantity").value;
+        value = isNaN(value) ? 1 : value;
+        const hrefLink = window?.location?.pathname.split("/")
+        const productId = hrefLink[hrefLink?.length - 1]
+        window?.location?.assign(`/cart/add-to-cart/${productId}/${value}`)
       }
 
       const bigImg = document.querySelector(".product-content-left-big-img img")
@@ -328,13 +336,6 @@
         font-weight: bold;
       }
 
-      .product-content-right-product-buying button:hover {
-        background-color: black;
-      }
-
-      .product-content-right-product-buying button:hover a {
-        color: white;
-      }
 
       .product-content-right-bottom {
         padding-top: 40px;
