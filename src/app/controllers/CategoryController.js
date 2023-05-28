@@ -5,18 +5,68 @@ const __dirname = path.resolve();
 
 const getAllCategory = asyncHandler(async (req, res, next) => {
   try {
-    const categoryList = await CategoryModel.find({}).lean();
+    const PAGE_SIZE = 12;
+    let page = req.query.page;
+    //count total page
+    const totalData = await CategoryModel.countDocuments();
+
+    const totalPage = Math.ceil(totalData / PAGE_SIZE);
+
+    // if (page) {
+    if (page < 1) {
+      page = 1;
+    }
+    if (page > totalPage) {
+      page = totalPage
+    }
+    page = parseInt(page);
+    const skipData = (page - 1) * PAGE_SIZE;
+    const categoryList = await CategoryModel.find({}).lean()
+      .skip(skipData)
+      .limit(PAGE_SIZE);
+
+    const pages = [];
+    for (let i = 1; i < totalPage + 1; i++) {
+      pages.push(i);
+    }
+
+    // for button pre and next in pagination
+    let currentPage = parseInt(req.query.page)
+    if (!page) {
+      currentPage = 1
+    }
+    const hasPrev = currentPage > 1;
+    const prev = currentPage - 1;
+
+    const hasNext = currentPage < totalPage;
+    const next = currentPage + 1;
+
+    const isActive = (page) => {
+      return currentPage === page;
+    };
 
     res.render(path.join(__dirname + "/src/views/categories.handlebars"), {
       layout: path.join(
         __dirname + "/src/views/layout/admin-sidebar.handlebars"
       ),
       category: categoryList,
+      pages: pages.map((page) => ({
+        page,
+        active: isActive(page),
+      })),
+      currentPage,
+      hasPrev,
+      prev,
+      hasNext,
+      next
     });
   } catch (error) {
     console.log(error);
+    res.sendStatus(500);
   }
 });
+
+
 
 const createCategoryView = asyncHandler(async (req, res) => {
   try {
@@ -105,17 +155,32 @@ const updateCateDetail = asyncHandler(async (req, res) => {
 
 const deleteCateDetail = asyncHandler(async (req, res) => {
   try {
-    const cateDetail = await CategoryModel.findById(req.params.id)
-    if(!cateDetail) {
-      return
+    const cateDetail = await CategoryModel.findByIdAndDelete(req.params.id);
+    if (!cateDetail) {
+      return res.status(404).json({ message: "Product not found" });
     }
-
-    await cateDetail.remove()
-    res.redirect("/admin/category");
+    res.status(204).redirect("back");
   } catch (error) {
     console.log(error);
   }
 })
+
+const deleteManyCate = asyncHandler(async (req, res) => {
+  try {
+    const ids = req.body['ids[]'];
+    if (!ids) {
+      return res.status(400).json({ message: "Bad Request" });
+    }
+    const result = await CategoryModel.deleteMany({ _id: { $in: ids } });
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "Categorys not found" });
+    }
+    res.status(204).redirect('back');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
 
 export {
   getAllCategory,
@@ -123,5 +188,6 @@ export {
   createCategoryView,
   getCateDetail,
   updateCateDetail,
-  deleteCateDetail
+  deleteCateDetail,
+  deleteManyCate
 };

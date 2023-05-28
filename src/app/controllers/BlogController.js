@@ -1,6 +1,7 @@
 import BlogModel from "../models/blogModel.js";
 import asyncHandler from 'express-async-handler'
 import path from "path";
+import mongoose from "mongoose";
 
 const __dirname = path.resolve()
 
@@ -100,7 +101,7 @@ const createBlog = asyncHandler(async (req, res) => {
 const getEditBlog = asyncHandler(async (req, res) => {
   try {
       const blog = await BlogModel.findById(req.params.id).lean();
-      res.render(path.join(__dirname + "/src/views/blog-admin.handlebars"), {
+      res.render(path.join(__dirname + "/src/views/edit-blog.handlebars"), {
         layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
         blog : blog
       });
@@ -112,7 +113,6 @@ const getEditBlog = asyncHandler(async (req, res) => {
 
 const updateBlog = asyncHandler(async (req, res) => {
   try {
-    console.log(req.body);
     const blog = await BlogModel.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
@@ -134,7 +134,6 @@ const updateBlog = asyncHandler(async (req, res) => {
       const imagePath = req.file ? `/img/${req.file.filename}` : "";
       // Update the product's image with the new file
       blog.image = imagePath;
-      console.log('this is ' + blog.image)
       await product.save();
     }
 
@@ -158,4 +157,23 @@ const deleteBlog = asyncHandler(async (req, res) => {
   }
 })
 
-export { createBlog, getAllBlogs, deleteBlog, updateBlog, getEditBlog };
+const deleteManyBlog = asyncHandler(async (req, res) => {
+  try {
+    const ids = req.body['ids[]'];
+    if (!ids) {
+      return res.status(400).json({ message: "Bad Request" });
+    }
+    const result = await BlogModel.deleteMany({ _id: { $in: ids } });
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "Blogs not found" });
+    }
+    res.status(204).redirect('back');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
+
+
+export { createBlog, getAllBlogs, deleteBlog, updateBlog, getEditBlog, deleteManyBlog };

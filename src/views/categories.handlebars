@@ -8,8 +8,7 @@
         <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
           <a href="/admin/category/create" class="btn btn-success mx-2" data-toggle="modal">
 		  <i class="fas fa-plus-circle"></i> <span>Add New Cate</span> </a>
-          <a href="/admin/category/delete/{{id}}" class="btn btn-danger delete" data-bs-id="{{_id}}" data-bs-toggle="modal"
-         data-bs-target="#delete-modal">
+          <a href="/admin/category/delete-multiple" class="btn btn-danger delete" data-bs-id="{{_id}}" id="btn-delete-selected" data-bs-toggle="modal">
 		  <i class="fas fa-minus-circle"></i> <span>Delete</span></a>
         </div>
       </div>
@@ -24,26 +23,28 @@
               <input class="m-0" type="checkbox" id="selectAll" onclick="toggle(this)">
             </span>
           </th>
-          <th scope="col">ID</th>
+          <th scope="col">Number</th>
           <th scope="col">Category</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
-        {{#each products}}
+        {{#each category}}
         <tr>
           <th>
             <span class="custom-checkbox pl-3">
-              <input class="m-0" type="checkbox" name="foo">
+              <input class="m-0" type="checkbox" id="checkbox1" name="ids[]" value="{{_id}}">
             </span>
           </th>
-          <td>{{_id}}</td>
-          <td>{{category}}</td>
+          <td>{{sum @index 1}}</td>
+          <td>{{title}}</td>
           <td>
-            <a href="/admin/category/edit/{{_id}}">
-              <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+            <a href="/admin/category/edit/{{_id}}" class="edit" data-bs-id="{{_id}}" data-bs-toggle="modal"
+              data-bs-target="#edit-modal">
+	          <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
             </a>
-            <a href="/admin/category/delete/{{_id}}">
+            <a href="/admin/category/delete/{{_id}}" class="delete" data-bs-id="{{_id}}" data-bs-toggle="modal"
+              data-bs-target="#delete-modal">
               <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
             </a>
           </td>
@@ -123,9 +124,39 @@
 
   const btnDelete = document.getElementById('btn-delete');
   btnDelete.onclick = function () {
-    deleteForm.action = '/admin/product-admin/delete/' + deleteId + '?_method=DELETE';
+    deleteForm.action = '/admin/category/delete/' + deleteId + '?_method=DELETE';
     deleteForm.submit();
   }
+
+
+  // detele multiple category
+  const btnDeleteSelected = document.getElementById('btn-delete-selected');
+  btnDeleteSelected.onclick = function () {
+  const checkboxes = document.getElementsByName('ids[]');
+  const selectedIds = [];
+  checkboxes.forEach(checkbox => {
+    if (checkbox.checked) {
+      selectedIds.push(checkbox.value);
+    }
+  });
+  if (selectedIds.length === 0) {
+    alert('Please select at least one category to delete.');
+  } else {
+    if (confirm('Are you sure you want to delete the selected category?')) {
+      const deleteForm = document.forms['delete-form'];
+      deleteForm.action = '/admin/category/delete-multiple?_method=DELETE';
+      selectedIds.forEach(id => {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', 'ids[]');
+        input.setAttribute('value', id);
+        deleteForm.appendChild(input);
+      });
+      deleteForm.submit();
+    }
+  }
+};
+
 </script>
 
 

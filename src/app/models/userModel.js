@@ -21,6 +21,10 @@ const userSchema = mongoose.Schema({
     type: String,
     require: false,
   },
+  resetPasswordToken: {
+    type: String,
+    require: false
+  },
   phone: {
     type: String,
     require: false,

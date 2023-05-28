@@ -111,26 +111,26 @@ app.use("/admin/stat", (req, res) => {
 });
 
 // add order
-app.use("/admin/order-admin", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/order-admin.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
-  });
-});
+// app.use("/admin/order-admin", (req, res) => {
+//   res.render(path.join(__dirname + "/src/views/order-admin.handlebars"), {
+//     layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
+//   });
+// });
 
 
 // add order
-app.use("/admin/categories", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/categories.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
-  });
-});
+// app.use("/admin/categories", (req, res) => {
+//   res.render(path.join(__dirname + "/src/views/categories.handlebars"), {
+//     layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
+//   });
+// });
 
 // add dashboard
-app.use("/admin/dashboard", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/dashboard.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
-  });
-});
+// app.use("/admin/dashboard", (req, res) => {
+//   res.render(path.join(__dirname + "/src/views/dashboard.handlebars"), {
+//     layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
+//   });
+// });
 
 
 //add analytics admin

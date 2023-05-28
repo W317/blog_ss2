@@ -22,21 +22,14 @@ const addToWishlist = asyncHandler(async (req, res) => {
     const product = await Product.findById(wishlistPro);
     const wishlist = await Wishlist.findOne({ user: user });
 
-    if (wishlist) {
-      wishlist.wishlist.forEach((item) => {
-        if (item.title !== product.title) {
-          wishlist.wishlist = [...wishlist.wishlist, product];
-        }
-      });
-
-      await wishlist.save();
+    if (wishlist !== null) {
+      wishlist.wishlist.push(product);
+      await Wishlist.findByIdAndUpdate(wishlist._id, wishlist);
     } else {
       const newWishlist = await Wishlist.create({
         user: user,
-        wishlist: [...wishlist.wishlist, product],
+        wishlist: [product],
       });
-
-      await newWishlist.save();
     }
 
     res.redirect("/user/wishlist");

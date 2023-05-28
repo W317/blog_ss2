@@ -20,7 +20,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 // Get a single user by ID
 const getOneUser = asyncHandler(async (req, res) => {
   try {
-    const user = await userModel.findById(req.user.id);
+    const user = await userModel.findById(req.session.passport.user);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
