@@ -43,7 +43,7 @@ const getOrderDetails = asyncHandler(async (req, res) => {
       order: order,
       user: user,
       isAdmin: user?.isAdmin,
-      layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+      layout: path.join(__dirname + "/src/views/layout/admin-sidebar.handlebars"),
     });
   } catch (error) {
     console.error(error);
