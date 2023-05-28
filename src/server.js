@@ -179,11 +179,11 @@ app.use("/pages/cart", (req, res) => {
 });
 
 //wishlist
-app.use("/pages/wishlist", (req, res) => {
-  res.render(path.join(__dirname + "/src/views/wishlist.handlebars"), {
-    layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
-  });
-});
+// app.use("/pages/wishlist", (req, res) => {
+//   res.render(path.join(__dirname + "/src/views/wishlist.handlebars"), {
+//     layout: path.join(__dirname + "/src/views/layout/main.handlebars"),
+//   });
+// });
 
 //single-product
 // app.use("/pages/single-product", (req, res) => {

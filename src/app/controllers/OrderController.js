@@ -21,7 +21,7 @@ const getAllOrders = asyncHandler(async (req, res) => {
 
 const getUserOrders = asyncHandler(async (req, res) => {
   try {
-    const orders = await Order.find({ user: req.session.passport.user });
+    const orders = await Order.find({ user: req.session.passport.user }).lean();
 
     res.render(path.join(__dirname + "/src/views/session.handlebars"), {
       orders: orders,
